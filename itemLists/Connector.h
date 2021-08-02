@@ -4,8 +4,13 @@
 #include <QObject>
 #include <QQuickWindow>
 #include <QDir>
+#include <iostream>
+using namespace std;
 
 struct ItemStruct {
+    Q_GADGET
+
+public:
     int no;
     QString title;
     QString imagePath;
@@ -21,13 +26,16 @@ public:
     // overriding
     void setWindow(QQuickWindow* Widnow);
 
-    QVector<ItemStruct> getItems();
+//    Q_INVOKABLE QVector<ItemStruct> getItems(); // struct list를 직접 보내는 방법 확인하기
+
+    // qml onCompleted
+    Q_INVOKABLE int getItemListSize();
 
 private:
     QQuickWindow* mMainView;        // connection을 위한 윈도우
 
     QString mImageRoot = "./src/";// 이미지 루트 폴더
-    QVector<QString> mImages;     // 이미지 경로
+    QVector<QString> mImages;     // 이미지 목록
     QVector<ItemStruct> mItemList;   // 아이템 목록
 
     void setImages();

@@ -47,10 +47,14 @@ void Connector::setItemLists()
 
 void Connector::setConnection() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
+//    qRegisterMetaType<ItemStruct>("ItemStruct");    // getItems() 사용 위함
 }
 
 
 // private functions
-QVector<ItemStruct> Connector::getItems() {
-    return mItemList;
-}
+//QVector<ItemStruct> Connector::getItems() {
+//    return mItemList;
+//}
+
+// qml onCompleted
+int Connector::getItemListSize() { return mImages.size(); }

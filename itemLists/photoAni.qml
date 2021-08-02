@@ -7,11 +7,6 @@ import QtQml 2.1
 import "."
 
 Window {
-//    width: 400
-//    height: 600
-//    visible: true
-//    title: qsTr("Item Lists")
-
     id: photoInfo;
     width: 400
     height: 600

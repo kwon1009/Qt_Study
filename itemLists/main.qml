@@ -2,72 +2,82 @@ import QtQuick 2.12
 import QtQuick.Controls 2.0
 import QtQuick.Window 2.12
 import QtQml 2.1
-//import Connector 1.0
+import Connector 1.0
 // import 오류 발생
+// ASSERT failure in QList<T>::operator[]: "index out of range", file C:\Qt\5.12.11\mingw73_64\include/QtCore/qlist.h, line 552
+// main.cpp에서 Connector의 위치를 위로 변경함으로써 해결됨
 import "."
 
 Window {
-//    width: 400
-//    height: 600
-//    visible: true
-//    title: qsTr("Item Lists")
+    property int mPhotoSize: 0  // property 정의 재확인 필요
 
-    id: photo_info;
     width: 400
     height: 600
     visible: true
-    title: qsTr("Photo Info")
+    title: qsTr("Item Lists")
 
-    Item {
-        id: base
-        width: 400
-        height : 600
+    Connector {
+        id: connector
+    }
 
-        Rectangle{
-            id: photo
-            objectName: "myrect"    //??
-            color : "gray"
-            width: 100
+    Component.onCompleted: {
+        mPhotoSize = connector.getItemListSize();
+        console.log(mPhotoSize);
+    }
+
+    ListModel {
+        id: photoModel
+        ListElement {
+            photoNo: 1
+            photoTitle: "test1"
+            photoPath: "./src/HamZzi.jpg"
+        }
+        ListElement {
+            photoNo: 2
+            photoTitle: "test2"
+            photoPath: "./src/Happy dog.jpg"
+        }
+    }
+
+    Component {
+        id: photoComponent
+        Item {
+            width: parent.width
             height: 100
-            x : 0
-            y : 0
 
-            SequentialAnimation {
-                running: true
-                loops: Animation.Infinite;
+            // 배치 설정하기 - 세로 가운데 정렬, List형식
+            Image {
+                id: photoImg
+                anchors.left: parent.left
+                anchors.margins: 10
+                width: 50
+                height: 50
+                source: photoPath
+            }
 
-                NumberAnimation {
-                    target: photo
-                    property: "x"
-                    from : 0
-                    to : 300
-                    duration: 3000
-                }
+            Text {
+                id: photoText
+                anchors.left: parent.left
+                anchors.leftMargin: 70
+                text: "No." + photoNo + " <" + photoTitle + ">"
+            }
 
-                NumberAnimation {
-                    target: photo
-                    property: "y"
-                    from : 0
-                    to : 500
-                    duration: 5000
-                }
-
-                NumberAnimation {
-                    target: photo
-                    property: "x"
-                    from : 300
-                    to : 0
-                    duration: 3000
-                }
-
-                NumberAnimation {
-                    target: photo
-                    property: "y"
-                    from : 500
-                    to : 0
-                    duration: 5000
-                }
+            Button {
+                id: photoBtn
+                width: 70
+                height: 30
+                anchors.right: parent.right
+                anchors.margins: 10
+                text: "More"
             }
         }
+    }
+
+    ListView {
+        id: photoListView
+        anchors.fill: parent
+        model: photoModel
+        delegate: photoComponent
+        focus: true
     }
 }
