@@ -7,7 +7,7 @@ import "."
 
 
 Rectangle {
-    id: base
+    id: photoWindow
     width: 400
     height : 600
     color: "white"
@@ -24,12 +24,11 @@ Rectangle {
             running: true
             loops: Animation.Infinite;
 
-            // 도착지점을 현재 화면 사이즈에 맞게 자동으로 조절되도록 하기
             NumberAnimation {
                 target: photoBox
                 property: "x"
                 from : 0
-                to : 300
+                to : photoWindow.width - photoBox.width
                 duration: 3000
             }
 
@@ -37,14 +36,14 @@ Rectangle {
                 target: photoBox
                 property: "y"
                 from : 0
-                to : 500
+                to : photoWindow.height - photoBox.height
                 duration: 5000
             }
 
             NumberAnimation {
                 target: photoBox
                 property: "x"
-                from : 300
+                from : photoWindow.width - photoBox.width
                 to : 0
                 duration: 3000
             }
@@ -52,7 +51,7 @@ Rectangle {
             NumberAnimation {
                 target: photoBox
                 property: "y"
-                from : 500
+                from : photoWindow.height - photoBox.height
                 to : 0
                 duration: 5000
             }

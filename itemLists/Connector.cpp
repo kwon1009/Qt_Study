@@ -4,7 +4,6 @@
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-//    qRegisterMetaType<ItemStruct>("ItemStruct");    // getItems() 사용 위함
 
     setImages();
     setItemLists();
@@ -40,21 +39,15 @@ void Connector::setItemLists()
     for(int i=0; i<mImages.size(); i++) {
         item.title = QString("%1")
                 .arg(mImages[i].split(".", QString::SkipEmptyParts).at(0));
-        // 점이 두개 이상 포함된 파일명을 조회하는 방법 찾기
+        // !!점이 두개 이상 포함된 파일명을 조회하는 방법 찾기
         item.imagePath = mImageRoot + mImages[i];
         mItemList.push_back(item);
     }
 }
 
 void Connector::setConnection() {
-    // QObject::connect을 모아놓는 곳
+    // QObject::connect
 }
-
-
-// private functions
-//QVector<ItemStruct> Connector::getItems() {
-//    return mItemList;
-//}
 
 
 // qml onCompleted

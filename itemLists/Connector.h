@@ -8,9 +8,6 @@
 using namespace std;
 
 struct ItemStruct {
-//    Q_GADGET
-
-//public:
     QString title;
     QString imagePath;
 };
@@ -27,14 +24,10 @@ public:
 
     void setConnection();
 
-//    Q_INVOKABLE QVector<ItemStruct> getItems(); // struct list를 직접 보내는 방법 확인하기
-
     // qml onCompleted
     Q_INVOKABLE int getItemListSize();
     Q_INVOKABLE QString getPhotoTitle(int index);
     Q_INVOKABLE QString getPhotoPath(int index);
-
-//    void setObject(QObject* obj);
 
 private:
     QQuickWindow* mMainView;
