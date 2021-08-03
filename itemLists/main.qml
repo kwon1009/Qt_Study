@@ -47,11 +47,16 @@ Window {
                 hoverEnabled: false
                 onEntered: {
                     photoInfoAni.running = true
+                    console.log(" mousearea onEntered ")
                 }
                 onExited: {
                     photoInfoAni.running = false
+                    console.log(" mousearea onExited ")
                 }
-//                onContainsMouseChanged: photoInfoAni.running = !photoInfoAni.running
+
+                onPositionChanged: {
+                    console.log(" mousearea onPositionChanged ")
+                }
             }
 
             RowLayout {
@@ -64,9 +69,9 @@ Window {
 
                     Image {
                         id: photoImg
+                        fillMode: Image.PreserveAspectCrop
                         anchors.centerIn: parent
-                        width: 80
-                        height: 80
+                        anchors.fill: parent
                         source: photoPath
                     }
                 }
@@ -113,6 +118,9 @@ Window {
                 height: 1
                 color: "gray"
             }
+
+
+
         }
     }
 

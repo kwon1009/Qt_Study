@@ -15,6 +15,7 @@ Rectangle {
 
     Image {
         id: photoBox
+        fillMode: Image.PreserveAspectCrop
         source: mPhotoPath      // main.qml에서 받은 값
         width: 100
         height: 100
