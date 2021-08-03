@@ -9,6 +9,7 @@ import Connector 1.0
 import "."
 
 Window {
+    id: mainView
     property int mPhotoSize: 0  // property 정의 재확인 필요
 
     width: 400
@@ -61,6 +62,9 @@ Window {
                 anchors.right: parent.right
                 anchors.margins: 10
                 text: "More"
+                onClicked: {
+                    stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                }
             }
         }
     }
@@ -71,5 +75,13 @@ Window {
         model: ListModel{}
         delegate: photoComponent
         focus: true
+    }
+
+    // 추가 페이지가 열리는 방식
+    // 현재 페이지에서 넘어가는 것은 아님
+    StackView {
+        id: stackPhotoAni
+        anchors.fill: parent
+        initialItem: mainView
     }
 }
