@@ -34,6 +34,7 @@ Window {
     Component {
         id: photoComponent
         Item {
+            property bool stateHover: false
             width: parent.width
             height: 100
 
@@ -47,11 +48,31 @@ Window {
                 source: photoPath
             }
 
-            Text {
-                id: photoText
-                anchors.left: parent.left
-                anchors.leftMargin: 70
-                text: "No." + (photoNo+1) + " <" + photoTitle + ">"
+            MouseArea {
+                id: photoArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    photoInfoAni.running = true
+                }
+                onExited: {
+                    photoInfoAni.running = false
+                }
+
+                Text {
+                    id: photoInfo
+                    text: "No." + (photoNo+1) + " <" + photoTitle + ">"
+
+                    NumberAnimation on x {
+                        id: photoInfoAni
+                        running: false
+                        from: parent.x
+                        to: parent.width - 100
+                        duration: 1000
+                        loops: Animation.Infinite
+                    }
+                }
+
             }
 
             Button {

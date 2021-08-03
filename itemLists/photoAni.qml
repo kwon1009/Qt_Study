@@ -63,8 +63,7 @@ Rectangle {
         id: backBtn
         width: 70
         height: 30
-        x: parent.width/2-35
-        y: parent.height/2-15
+        anchors.centerIn: parent
         text: "Back"
         onClicked: {
             stackPhotoAni.pop()
