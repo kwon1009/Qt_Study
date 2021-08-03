@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.0
 import QtQuick.Window 2.12
 import QtQml 2.1
+import QtQuick.Layouts 1.3
+
 import Connector 1.0
 import "."
 
@@ -30,8 +32,9 @@ Window {
 
     Component {
         id: photoComponent
-        Item {
-            property bool stateHover: false
+        Rectangle {
+            property int mMargin: 10
+
             width: parent.width
             height: 100
 
@@ -51,47 +54,62 @@ Window {
 //                onContainsMouseChanged: photoInfoAni.running = !photoInfoAni.running
             }
 
-            // !!Layout 적용하기 - 세로 가운데 정렬, List형식
-            Image {
-                id: photoImg
-                anchors.left: parent.left
-                anchors.margins: 10
-                width: 50
-                height: 50
-                source: photoPath
-            }
+            RowLayout {
+                anchors.fill: parent
+                spacing: 3
 
-            Text {
-                id: photoInfo
-                x: 70
-                text: "No." + (photoNo+1) + " <" + photoTitle + ">"
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 100
 
-                NumberAnimation on x {
-                    id: photoInfoAni
-                    running: false
-                    from: 70
-                    to: parent.width - 100
-                    duration: 1000
-                    loops: Animation.Infinite
+                    Image {
+                        id: photoImg
+                        anchors.centerIn: parent
+                        width: 80
+                        height: 80
+                        source: photoPath
+                    }
                 }
-            }
 
-            Button {
-                id: photoBtn
-                width: 70
-                height: 30
-                anchors.right: parent.right
-                anchors.margins: 10
-                text: "More"
-                onClicked: {
-                    mPhotoPath = photoPath;
-                    stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: parent.width - 200
+                    Text {
+                        id: photoInfo
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "No." + (photoNo+1) + " <" + photoTitle + ">"
+
+                        NumberAnimation on x {
+                            id: photoInfoAni
+                            running: false
+                            from: photoInfo.x
+                            to: 210
+                            duration: 1000
+                            loops: Animation.Infinite
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 100
+
+                    Button {
+                        id: photoBtn
+                        width: 70
+                        height: 30
+                        anchors.centerIn: parent
+                        text: "More"
+                        onClicked: {
+                            mPhotoPath = photoPath;
+                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                        }
+                    }
                 }
             }
 
             Rectangle {
                 width: parent.width
-                anchors.bottom: parent.bottom
                 height: 1
                 color: "gray"
             }
