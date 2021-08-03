@@ -36,7 +36,6 @@ void Connector::setItemLists()
 {
     ItemStruct item;
     for(int i=0; i<mImages.size(); i++) {
-        item.no = i;
         item.title = QString("%1")
                 .arg(mImages[i].split(".", QString::SkipEmptyParts).at(0));
         // 점이 두개 이상 포함된 파일명을 조회하는 방법 찾기
@@ -58,3 +57,6 @@ void Connector::setConnection() {
 
 // qml onCompleted
 int Connector::getItemListSize() { return mImages.size(); }
+QString Connector::getPhotoTitle(int index) { return mItemList.at(index).title; }
+QString Connector::getPhotoPath(int index) { return mItemList.at(index).imagePath; }
+

@@ -8,10 +8,9 @@
 using namespace std;
 
 struct ItemStruct {
-    Q_GADGET
+//    Q_GADGET
 
-public:
-    int no;
+//public:
     QString title;
     QString imagePath;
 };
@@ -30,6 +29,8 @@ public:
 
     // qml onCompleted
     Q_INVOKABLE int getItemListSize();
+    Q_INVOKABLE QString getPhotoTitle(int index);
+    Q_INVOKABLE QString getPhotoPath(int index);
 
 private:
     QQuickWindow* mMainView;        // connection을 위한 윈도우

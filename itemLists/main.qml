@@ -22,20 +22,12 @@ Window {
 
     Component.onCompleted: {
         mPhotoSize = connector.getItemListSize();
-        console.log(mPhotoSize);
-    }
-
-    ListModel {
-        id: photoModel
-        ListElement {
-            photoNo: 1
-            photoTitle: "test1"
-            photoPath: "./src/HamZzi.jpg"
-        }
-        ListElement {
-            photoNo: 2
-            photoTitle: "test2"
-            photoPath: "./src/Happy dog.jpg"
+        // 한번에 모두 받아올 수 있는 방법 알아보기
+        for(var i=0; i<mPhotoSize; i++) {
+            photoListView.model.append({"photoNo": i,
+                                       "photoTitle": connector.getPhotoTitle(i),
+                                       "photoPath": connector.getPhotoPath(i)
+                                       })
         }
     }
 
@@ -76,7 +68,7 @@ Window {
     ListView {
         id: photoListView
         anchors.fill: parent
-        model: photoModel
+        model: ListModel{}
         delegate: photoComponent
         focus: true
     }
