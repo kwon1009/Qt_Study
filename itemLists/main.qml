@@ -87,8 +87,8 @@ Window {
                         NumberAnimation on x {
                             id: photoInfoAni
                             running: false
-                            from: photoInfo.x
-                            to: 210
+                            from: parent.x
+                            to: parent.x+parent.width
                             duration: 1000
                             loops: Animation.Infinite
                         }
