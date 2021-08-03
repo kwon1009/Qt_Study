@@ -3,21 +3,23 @@
 #include <QDebug>
 
 Connector::Connector() {
+    qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
+//    qRegisterMetaType<ItemStruct>("ItemStruct");    // getItems() 사용 위함
+
     setImages();
     setItemLists();
-    setConnection();
 }
 
 Connector::~Connector() {
 
 }
 
+
 // overriding
 void Connector::setWindow(QQuickWindow* Window)
 {
     mMainView = Window;
 }
-
 
 // public functions
 void Connector::setImages()
@@ -45,8 +47,7 @@ void Connector::setItemLists()
 }
 
 void Connector::setConnection() {
-    qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-//    qRegisterMetaType<ItemStruct>("ItemStruct");    // getItems() 사용 위함
+    // QObject::connection을 모아놓는 곳
 }
 
 
@@ -55,8 +56,10 @@ void Connector::setConnection() {
 //    return mItemList;
 //}
 
+
 // qml onCompleted
 int Connector::getItemListSize() { return mImages.size(); }
 QString Connector::getPhotoTitle(int index) { return mItemList.at(index).title; }
 QString Connector::getPhotoPath(int index) { return mItemList.at(index).imagePath; }
+
 

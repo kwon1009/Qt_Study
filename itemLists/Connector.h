@@ -25,6 +25,8 @@ public:
     // overriding
     void setWindow(QQuickWindow* Widnow);
 
+    void setConnection();
+
 //    Q_INVOKABLE QVector<ItemStruct> getItems(); // struct list를 직접 보내는 방법 확인하기
 
     // qml onCompleted
@@ -32,16 +34,17 @@ public:
     Q_INVOKABLE QString getPhotoTitle(int index);
     Q_INVOKABLE QString getPhotoPath(int index);
 
-private:
-    QQuickWindow* mMainView;        // connection을 위한 윈도우
+//    void setObject(QObject* obj);
 
-    QString mImageRoot = "./src/";// 이미지 루트 폴더
-    QVector<QString> mImages;     // 이미지 목록
-    QVector<ItemStruct> mItemList;   // 아이템 목록
+private:
+    QQuickWindow* mMainView;
+
+    QString mImageRoot = "./src/";  // 이미지 루트 폴더
+    QVector<QString> mImages;       // 이미지 목록
+    QVector<ItemStruct> mItemList;  // 아이템 목록
 
     void setImages();
     void setItemLists();
-    void setConnection();
 };
 
 

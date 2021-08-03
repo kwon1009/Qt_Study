@@ -9,9 +9,9 @@ import Connector 1.0
 import "."
 
 Window {
-    id: mainView
     property int mPhotoSize: 0  // property 정의 재확인 필요
 
+    id: mainWindow
     width: 400
     height: 600
     visible: true
@@ -52,7 +52,7 @@ Window {
                 id: photoText
                 anchors.left: parent.left
                 anchors.leftMargin: 70
-                text: "No." + photoNo + " <" + photoTitle + ">"
+                text: "No." + (photoNo+1) + " <" + photoTitle + ">"
             }
 
             Button {
@@ -82,6 +82,6 @@ Window {
     StackView {
         id: stackPhotoAni
         anchors.fill: parent
-        initialItem: mainView
+        initialItem: photoListView
     }
 }
