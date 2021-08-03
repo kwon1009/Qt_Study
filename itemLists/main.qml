@@ -19,125 +19,148 @@ Window {
     visible: true
     title: qsTr("Item Lists")
 
-    Component.onCompleted: {
-        mPhotoSize = connector.getItemListSize();
-        // !!한번에 모두 받아올 수 있는 방법 알아보기
-        for(var i=0; i<mPhotoSize; i++) {
-            photoListView.model.append({"photoNo": i,
-                                       "photoTitle": connector.getPhotoTitle(i),
-                                       "photoPath": connector.getPhotoPath(i)
-                                       })
-        }
-    }
+//    Component.onCompleted: {
+//        mPhotoSize = connector.getItemListSize();
+//        // !!한번에 모두 받아올 수 있는 방법 알아보기
+//        for(var i=0; i<mPhotoSize; i++) {
+//            photoListView.model.append({"photoNo": i,
+//                                       "photoTitle": connector.getPhotoTitle(i),
+//                                       "photoPath": connector.getPhotoPath(i)
+//                                       })
+//        }
+//    }
 
-    Component {
-        id: photoComponent
-        Rectangle {
-            property int mMargin: 10
+    Rectangle {
+        width: 100; height: 100
+        color: "green"
 
-            width: parent.width
-            height: 100
-
-            MouseArea {
-                id: photoArea
-                anchors.fill: parent
-
-                // hover 시, text animation 적용
-                // !!hover가 정상적으로 적용되지 않고 있음
-                hoverEnabled: false
-                onEntered: {
-                    photoInfoAni.running = true
-                    console.log(" mousearea onEntered ")
-                }
-                onExited: {
-                    photoInfoAni.running = false
-                    console.log(" mousearea onExited ")
-                }
-
-                onPositionChanged: {
-                    console.log(" mousearea onPositionChanged ")
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+                if(containsMouse) {
+                    parent.color = "yellow"
                 }
             }
 
-            RowLayout {
-                anchors.fill: parent
-                spacing: 3
-
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 100
-
-                    Image {
-                        id: photoImg
-                        fillMode: Image.PreserveAspectCrop
-                        anchors.centerIn: parent
-                        anchors.fill: parent
-                        source: photoPath
-                    }
-                }
-
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: parent.width - 200
-                    Text {
-                        id: photoInfo
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "No." + (photoNo+1) + " <" + photoTitle + ">"
-
-                        NumberAnimation on x {
-                            id: photoInfoAni
-                            running: false
-                            from: parent.x
-                            to: parent.x+parent.width
-                            duration: 1000
-                            loops: Animation.Infinite
-                        }
-                    }
-                }
-
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 100
-
-                    Button {
-                        id: photoBtn
-                        width: 70
-                        height: 30
-                        anchors.centerIn: parent
-                        text: "More"
-                        onClicked: {
-                            mPhotoPath = photoPath;
-                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
-                        }
-                    }
+            onExited: {
+                if(!containsMouse) {
+                    parent.color = "green"
                 }
             }
-
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: "gray"
-            }
-
-
-
         }
     }
 
-    ListView {
-        id: photoListView
-        anchors.fill: parent
-        model: ListModel{}
-        delegate: photoComponent
-        focus: true
-    }
+//    Component {
+//        id: photoComponent
+//        Rectangle {
+//            property int mMargin: 10
 
-    // !!Stack 외에 다른 방식이 있는지 확인해보기
-    StackView {
-        id: stackPhotoAni
-        anchors.fill: parent
-        initialItem: Item {
+//            width: parent.width
+//            height: 100
 
-        }
-    }
+//            RowLayout {
+//                anchors.fill: parent
+//                spacing: 3
+
+//                Rectangle {
+//                    Layout.fillHeight: true
+//                    Layout.preferredWidth: 100
+
+//                    Image {
+//                        id: photoImg
+//                        fillMode: Image.PreserveAspectCrop
+//                        anchors.centerIn: parent
+//                        anchors.fill: parent
+//                        source: photoPath
+//                    }
+//                }
+
+//                Rectangle {
+//                    Layout.fillHeight: true
+//                    Layout.preferredWidth: parent.width - 200
+
+//                    Text {
+//                        id: photoInfo
+//                        anchors.verticalCenter: parent.verticalCenter
+//                        text: "No." + (photoNo+1) + " <" + photoTitle + ">"
+
+//                        NumberAnimation on x {
+//                            id: photoInfoAni
+//                            running: false
+//                            from: parent.x
+//                            to: parent.x+parent.width
+//                            duration: 1000
+//                            loops: Animation.Infinite
+//                        }
+//                    }
+
+//                    MouseArea {
+//                        id: photoArea
+//                        anchors.fill: parent
+
+//                        // hover 시, text animation 적용
+//                        // !!hover가 정상적으로 적용되지 않고 있음
+//                        hoverEnabled: true
+//                        onEntered: {
+//                            if(containsMouse) {
+//                                console.log("enter")
+//                                photoInfoAni.running = true
+//                            }
+//                        }
+//                        onExited: {
+//                            if(!containsMouse) {
+//                                console.log("exit")
+//                                photoInfoAni.running = false
+//                                photoInfo.x = parent.x
+//                            }
+//                        }
+//                    }
+//                }
+
+//                Rectangle {
+//                    Layout.fillHeight: true
+//                    Layout.preferredWidth: 100
+
+//                    Button {
+//                        id: photoBtn
+//                        width: 70
+//                        height: 30
+//                        anchors.centerIn: parent
+//                        text: "More"
+//                        onClicked: {
+//                            mPhotoPath = photoPath;
+//                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+//                        }
+//                    }
+//                }
+//            }
+
+//            Rectangle {
+//                width: parent.width
+//                height: 1
+//                color: "gray"
+//            }
+
+
+
+//        }
+//    }
+
+//    ListView {
+//        id: photoListView
+//        anchors.fill: parent
+//        model: ListModel{}
+//        delegate: photoComponent
+//        focus: true
+//    }
+
+//    // !!Stack 외에 다른 방식이 있는지 확인해보기
+//    StackView {
+//        id: stackPhotoAni
+//        anchors.fill: parent
+//        initialItem: Item {
+
+//        }
+//    }
 }
