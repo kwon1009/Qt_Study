@@ -21,9 +21,9 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    // Connector Class
-    QObject *root = engine.rootObjects()[0];     // qrc:/main.qml를 등록한 엔진의 object값을 가져옴
-    con->setWindow(qobject_cast<QQuickWindow *>(root));   // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
+    // Connector setWindow
+    QObject *root = engine.rootObjects()[0];            // qrc:/main.qml를 등록한 엔진의 object값을 가져옴
+    con->setWindow(qobject_cast<QQuickWindow *>(root)); // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
     con->setConnection();
 
     return app.exec();

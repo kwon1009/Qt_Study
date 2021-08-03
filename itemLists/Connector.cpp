@@ -47,7 +47,7 @@ void Connector::setItemLists()
 }
 
 void Connector::setConnection() {
-    // QObject::connection을 모아놓는 곳
+    // QObject::connect을 모아놓는 곳
 }
 
 

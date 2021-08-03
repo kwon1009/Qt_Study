@@ -9,17 +9,16 @@ import Connector 1.0
 import "."
 
 Window {
-    property int mPhotoSize: 0  // property 정의 재확인 필요
+    property int mPhotoSize: 0      // property 정의 재확인 필요
+    property string mPhotoPath: ""  // photoAni.qml -> photoBox
+
+    Connector { id: connector }
 
     id: mainWindow
     width: 400
     height: 600
     visible: true
     title: qsTr("Item Lists")
-
-    Connector {
-        id: connector
-    }
 
     Component.onCompleted: {
         mPhotoSize = connector.getItemListSize();
@@ -63,8 +62,16 @@ Window {
                 anchors.margins: 10
                 text: "More"
                 onClicked: {
+                    mPhotoPath = photoPath;
                     stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
                 }
+            }
+
+            Rectangle {
+                width: parent.width
+                anchors.bottom: parent.bottom
+                height: 1
+                color: "gray"
             }
         }
     }
@@ -82,6 +89,8 @@ Window {
     StackView {
         id: stackPhotoAni
         anchors.fill: parent
-        initialItem: photoListView
+        initialItem: Item {
+
+        }
     }
 }

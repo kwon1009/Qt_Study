@@ -169,7 +169,18 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_qml.cpp
 debug\qrc_qml.cpp: ..\itemLists\qml.qrc \
 		C:\Qt\5.12.4\msvc2017_64\bin\rcc.exe \
-		..\itemLists\main.qml
+		..\itemLists\photoAni.qml \
+		..\itemLists\main.qml \
+		..\itemLists\src\HamZzi.jpg \
+		"..\itemLists\src\On the Street.jpg" \
+		"..\itemLists\src\So cute.jpg" \
+		..\itemLists\src\Husky.jpg \
+		"..\itemLists\src\We are animals.jpg" \
+		"..\itemLists\src\Happy dog.jpg" \
+		..\itemLists\src\Thinking.jpg \
+		..\itemLists\src\Kittens.jpg \
+		"..\itemLists\src\Weather is good.jpg" \
+		..\itemLists\src\What.jpg
 	C:\Qt\5.12.4\msvc2017_64\bin\rcc.exe -name qml ..\itemLists\qml.qrc -o debug\qrc_qml.cpp
 
 compiler_moc_predefs_make_all: debug\moc_predefs.h
@@ -317,6 +328,9 @@ debug\moc_Connector.cpp: ..\itemLists\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmllist.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmetaobject.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmldebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.12.4\msvc2017_64\bin\moc.exe
 	C:\Qt\5.12.4\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/ypd00/Desktop/kwonhs/01_Lists/build-itemLists-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.4/msvc2017_64/mkspecs/win32-msvc -IC:/Users/ypd00/Desktop/kwonhs/01_Lists/itemLists -IC:/Qt/5.12.4/msvc2017_64/include -IC:/Qt/5.12.4/msvc2017_64/include/QtQuick -IC:/Qt/5.12.4/msvc2017_64/include/QtGui -IC:/Qt/5.12.4/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.4/msvc2017_64/include/QtQml -IC:/Qt/5.12.4/msvc2017_64/include/QtNetwork -IC:/Qt/5.12.4/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\itemLists\Connector.h -o debug\moc_Connector.cpp
@@ -473,6 +487,9 @@ debug\Connector.obj: ..\itemLists\Connector.cpp ..\itemLists\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmllist.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmetaobject.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmldebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug
 
 debug\main.obj: ..\itemLists\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QGuiApplication \
@@ -621,7 +638,10 @@ debug\main.obj: ..\itemLists\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QGu
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfile.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfiledevice.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qvector2d.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qtouchdevice.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h
 
 debug\qrc_qml.obj: debug\qrc_qml.cpp 
 
