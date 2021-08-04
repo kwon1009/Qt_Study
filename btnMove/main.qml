@@ -4,11 +4,12 @@ import QtQuick.Controls 2.12
 import "."
 
 Window {
+    // !!공통 소스 폴더를 만들기
     property variant mPhotoPaths: [
         "./src/Kittens.jpg",
         "./src/So cute.jpg",
         "./src/HamZzi.jpg"]
-    property variant xPs: [0, 210, 420]
+    property variant mXs: [0, 210, 420]
 
     property int tempCount: 0       // test용 숫자
 
@@ -19,39 +20,49 @@ Window {
 
     // 마우스 클릭 해제 시 이벤트 적용
     DropArea {
-        anchors.fill: parent
+        anchors.fill: btns
         onExited: {
             console.log("exit", tempCount, drag.x, drag.y, drag.source.btnNo)
             tempCount++
-            var targetNo = drag.source.btnNo
+            var targetNo = drag.source.btnNo    // !!아이디를 직접 가져오는 방법
+
+            drag.source.x = mXs[1]
             // !!순서 설정하기
+            if(targetNo == 0) {
+                if(mXs[1] > drag.x) {
+                    drag.source.x = mXs[1]
+                }
+            } else if (targetNo == mPhotoPaths.length) {
+
+            }
+        }
+    }
+
+    Item {
+        id: btns
+        anchors.fill: parent    // !!아이템 가운데정렬 하도록 하기
+
+        // !!동적으로 배정되도록 하기
+        MyButton {
+            id: btn0
+            btnNo: 0
+            photoPath: mPhotoPaths[0]
+            x: mXs[0]
         }
 
-//        onDropped: {
-//            console.log("drop", drag.x, drag.y)
-//        }
-    }
+        MyButton {
+            id: btn1
+            btnNo: 1
+            photoPath: mPhotoPaths[1]
+            x: mXs[1]
+        }
 
-    // !!동적으로 배정되도록 하기
-    MyButton {
-        id: btn0
-        btnNo: 0
-        photoPath: mPhotoPaths[0]
-        x: xPs[0]
-    }
-
-    MyButton {
-        id: btn1
-        btnNo: 1
-        photoPath: mPhotoPaths[1]
-        x: xPs[1]
-    }
-
-    MyButton {
-        id: btn2
-        btnNo: 2
-        photoPath: mPhotoPaths[2]
-        x: xPs[2]
+        MyButton {
+            id: btn2
+            btnNo: 2
+            photoPath: mPhotoPaths[2]
+            x: mXs[2]
+        }
     }
 
     Button {
