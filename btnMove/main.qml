@@ -8,72 +8,59 @@ Window {
         "./src/Kittens.jpg",
         "./src/So cute.jpg",
         "./src/HamZzi.jpg"]
+    property variant xPs: [0, 210, 420]
 
+    property int tempCount: 0       // test용 숫자
+
+    id: mainWindow
     width: 1000
     height: 400
     visible: true
 
-
-    Component.onCompleted: {
-        for(var i=0; i<3; i++) {
-            btnListView.model.append({"btnNo": i,
-                                       "mPhotoPath": mPhotoPaths[i]
-                                       })
-        }
-    }
-
-    Component {
-        id: btnComponent
-
-        Rectangle {
-            id: btn
-            property int btnNo: 0
-
-            width: 200
-            height: 200
-            color: "gray"
-
-            Drag.active: dragArea.drag.active   // 드래그 적용
-            Drag.hotSpot.x: parent.width/2      // 마우스 포인터 위치 고정
-            Drag.hotSpot.y: parent.height/2
-
-            states: State {
-                when: dragArea.drag.active
-                PropertyChanges {
-                    target: btn
-                    color: "yellow"
-                }
-            }
-
-            Image {
-                fillMode: Image.PreserveAspectCrop
-                source: mPhotoPath      // 자동으로 받아오는 값
-                width: 100
-                height: 100
-                // !!이미지가 붙어 있도록 해야 함
-                // !!parent로 할 시, 이미지가 분리됨
-            }
-
-            MouseArea {
-                id: dragArea
-                anchors.fill: parent
-                drag.target: btn
-
-                // 마우스 클릭 해제 시 이벤트 적용
-                onReleased: {
-                    console.log("release", parent.mouseX, parent.mouseY)
-//                    drag.target.x = 0
-//                    drag.target.y = 0
-                }
-            }
-        }
-
-    }
-
-    ListView {
-        id: btnListView
+    // 마우스 클릭 해제 시 이벤트 적용
+    DropArea {
         anchors.fill: parent
-        model: ListModel{}
-        delegate: btnComponent
+        onExited: {
+            console.log("exit", tempCount, drag.x, drag.y, drag.source.btnNo)
+            tempCount++
+            var targetNo = drag.source.btnNo
+            // !!순서 설정하기
+        }
+
+//        onDropped: {
+//            console.log("drop", drag.x, drag.y)
+//        }
+    }
+
+    // !!동적으로 배정되도록 하기
+    MyButton {
+        id: btn0
+        btnNo: 0
+        photoPath: mPhotoPaths[0]
+        x: xPs[0]
+    }
+
+    MyButton {
+        id: btn1
+        btnNo: 1
+        photoPath: mPhotoPaths[1]
+        x: xPs[1]
+    }
+
+    MyButton {
+        id: btn2
+        btnNo: 2
+        photoPath: mPhotoPaths[2]
+        x: xPs[2]
+    }
+
+    Button {
+        id: saveBtn
+        width: 300
+        height: 50
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Save"
     }
 }
