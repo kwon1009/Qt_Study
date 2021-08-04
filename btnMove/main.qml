@@ -13,21 +13,67 @@ Window {
     height: 400
     visible: true
 
-    MyButton {
-        id: btn1
-        btnNo: 0
-        mPhotoPath: mPhotoPaths[0]
+
+    Component.onCompleted: {
+        for(var i=0; i<3; i++) {
+            btnListView.model.append({"btnNo": i,
+                                       "mPhotoPath": mPhotoPaths[i]
+                                       })
+        }
     }
 
-    MyButton {
-        btnNo: 1
-        id: btn2
-        mPhotoPath: mPhotoPaths[1]
+    Component {
+        id: btnComponent
+
+        Rectangle {
+            id: btn
+            property int btnNo: 0
+
+            width: 200
+            height: 200
+            color: "gray"
+
+            Drag.active: dragArea.drag.active   // 드래그 적용
+            Drag.hotSpot.x: parent.width/2      // 마우스 포인터 위치 고정
+            Drag.hotSpot.y: parent.height/2
+
+            states: State {
+                when: dragArea.drag.active
+                PropertyChanges {
+                    target: btn
+                    color: "yellow"
+                }
+            }
+
+            Image {
+                fillMode: Image.PreserveAspectCrop
+                source: mPhotoPath      // 자동으로 받아오는 값
+                width: 100
+                height: 100
+                // !!이미지가 붙어 있도록 해야 함
+                // !!parent로 할 시, 이미지가 분리됨
+            }
+
+            MouseArea {
+                id: dragArea
+                anchors.fill: parent
+                drag.target: btn
+
+                // 마우스 클릭 해제 시 이벤트 적용
+                onReleased: {
+                    console.log("release", parent.mouseX, parent.mouseY)
+//                    drag.target.x = 0
+//                    drag.target.y = 0
+                }
+            }
+        }
+
     }
 
-    MyButton {
-        btnNo: 2
-        id: btn3
-        mPhotoPath: mPhotoPaths[2]
+    ListView {
+        id: btnListView
+        anchors.fill: parent
+        model: ListModel{}
+        delegate: btnComponent
     }
 }
