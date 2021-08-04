@@ -48,9 +48,13 @@ Window {
                     photoListBox.color = "lightyellow"
                 }
                 onExited: {
-                    photoInfoAni.running = false
-                    photoInfo.x = photoInfoAni.from
-                    photoListBox.color = "white"
+                    // 버튼 위에서도 애니메이션이 동작하도록 설정
+                    if(!(mouseX > 0 && mouseX < parent.width
+                            && mouseY > 0 && mouseY < 100)) {
+                        photoInfoAni.running = false
+                        photoListBox.color = "white"
+                        photoInfo.x = photoInfoAni.from
+                    }
                 }
             }
 
@@ -105,6 +109,7 @@ Window {
                     ListButton {
                         id: photoBtn
                         text: "More"
+                        hoverEnabled: true
                         onClicked: {
                             mPhotoPath = photoPath;
                             stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
