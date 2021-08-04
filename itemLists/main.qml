@@ -5,7 +5,8 @@ import QtQml 2.1
 import QtQuick.Layouts 1.3
 
 import Connector 1.0
-import "."
+import "./components"
+import "./src"
 
 Window {
     property int mPhotoSize: 0
@@ -101,42 +102,18 @@ Window {
                     Layout.preferredWidth: 100
                     color: "transparent"
 
-                    Rectangle {
+                    ListButton {
                         id: photoBtn
-                        width: 70
-                        height: 30
-                        radius: 40
-                        color: "#82B1FF"
-                        anchors.centerIn: thdRow
-
-                        Text { id: photoBtnText; text: "More"; anchors.centerIn: parent }
-
-                        MouseArea {
-                            anchors.fill: photoBtn
-                            hoverEnabled: true
-                            onEntered: {
-                                photoBtn.color = "#FF5252"
-                                photoBtnText.font.bold = true
-                            }
-                            onExited: {
-                                photoBtn.color = "#82B1FF"
-                            }
-
-                            onClicked: {
-                                mPhotoPath = photoPath;
-                                stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
-                            }
+                        text: "More"
+                        onClicked: {
+                            mPhotoPath = photoPath;
+                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
                         }
                     }
                 }
             }
 
-            // component border
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: "gray"
-            }
+            Border {}
         }
     }
 

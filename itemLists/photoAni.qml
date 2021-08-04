@@ -4,7 +4,8 @@ import QtQuick.Window 2.12
 import QtQml 2.1
 
 import Connector 1.0
-import "."
+import "./components"
+import "./src"
 
 
 Rectangle {
@@ -21,69 +22,50 @@ Rectangle {
         height: 100
         x : 0
         y : 0
+    }
 
-        SequentialAnimation {
-            running: true
-            loops: Animation.Infinite;
+    SequentialAnimation {
+        running: true
+        loops: Animation.Infinite;
 
-            NumberAnimation {
-                target: photoBox
-                property: "x"
-                from : 0
-                to : photoWindow.width - photoBox.width
-                duration: 3000
-            }
+        NumberAnimation {
+            target: photoBox
+            property: "x"
+            from : 0
+            to : photoWindow.width - photoBox.width
+            duration: 3000
+        }
 
-            NumberAnimation {
-                target: photoBox
-                property: "y"
-                from : 0
-                to : photoWindow.height - photoBox.height
-                duration: 5000
-            }
+        NumberAnimation {
+            target: photoBox
+            property: "y"
+            from : 0
+            to : photoWindow.height - photoBox.height
+            duration: 5000
+        }
 
-            NumberAnimation {
-                target: photoBox
-                property: "x"
-                from : photoWindow.width - photoBox.width
-                to : 0
-                duration: 3000
-            }
+        NumberAnimation {
+            target: photoBox
+            property: "x"
+            from : photoWindow.width - photoBox.width
+            to : 0
+            duration: 3000
+        }
 
-            NumberAnimation {
-                target: photoBox
-                property: "y"
-                from : photoWindow.height - photoBox.height
-                to : 0
-                duration: 5000
-            }
+        NumberAnimation {
+            target: photoBox
+            property: "y"
+            from : photoWindow.height - photoBox.height
+            to : 0
+            duration: 5000
         }
     }
 
-    Rectangle {
-        id: backBtn
-        width: 70
-        height: 30
-        radius: 40
-        color: "#82B1FF"
-        anchors.centerIn: parent
-        Text { id: backBtnText; text: "Back"; anchors.centerIn: backBtn }
-
-        MouseArea {
-            anchors.fill: backBtn
-            hoverEnabled: true
-            onEntered: {
-                backBtn.color = "#FF5252"
-                backBtnText.font.bold = true
-            }
-
-            onExited: {
-                backBtn.color = "#82B1FF"
-            }
-
-            onClicked: {
-                stackPhotoAni.pop()
-            }
+    ListButton {
+        id: backBtn;
+        text: "Back"
+        onClicked: {
+            stackPhotoAni.pop()
         }
     }
 }
