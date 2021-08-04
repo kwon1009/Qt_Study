@@ -40,30 +40,11 @@ Window {
             width: parent.width
             height: 100
 
-            MouseArea {
-                anchors.fill: photoListBox
-                hoverEnabled: true
-                onEntered: {
-                    photoInfoAni.running = true
-                    photoListBox.color = "lightyellow"
-                }
-                onExited: {
-                    // 버튼 위에서도 애니메이션이 동작하도록 설정
-                    if(!(mouseX > 0 && mouseX < parent.width
-                            && mouseY > 0 && mouseY < 100)) {
-                        photoInfoAni.running = false
-                        photoListBox.color = "white"
-                        photoInfo.x = photoInfoAni.from
-                    }
-                }
-            }
-
             RowLayout {
                 anchors.fill: parent
                 spacing: 3
 
                 Rectangle {
-                    id: fstRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: 100
                     color: "transparent"
@@ -78,7 +59,6 @@ Window {
                 }
 
                 Rectangle {
-                    id: scdRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: parent.width - 200
                     Layout.leftMargin: mMargin
@@ -101,7 +81,6 @@ Window {
                 }
 
                 Rectangle {
-                    id: thdRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: 100
                     color: "transparent"
@@ -109,16 +88,38 @@ Window {
                     ListButton {
                         id: photoBtn
                         text: "More"
-                        hoverEnabled: true
-                        onClicked: {
-                            mPhotoPath = photoPath;
-                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onClicked: {
+                                mPhotoPath = photoPath;
+                                stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                            }
                         }
                     }
                 }
             }
 
             Border {}
+
+            MouseArea {
+                anchors.fill: parent
+                z: -1   // photoBtn이 z-layer 위로 보내지도록 하기 위함
+                hoverEnabled: true
+                onEntered: {
+                    photoInfoAni.running = true
+                    photoListBox.color = "lightyellow"
+                }
+                onExited: {
+                    var check = !(mouseX > 300 && mouseY > 30 && mouseY < 70)
+                    if(check) {
+                        photoInfoAni.running = false
+                        photoListBox.color = "white"
+                        photoInfo.x = photoInfoAni.from
+                    }
+                }
+            }
         }
     }
 
