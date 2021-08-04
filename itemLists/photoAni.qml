@@ -60,14 +60,30 @@ Rectangle {
         }
     }
 
-    Button {
+    Rectangle {
         id: backBtn
         width: 70
         height: 30
+        radius: 40
+        color: "#82B1FF"
         anchors.centerIn: parent
-        text: "Back"
-        onClicked: {
-            stackPhotoAni.pop()
+        Text { id: backBtnText; text: "Back"; anchors.centerIn: backBtn }
+
+        MouseArea {
+            anchors.fill: backBtn
+            hoverEnabled: true
+            onEntered: {
+                backBtn.color = "#FF5252"
+                backBtnText.font.bold = true
+            }
+
+            onExited: {
+                backBtn.color = "#82B1FF"
+            }
+
+            onClicked: {
+                stackPhotoAni.pop()
+            }
         }
     }
 }

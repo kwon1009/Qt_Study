@@ -30,42 +30,38 @@ Window {
         }
     }
 
-//    Rectangle {
-//        width: 100; height: 100
-//        color: "green"
-
-//        MouseArea {
-//            anchors.fill: parent
-//            hoverEnabled: true
-//            onEntered: {
-//                if(containsMouse) {
-//                    parent.color = "yellow"
-//                }
-//            }
-
-//            onExited: {
-//                if(!containsMouse) {
-//                    parent.color = "green"
-//                }
-//            }
-//        }
-//    }
-
     Component {
         id: photoComponent
         Rectangle {
+            id: photoListBox
             property int mMargin: 10
 
             width: parent.width
             height: 100
+
+            MouseArea {
+                anchors.fill: photoListBox
+                hoverEnabled: true
+                onEntered: {
+                    photoInfoAni.running = true
+                    photoListBox.color = "lightyellow"
+                }
+                onExited: {
+                    photoInfoAni.running = false
+                    photoInfo.x = photoInfoAni.from
+                    photoListBox.color = "white"
+                }
+            }
 
             RowLayout {
                 anchors.fill: parent
                 spacing: 3
 
                 Rectangle {
+                    id: fstRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: 100
+                    color: "transparent"
 
                     Image {
                         id: photoImg
@@ -77,8 +73,11 @@ Window {
                 }
 
                 Rectangle {
+                    id: scdRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: parent.width - 200
+                    Layout.leftMargin: mMargin
+                    color: "transparent"
 
                     Text {
                         id: photoInfo
@@ -89,45 +88,44 @@ Window {
                             id: photoInfoAni
                             running: false
                             from: parent.x
-                            to: parent.x+parent.width
+                            to: parent.x + photoInfo.width
                             duration: 1000
                             loops: Animation.Infinite
-                        }
-                    }
-
-                    // !! 해당 컬럼 전체에 적용하도록 하기
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: {
-                            if(containsMouse) {
-                                console.log("enter")
-                                photoInfoAni.running = true
-                            }
-                        }
-                        onExited: {
-                            if(!containsMouse) {
-                                console.log("exit")
-                                photoInfoAni.running = false
-                                photoInfo.x = photoInfoAni.from
-                            }
                         }
                     }
                 }
 
                 Rectangle {
+                    id: thdRow
                     Layout.fillHeight: true
                     Layout.preferredWidth: 100
+                    color: "transparent"
 
-                    Button {
+                    Rectangle {
                         id: photoBtn
                         width: 70
                         height: 30
-                        anchors.centerIn: parent
-                        text: "More"
-                        onClicked: {
-                            mPhotoPath = photoPath;
-                            stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                        radius: 40
+                        color: "#82B1FF"
+                        anchors.centerIn: thdRow
+
+                        Text { id: photoBtnText; text: "More"; anchors.centerIn: parent }
+
+                        MouseArea {
+                            anchors.fill: photoBtn
+                            hoverEnabled: true
+                            onEntered: {
+                                photoBtn.color = "#FF5252"
+                                photoBtnText.font.bold = true
+                            }
+                            onExited: {
+                                photoBtn.color = "#82B1FF"
+                            }
+
+                            onClicked: {
+                                mPhotoPath = photoPath;
+                                stackPhotoAni.push(Qt.resolvedUrl("qrc:/photoAni.qml"))
+                            }
                         }
                     }
                 }
