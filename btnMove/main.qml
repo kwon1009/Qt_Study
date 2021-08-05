@@ -40,61 +40,38 @@ Window {
 
             // !!마지막 영역이 인식되지 않음
             if(x >= mBoxs[mSpacing-1].x) {
-                console.log("test x")
+//                console.log("test x")
             }
 
+            // x 포인트 위치 확인
             for(prev=0; prev<mSpacing; prev++) {
                 next = prev+1
                 if(mBoxs[prev].x <= x && x < mBoxs[next].x) {
-                    console.log("prev", prev, mBoxs[prev].x, "/", x, "/", "next", next, mBoxs[next].x)
                     break
                 }
             }
 
-            // 왼쪽에서 오른쪽으로 오는 경우
+            tempBtn = mBtns[nth]
             if(nth < prev) {
-                // 오른쪽으로 한칸씩 이동
-                for(var i=nth; i<prev; i++) {
-                    console.log(nth, prev)
-                    mBtns[i].position++
-                    mBtns[i].x = mBoxs[i+1].x
-
-                    mBtns[i+1].position--
-                    mBtns[i+1].x = mBoxs[i].x
-
-                    tempBtn = mBtns[i+1]
-                    mBtns[i+1] = mBtns[i]
-                    mBtns[i] = tempBtn
-                }
-            }
-            // 자리가 변하지 않은 경우
-            else if (nth == prev) {
-                mBtns[nth].x = mBoxs[nth].x
-            }
-            // 오른쪽에서 왼쪽으로 오는 경우
-            else {
-                // 왼쪽으로 한칸씩 이동
-                for(var i=nth; i>prev; i--) {
+                // 왼쪽에서 오른쪽으로 오는 경우
+                for(var i=nth+1; i<=prev; i++) {
                     mBtns[i].position--
                     mBtns[i].x = mBoxs[i-1].x
-
-                    mBtns[i-1].position++
-                    mBtns[i-1].x = mBoxs[i].x
-
-                    tempBtn = mBtns[i]
-                    mBtns[i] = mBtns[i-1]
-                    mBtns[i-1] = tempBtn
+                    mBtns[i-1] = mBtns[i]
                 }
             }
-
-            // 모두 재정렬
-            for(var i=0; i<mSpacing; i++) {
-                mBtns[i].x = mBoxs[i].x
-                mBtns[i].y = mBoxs[i].height/2 - mBtns[i].height/2
+            else if (nth > prev) {
+                // 오른쪽에서 왼쪽으로 오는 경우
+                for(var i=nth-1; i>=prev; i--) {
+                    mBtns[i].position++
+                    mBtns[i].x = mBoxs[i+1].x
+                    mBtns[i+1] = mBtns[i]
+                }
             }
-
-            // 포지션에 맞는 위치 설정
-            // !!한번에 수행할 수 있도록 하기
+            mBtns[prev] = tempBtn
+            mBtns[prev].position = prev
+            mBtns[prev].x = mBoxs[prev].x
+            mBtns[prev].y = mBoxs[prev].height/2 - mBtns[prev].height/2
         }
     }
 
@@ -143,7 +120,6 @@ Window {
             color: "white"
         }
     }
-
 
     // !!동적으로 배정되도록 하기
     MyButton {
