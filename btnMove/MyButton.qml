@@ -6,8 +6,8 @@ Rectangle {
     property int position: 0
     property string photoPath: ""
 
-    width: 200
-    height: 200
+    width: 150
+    height: 150
     color: "gray"
 
     Drag.active: btnMouseArea.drag.active
