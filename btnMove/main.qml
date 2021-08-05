@@ -19,6 +19,7 @@ Window {
     property variant mBtns: [btn0, btn1, btn2, btn3, btn4]  // 현재 위치별 버튼들
     property int mSpacing: 5
 
+
     id: mainWindow
     width: 900
     height: 400
@@ -29,33 +30,22 @@ Window {
         anchors.fill: parent
         onExited: {
             var x = drag.source.x
-            var nth = drag.source.position  // 원래 순서 저장
-            console.log(nth)
-            var tempBtn
+            var nth = drag.source.position  // 원래 위치 저장
+            var prev    // 실제 변경할 위치
+            var next    // 실제 변경할 위치의 오른쪽 영역
+            var tempBtn // 버튼 정보 임시 저장 변수
 
             // 맨 앞인 경우, x < 0
-            if(x < 0) {
-                tempBtn = mBtns[nth]
-                for(var i=nth-1; i>=0; i--) {
-                    mBtns[i].position++
-                    mBtns[i].x = mBoxs[i+1].x
-                    mBtns[i+1] = mBtns[i]
-                }
-                mBtns[0] = tempBtn
-                mBtns[0].position = 0
-                mBtns[0].x = mBoxs[0].x
-            }
+            if(x < 0) { x = 0 }
 
             // !!마지막 영역이 인식되지 않음
             if(x >= mBoxs[mSpacing-1].x) {
                 console.log("test x")
             }
 
-            var prev
-            var next    // 칸이 1개밖에 없을 때에 대한 예외 처리 필요
             for(prev=0; prev<mSpacing; prev++) {
                 next = prev+1
-                if(mBoxs[prev].x < x && x < mBoxs[next].x) {
+                if(mBoxs[prev].x <= x && x < mBoxs[next].x) {
                     console.log("prev", prev, mBoxs[prev].x, "/", x, "/", "next", next, mBoxs[next].x)
                     break
                 }
@@ -97,7 +87,11 @@ Window {
                 }
             }
 
-            // !!모두 재정렬
+            // 모두 재정렬
+            for(var i=0; i<mSpacing; i++) {
+                mBtns[i].x = mBoxs[i].x
+                mBtns[i].y = mBoxs[i].height/2 - mBtns[i].height/2
+            }
 
             // 포지션에 맞는 위치 설정
             // !!한번에 수행할 수 있도록 하기
@@ -156,7 +150,8 @@ Window {
         id: btn0
         position: 0
         photoPath: mPhotoPaths[0]
-        x: box0.x
+        x: mBoxs[0].x
+        y: mBoxs[0].height/2 - height/2
     }
 
     // !!동적으로 배정되도록 하기
@@ -164,28 +159,32 @@ Window {
         id: btn1
         position: 1
         photoPath: mPhotoPaths[1]
-        x: box1.x
+        x: mBoxs[1].x
+        y: mBoxs[1].height/2 - height/2
     }
 
     MyButton {
         id: btn2
         position: 2
         photoPath: mPhotoPaths[2]
-        x: box2.x
+        x: mBoxs[2].x
+        y: mBoxs[2].height/2 - height/2
     }
 
     MyButton {
         id: btn3
         position: 3
         photoPath: mPhotoPaths[3]
-        x: box3.x
+        x: mBoxs[3].x
+        y: mBoxs[3].height/2 - height/2
     }
 
     MyButton {
         id: btn4
         position: 4
         photoPath: mPhotoPaths[4]
-        x: box4.x
+        x: mBoxs[4].x
+        y: mBoxs[4].height/2 - height/2
     }
 
 
