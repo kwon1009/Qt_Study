@@ -11,20 +11,18 @@ Window {
         "./src/So cute.jpg",
         "./src/HamZzi.jpg",
         "./src/What.jpg",
-        "./src/Thinking.jpg"
-    ]
-
-    property int mDragBtn: 0
-    property variant mBoxs: [box0, box1, box2, box3, box4]  // 박스들. 고정값
-    property variant mBtns: [btn0, btn1, btn2, btn3, btn4]  // 현재 위치별 버튼들
+        "./src/Thinking.jpg"]
     property int mSpacing: 5
 
+    property variant mBoxs: []  // 박스들. 고정값
+    property variant mBtns: []  // 현재 위치별 버튼들
 
     id: mainWindow
     width: 900
     height: 400
     visible: true
 
+    // 버튼 정렬 함수
     function sortingBtn(target) {
         var x = target.x
         var nth = target.position  // 원래 위치 저장
@@ -79,92 +77,49 @@ Window {
         }
     }
 
+    Item {
+        anchors.fill: parent
+        Component.onCompleted: {
+            for(var i=0; i<mSpacing; i++) {
+                console.log("component", mBoxs[i])
+                var component = Qt.createComponent("MyButton.qml")
+                component.createObject(parent, {
+                                     position: i,
+                                     photoPath: mPhotoPaths[i],
+                                     x: mBoxs[i].x,
+                                     y: mBoxs[i].height/2 - height/2
+                                 });
+                mBtns.push(component)
+            }
+        }
+
+        Component {
+            id: myBtnComponent
+            MyButton { id: btn }
+        }
+
+        Loader { sourceComponent: myBtnComponent }
+    }
+
     RowLayout {
         id: btns
         anchors.fill: parent
         spacing: mSpacing
 
-        Rectangle {
-            id: box0
-            property int boxNo: 0
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "red"
+        Component.onCompleted: {
+            for(var i=0; i<mSpacing; i++) {
+                var component = Qt.createComponent("BaseBox.qml")
+                component.createObject(btns, {});
+                mBoxs.push(component)
+            }
         }
 
-        Rectangle {
-            id: box1
-            property int boxNo: 1
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "yellow"
+        Component {
+            id: boxComponent
+            BaseBox { id: btn }
         }
 
-        Rectangle {
-            id: box2
-            property int boxNo: 2
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "green"
-        }
-
-        Rectangle {
-            id: box3
-            property int boxNo: 3
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "blue"
-        }
-
-        Rectangle {
-            id: box4
-            property int boxNo: 4
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "white"
-        }
-    }
-
-    // !!동적으로 배정되도록 하기
-    MyButton {
-        id: btn0
-        position: 0
-        photoPath: mPhotoPaths[0]
-        x: mBoxs[0].x
-        y: mBoxs[0].height/2 - height/2
-    }
-
-    // !!동적으로 배정되도록 하기
-    MyButton {
-        id: btn1
-        position: 1
-        photoPath: mPhotoPaths[1]
-        x: mBoxs[1].x
-        y: mBoxs[1].height/2 - height/2
-    }
-
-    MyButton {
-        id: btn2
-        position: 2
-        photoPath: mPhotoPaths[2]
-        x: mBoxs[2].x
-        y: mBoxs[2].height/2 - height/2
-    }
-
-    MyButton {
-        id: btn3
-        position: 3
-        photoPath: mPhotoPaths[3]
-        x: mBoxs[3].x
-        y: mBoxs[3].height/2 - height/2
-    }
-
-    MyButton {
-        id: btn4
-        position: 4
-        photoPath: mPhotoPaths[4]
-        x: mBoxs[4].x
-        y: mBoxs[4].height/2 - height/2
+        Loader { sourceComponent: boxComponent }
     }
 
 

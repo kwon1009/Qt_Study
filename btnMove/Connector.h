@@ -17,8 +17,16 @@ public:
     // overriding
     void setWindow(QQuickWindow* Widnow);
 
+    void setConnection();
+
 private:
     QQuickWindow* mMainView;
+
+signals:
+    void sg_photos(QVariant photos);
+
+private slots:
+    void slot_setPhotos();
 };
 
 #endif // CONNECTOR_H

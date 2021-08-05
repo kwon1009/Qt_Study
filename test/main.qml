@@ -9,4 +9,5 @@ Window {
     height: 400
     visible: true
 
+    property variant test: []
 }
