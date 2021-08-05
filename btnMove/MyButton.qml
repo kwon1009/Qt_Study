@@ -3,14 +3,14 @@ import QtQuick.Controls 2.12
 import "."
 
 Rectangle {
-    property int btnNo: 0
+    property int position: 0
     property string photoPath: ""
 
     width: 200
     height: 200
     color: "gray"
 
-    Drag.active: dragArea.drag.active
+    Drag.active: btnMouseArea.drag.active
     Drag.hotSpot.x: parent.width/2
     Drag.hotSpot.y: parent.height/2
 
@@ -24,10 +24,11 @@ Rectangle {
     }
 
     MouseArea {
-        id: dragArea
+        id: btnMouseArea
         anchors.fill: parent
         drag.target: parent
 
+        // !!drag가 유지되지 않음
         onEntered: {
             parent.color = "yellow"
         }
