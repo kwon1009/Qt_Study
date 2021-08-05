@@ -6,6 +6,7 @@ import "."
 
 Window {
     // !!공통 소스 폴더를 만들기
+    // !!자동으로 사진 받아오도록 함
     property variant mPhotoPaths: [
         "./src/Kittens.jpg",
         "./src/So cute.jpg",
@@ -13,8 +14,8 @@ Window {
         "./src/What.jpg",
         "./src/Thinking.jpg"]
     property int mSpacing: 5
-
-    property variant mBoxs: []  // 박스들. 고정값
+    property variant mBoxs: []  // 박스들. 고정값 !!꼭 박스 영역이 아닌, 단순 x좌표로 저장하여 적용하기
+                                // !!영역 설정 자체가 필요 없도록 수정
     property variant mBtns: []  // 현재 위치별 버튼들
 
     id: mainWindow
@@ -23,6 +24,8 @@ Window {
     visible: true
 
     // 버튼 정렬 함수
+    // !!'저장하기' 기능을 적용할 수 있도록 component 접근 방법, 또는 다른 방법을 찾아보기
+    // !! position 속성으로 적용 가능한지 확인하기
     function sortingBtn(target) {
         var x = target.x
         var nth = target.position  // 원래 위치 저장
@@ -35,7 +38,7 @@ Window {
 
         // !!마지막 영역이 인식되지 않음
         if(x >= mBoxs[mSpacing-1].x) {
-//                console.log("test x")
+           console.log("test x")
         }
 
         // x 포인트 위치 확인
@@ -97,7 +100,6 @@ Window {
             id: myBtnComponent
             MyButton { id: btn }
         }
-
         Loader { sourceComponent: myBtnComponent }
     }
 
@@ -118,7 +120,6 @@ Window {
             id: boxComponent
             BaseBox { id: btn }
         }
-
         Loader { sourceComponent: boxComponent }
     }
 
