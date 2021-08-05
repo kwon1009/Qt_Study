@@ -2,26 +2,18 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+
+import Connector 1.0
 import "."
 
 Window {
     // !!공통 소스 폴더를 만들기
-    property variant mPhotoPaths: [
-        "./src/Kittens.jpg",
-        "./src/So cute.jpg",
-        "./src/HamZzi.jpg",
-        "./src/What.jpg",
-        "./src/Thinking.jpg",
-        "./src/Happy dog.jpg"
-    ]
-
-    property int mDragBtn: 0
-    property var mXs: []        // 좌표 모음
-    property variant mBtns: [btn0, btn1, btn2, btn3, btn4, btn5]  // 현재 위치별 버튼들
+    property var mPhotoPaths: []    // 이미지 모음
+    property var mXs: []            // 좌표 모음
     property int mSpacing: 6
+    property var mBtns: [btn0, btn1, btn2, btn3, btn4, btn5]  // 현재 위치별 버튼들
 
-    property int x: 0   // 마지막 이동 위치
-
+    Connector { id: connector }
 
     id: mainWindow
     width: 1000
@@ -29,6 +21,10 @@ Window {
     visible: true
 
     Component.onCompleted: {
+        // 이미지 파일 설정
+        mPhotoPaths = connector.getImages()
+
+        // 기준 좌표 설정
         var w = mainWindow.width/mSpacing
         for(var i=0; i<mSpacing; i++) {
             mXs[i] = w*i
@@ -44,7 +40,6 @@ Window {
         y: parent.height/2 - height/2
     }
 
-    // !!동적으로 배정되도록 하기
     MyButton {
         id: btn1
         position: 1

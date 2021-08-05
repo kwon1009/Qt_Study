@@ -35,6 +35,8 @@ Rectangle {
 
         onExited: {
             parent.color = "gray"
+
+            // 버튼 재배치
             var x = parent.x
             var nth = parent.position  // 원래 위치 저장
             var prev    // 실제 변경할 위치
