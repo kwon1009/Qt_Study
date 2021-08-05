@@ -15,15 +15,23 @@ Window {
     ]
 
     property int mDragBtn: 0
+    property var mXs: []        // 좌표 모음
     property variant mBoxs: [box0, box1, box2, box3, box4]  // 박스들. 고정값
     property variant mBtns: [btn0, btn1, btn2, btn3, btn4]  // 현재 위치별 버튼들
     property int mSpacing: 5
 
 
     id: mainWindow
-    width: 900
+    width: 1000
     height: 400
     visible: true
+
+    Component.onCompleted: {
+        var w = mainWindow.width/mSpacing
+        for(var i=0; i<mSpacing; i++) {
+            mXs[i] = w*i
+        }
+    }
 
     // 마우스 클릭 해제 시 이벤트 적용
     DropArea {
@@ -35,18 +43,20 @@ Window {
             var next    // 실제 변경할 위치의 오른쪽 영역
             var tempBtn // 버튼 정보 임시 저장 변수
 
+            console.log("x", x)
+
             // 맨 앞인 경우, x < 0
             if(x < 0) { x = 0 }
 
             // !!마지막 영역이 인식되지 않음
-            if(x >= mBoxs[mSpacing-1].x) {
+//            if(x >= mBoxs[mSpacing-1].x) {
 //                console.log("test x")
-            }
+//            }
 
             // x 포인트 위치 확인
             for(prev=0; prev<mSpacing; prev++) {
                 next = prev+1
-                if(mBoxs[prev].x <= x && x < mBoxs[next].x) {
+                if(mXs[prev] <= x && x < mXs[next]) {
                     break
                 }
             }
@@ -56,7 +66,7 @@ Window {
                 // 왼쪽에서 오른쪽으로 오는 경우
                 for(var i=nth+1; i<=prev; i++) {
                     mBtns[i].position--
-                    mBtns[i].x = mBoxs[i-1].x
+                    mBtns[i].x = mXs[i-1]
                     mBtns[i-1] = mBtns[i]
                 }
             }
@@ -64,60 +74,14 @@ Window {
                 // 오른쪽에서 왼쪽으로 오는 경우
                 for(var i=nth-1; i>=prev; i--) {
                     mBtns[i].position++
-                    mBtns[i].x = mBoxs[i+1].x
+                    mBtns[i].x = mXs[i+1]
                     mBtns[i+1] = mBtns[i]
                 }
             }
             mBtns[prev] = tempBtn
             mBtns[prev].position = prev
-            mBtns[prev].x = mBoxs[prev].x
-            mBtns[prev].y = mBoxs[prev].height/2 - mBtns[prev].height/2
-        }
-    }
-
-    RowLayout {
-        id: btns
-        anchors.fill: parent
-        spacing: mSpacing
-
-        Rectangle {
-            id: box0
-            property int boxNo: 0
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "red"
-        }
-
-        Rectangle {
-            id: box1
-            property int boxNo: 1
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "yellow"
-        }
-
-        Rectangle {
-            id: box2
-            property int boxNo: 2
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "green"
-        }
-
-        Rectangle {
-            id: box3
-            property int boxNo: 3
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "blue"
-        }
-
-        Rectangle {
-            id: box4
-            property int boxNo: 4
-            Layout.preferredWidth: parent.width/mSpacing
-            Layout.fillHeight: true
-            color: "white"
+            mBtns[prev].x = mXs[prev]
+            mBtns[prev].y = parent.height/2 - mBtns[prev].height/2
         }
     }
 
@@ -126,8 +90,8 @@ Window {
         id: btn0
         position: 0
         photoPath: mPhotoPaths[0]
-        x: mBoxs[0].x
-        y: mBoxs[0].height/2 - height/2
+        x: parent.width/mSpacing * 0
+        y: parent.height/2 - height/2
     }
 
     // !!동적으로 배정되도록 하기
@@ -135,32 +99,32 @@ Window {
         id: btn1
         position: 1
         photoPath: mPhotoPaths[1]
-        x: mBoxs[1].x
-        y: mBoxs[1].height/2 - height/2
+        x: parent.width/mSpacing * 1
+        y: parent.height/2 - height/2
     }
 
     MyButton {
         id: btn2
         position: 2
         photoPath: mPhotoPaths[2]
-        x: mBoxs[2].x
-        y: mBoxs[2].height/2 - height/2
+        x: parent.width/mSpacing * 2
+        y: parent.height/2 - height/2
     }
 
     MyButton {
         id: btn3
         position: 3
         photoPath: mPhotoPaths[3]
-        x: mBoxs[3].x
-        y: mBoxs[3].height/2 - height/2
+        x: parent.width/mSpacing * 3
+        y: parent.height/2 - height/2
     }
 
     MyButton {
         id: btn4
         position: 4
         photoPath: mPhotoPaths[4]
-        x: mBoxs[4].x
-        y: mBoxs[4].height/2 - height/2
+        x: parent.width/mSpacing * 4
+        y: parent.height/2 - height/2
     }
 
 
