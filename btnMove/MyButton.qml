@@ -37,6 +37,7 @@ Rectangle {
         onExited: {
             parent.color = btnColor
             sortBtns(parent)  // 버튼 재배치
+            // !!선택된 버튼이 위로 올라가도록 설정하기
         }
     }
 

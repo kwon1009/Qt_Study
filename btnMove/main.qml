@@ -12,6 +12,7 @@ Window {
     property var mXs: []            // 좌표 모음
     property int mSpacing: 0        // 분할 횟수
     property var mBtns: [btn0, btn1, btn2, btn3, btn4, btn5]  // 현재 위치별 버튼들
+    // !!id 대신, objectName을 적용하도록 해보기
 
     Connector { id: connector }
 
@@ -33,7 +34,6 @@ Window {
         }
     }
 
-    // !!동적으로 배정되도록 하기
     MyButton {
         id: btn0
         position: 0
