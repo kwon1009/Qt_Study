@@ -14,9 +14,8 @@ class FileIO {
 
     QMap<int, QString> mMatchings;
 
-    void read();
-//    void write(QString filename);
-    void write();
+    void read();            // 저장된 이미지 정보 불러옴
+    void write();           // save 버튼 클릭 시, 이미지 저장
     void setMatchings();
 
 public:

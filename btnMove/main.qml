@@ -83,22 +83,39 @@ Window {
     }
 
 
-    Button {
-        id: saveBtn
-        width: 300
-        height: 50
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+    Item {
+        // anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "Save"
 
-        onClicked: {
-            var photos = []
-            for(var i=0; i<mSpacing; i++) {
-                photos[i] = mBtns[i].photoPath
+        Button {
+            id: saveBtn
+            width: 300
+            height: 50
+            anchors.right: reloadBtn.left
+            anchors.rightMargin: 20
+            text: "Save"
+
+            onClicked: {
+                var photos = []
+                for(var i=0; i<mSpacing; i++) {
+                    photos[i] = mBtns[i].photoPath
+                }
+                connector.saveImages(photos);
             }
-            console.log(photos);
-            connector.saveImages(photos);
+        }
+
+        Button {
+            id: reloadBtn
+            width: 300
+            height: 50
+            text: "Reload"
+
+            onClicked: {
+                mPhotoPaths = connector.getImages()
+                for(var i=0; i<mSpacing; i++) {
+                    mBtns[i].photoPath = mPhotoPaths[i]
+                }
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ QVariant Connector::getImages() { return mItemList; }
 
 void Connector::saveImages(QVariantList images) {
     fileIO->saveImages(images);
+    mItemList = QVariant(images);
 }
 
 // public functions
