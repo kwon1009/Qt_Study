@@ -12,6 +12,8 @@ Window {
     property var mXs: []            // 좌표 모음. 동적 할당
     property int mSpacing: 6        // 배치할 버튼 수
     property var mBtns: []          // 현재 위치별 버튼들. !!컴포넌트 접근 방법 확인 필요
+    // !!objectName을 이용하여 접근하는 방법 알아보기
+    // !!클릭한 버튼이 가장 위로 올라가도록 z레이어 설정하기
 
     id: mainWindow
     width: 1000
@@ -45,6 +47,7 @@ Window {
                 mBtns.push(component)
             }
         }   // !!빈 이미지 하나가 추가로 생성됨
+        // !!로그 작성하여 빈 이미지가 어디서 발생하는지 확인해보기
 
         Component {
             id: myBtnComponent
