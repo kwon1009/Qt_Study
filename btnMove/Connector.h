@@ -5,7 +5,7 @@
 #include <QQuickWindow>
 #include <QDir>
 
-#include "FileIO.h"
+#include "JSONController.h"
 #include "BtnImages.h"
 
 struct ItemStruct {
@@ -29,7 +29,10 @@ public:
     Q_INVOKABLE void saveImages(QVariantList images);
 
 private:
+    QString settingFile = "settings";
+
     QQuickWindow* mMainView;
+    JSONController* mJSONController;
     BtnImages* btnImages;
 
     int mSpacing = 6;   // 영역 분할 수

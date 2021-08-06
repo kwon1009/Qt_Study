@@ -1,7 +1,6 @@
 #include "JSONController.h"
 
 #include <QDebug>
-#include <QIODevice>
 
 JSONController::JSONController(QString filename) {
 
@@ -36,12 +35,10 @@ void JSONController::open(const bool is_write) {
 
 void JSONController::read() {
     open(false);
-
     for(int i=0; i<cnstTitles.size(); i++) {
         QString title = cnstTitles[i];
         jsonTitles[title] = doc.object()[title].toObject();
     }
-
     file.close();
 }
 
@@ -52,6 +49,8 @@ void JSONController::write(QJsonObject contents) {
     file.close();
 }
 
-//QJsonObject JSONController::getJsonObj(QString title) {
-//    return
-//}
+QJsonObject JSONController::getJsonObj(QString title) {
+    read();
+    return jsonTitles[title].toObject();
+}
+

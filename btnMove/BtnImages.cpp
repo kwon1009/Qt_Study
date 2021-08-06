@@ -4,15 +4,15 @@
 
 BtnImages::BtnImages() {
     mImgFileIO = new FileIO(mImgFileName);
+    mJSONController = new JSONController(mJSONFile);
 }
 
 void BtnImages::setImages() {
-    QVector<QString> contents = mImgFileIO->read();
+    QJsonObject btns = mJSONController->getJsonObj("btns");
     // set matching
-    for(int i=0; i<contents.size(); i++) {
-        int btnNo = (contents[i].split(":")[0]).toInt();
-        QString imgName = contents[i].split(":")[1];
-        matchings[btnNo] = imgName;
+    for(int i=0; i<btns.size(); i++) {
+        QString imgName = btns[QString("%1").arg(i)].toString();
+        matchings[i] = imgName;
     }
 }
 
@@ -27,15 +27,13 @@ QVariant BtnImages::getImagePaths() {
 }
 
 void BtnImages::saveImages(QVariantList images) {
-    QVector<QString> contents;
-
+    QJsonObject btn;
     for(int i=0; i<images.size(); i++) {
-        // change mMatchings
         QString imgName = images[i].toString().split("/").back();
-        QString content = QString("%1").arg(i) + ":" + imgName;
-        contents.append(content);
+        btn[QString("%1").arg(i)] = imgName;
     }
 
-    // save file
-    mImgFileIO->write(contents);
+    QJsonObject btns;
+    btns["btns"] = btn;
+    mJSONController->write(btns);
 }
