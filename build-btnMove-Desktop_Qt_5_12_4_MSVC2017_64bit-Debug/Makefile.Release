@@ -587,7 +587,12 @@ release\Connector.obj: ..\btnMove\Connector.cpp ..\btnMove\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
 		..\btnMove\BtnImages.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug \
-		..\btnMove\JSONController.h
+		..\btnMove\JSONController.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonDocument \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsondocument.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h
 
 release\FileIO.obj: ..\btnMove\FileIO.cpp ..\btnMove\FileIO.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QFile \
@@ -714,7 +719,27 @@ release\JSONController.obj: ..\btnMove\JSONController.cpp ..\btnMove\JSONControl
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmetatype.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qobject_impl.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qobject_impl.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonDocument \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsondocument.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qhash.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmap.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtextstream.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qlocale.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qvariant.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qshareddata.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qvector.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qpoint.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qset.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QIODevice
 
 release\main.obj: ..\btnMove\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QGuiApplication \
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qguiapplication.h \
