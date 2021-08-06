@@ -6,9 +6,10 @@
 #include <QMap>
 #include <QVariant>
 
+const QString mFileRoot = "./";
+
 class FileIO {
 
-    QString mFileRoot = "./";
     QString mFileName;
 
 public:

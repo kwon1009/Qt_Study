@@ -1,6 +1,10 @@
-0:Kittens.jpg
-1:Happy dog.jpg
-2:On the Street.jpg
-3:Husky.jpg
-4:HamZzi.jpg
-5:So cute.jpg
+{
+	"btns": {
+		"0": "So cute.jpg",
+		"1": "Kittens.jpg",
+		"2": "Husky.jpg",
+		"3": "HamZzi.jpg",
+		"4": "On the Street.jpg",
+		"5": "Happy dog.jpg"
+	}
+}

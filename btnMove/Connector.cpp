@@ -1,14 +1,18 @@
 #include "Connector.h"
 
 #include <QDebug>
+#include "JSONController.h"
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     btnImages = new BtnImages();
+
+    // test code
+    JSONController* temp = new JSONController("settings.json");
+    delete temp;
 }
 
 Connector::~Connector() {
-
 }
 
 // overriding
