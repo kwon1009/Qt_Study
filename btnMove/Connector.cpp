@@ -4,7 +4,10 @@
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-    btnImages = new BtnImages();
+    mJSONController = new JSONController(mSettingFile);
+
+    QJsonObject btns = mJSONController->getJsonObj("btns");
+    mBtnImages = new BtnImages(btns);
 }
 
 Connector::~Connector() {
@@ -18,9 +21,12 @@ void Connector::setWindow(QQuickWindow* Window)
 
 // qml onCompleted
 int Connector::getSpacingSize() { return mSpacing; }
-QVariant Connector::getImagePaths() { return btnImages->getImagePaths(); }
+QVariant Connector::getImagePaths() {
+    return mBtnImages->getImagePaths();
+}
 
 void Connector::saveImages(QVariantList images) {
-    btnImages->saveImages(images);
+    QJsonObject btns = mBtnImages->saveImages(images);
+    mJSONController->write(btns);
 }
 

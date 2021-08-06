@@ -8,24 +8,22 @@
 
 class BtnImages {
 
-    FileIO* mImgFileIO;
-
     QString mImgFileName = "matching.txt";
     QString mImgRoot = "./src/";    // 이미지 루트 폴더
 
-    JSONController* mJSONController;
-    QString mJSONFile = "settings.json";
+//    JSONController* mJSONController;
+//    QString mJSONFile = "settings.json";
 
     QMap<int, QString> matchings;   // 버튼 이미지 매칭 목록
 
-    void setImages();               // 이미지 목록 셋팅하기
+    void setImages(QJsonObject btns);               // 이미지 목록 셋팅하기
 
 public:
-    BtnImages();
+    BtnImages(QJsonObject btns);
 
     // public functions
-    QVariant getImagePaths();               // 이미지 목록 불러오기
-    void saveImages(QVariantList images);   // 이미지 목록 저장
+    QVariant getImagePaths();                     // 이미지 목록 불러오기
+    QJsonObject saveImages(QVariantList images);  // 이미지 목록 저장
 };
 
 #endif // BTNIMAGES_H

@@ -8,11 +8,6 @@
 #include "JSONController.h"
 #include "BtnImages.h"
 
-struct ItemStruct {
-    QString title;
-    QString imagePath;
-};
-
 class Connector : public QObject {
     Q_OBJECT
 
@@ -29,11 +24,11 @@ public:
     Q_INVOKABLE void saveImages(QVariantList images);
 
 private:
-    QString settingFile = "settings";
+    QString mSettingFile = "settings.json";
 
     QQuickWindow* mMainView;
     JSONController* mJSONController;
-    BtnImages* btnImages;
+    BtnImages* mBtnImages;
 
     int mSpacing = 6;   // 영역 분할 수
 };

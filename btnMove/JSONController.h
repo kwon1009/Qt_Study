@@ -26,6 +26,7 @@ public:
         // !!수정 사항만 적용 또는 전체 적용
 
     QJsonObject getJsonObj(QString title);
+    void setJsonObj(QString title, QJsonObject contents);
 };
 
 #endif // JSONCONTROLLER_H
