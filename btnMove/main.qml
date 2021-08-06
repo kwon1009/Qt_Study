@@ -8,11 +8,10 @@ import "."
 
 Window {
     // !!공통 소스 폴더를 만들기
-    // !!자동으로 사진 받아오도록 함
-    property var mPhotoPaths: []    // 이미지 모음
-    property var mXs: []            // 좌표 모음
+    property var mPhotoPaths: []    // 이미지 모음. 동적할당
+    property var mXs: []            // 좌표 모음. 동적 할당
     property int mSpacing: 6        // 배치할 버튼 수
-    property var mBtns: []  // 현재 위치별 버튼들
+    property var mBtns: []          // 현재 위치별 버튼들. !!컴포넌트 접근 방법 확인 필요
 
     id: mainWindow
     width: 1000
@@ -38,20 +37,20 @@ Window {
             for(var i=0; i<mSpacing; i++) {
                 var component = Qt.createComponent("MyButton.qml")
                 component.createObject(parent, {
-                                     position: i,
-                                     photoPath: mPhotoPaths[i],
-                                     x: parent.width/mSpacing * i,
-                                     y: parent.height/2 - height/2
-                                 });
+                                           position: i,
+                                           photoPath: mPhotoPaths[i],
+                                           x: parent.width/mSpacing * i,
+                                           y: parent.height/2 - height/2
+                                         });
                 mBtns.push(component)
             }
-        }
+        }   // !!빈 이미지 하나가 추가로 생성됨
 
         Component {
             id: myBtnComponent
             MyButton { id: btn }
         }
-        Loader { sourceComponent: myBtnComponent }
+        Loader { id: myBtnLoader; sourceComponent: myBtnComponent }
     }
 
     Button {
@@ -62,5 +61,9 @@ Window {
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Save"
+
+        onClicked: {
+            console.log(myBtnLoader.loaded())
+        }
     }
 }
