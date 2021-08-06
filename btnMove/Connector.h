@@ -7,6 +7,11 @@
 #include <iostream>
 using namespace std;
 
+struct ItemStruct {
+    QString title;
+    QString imagePath;
+};
+
 class Connector : public QObject {
     Q_OBJECT
 
@@ -17,16 +22,16 @@ public:
     // overriding
     void setWindow(QQuickWindow* Widnow);
 
-    void setConnection();
+    // qml onCompleted
+    Q_INVOKABLE QVariant getImages();
 
 private:
     QQuickWindow* mMainView;
 
-signals:
-    void sg_photos(QVariant photos);
+    QString mImageRoot = "./src/";  // 이미지 루트 폴더
+    QVariant mItemList;  // 아이템 목록
 
-private slots:
-    void slot_setPhotos();
+    void setImages();
 };
 
 #endif // CONNECTOR_H

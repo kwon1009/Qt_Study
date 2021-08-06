@@ -4,6 +4,7 @@
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
+    setImages();
 }
 
 Connector::~Connector() {
@@ -16,24 +17,20 @@ void Connector::setWindow(QQuickWindow* Window)
     mMainView = Window;
 }
 
-// public function
-void Connector::setConnection() {
-//    QObject::connect(mMainView, SIGNAL(sg_setPhotos()), this, SLOT(slot_setPhotos()));
-//    QObject::connect(this, SIGNAL(sg_photos(QVariant)), mMainView, SLOT(slot_photos(QVariant)));
+// qml onCompleted
+QVariant Connector::getImages() { return mItemList; }
 
-}
+// public functions
+void Connector::setImages()
+{
+    // get File names
+    QDir directory(mImageRoot);
+    QStringList images = directory.entryList(QStringList() << "*", QDir::Files);
 
-
-// slots
-void Connector::slot_setPhotos() {
-    // 사진 자동으로 받아오도록 하기
-    QVariantList setPhotos = {
-        "./src/Kittens.jpg",
-        "./src/So cute.jpg",
-        "./src/HamZzi.jpg",
-        "./src/What.jpg",
-        "./src/Thinking.jpg"
-    };
-    QVariant photos = QVariant(setPhotos);
-    emit sg_photos(photos);
+    // push names and path
+    QVariantList mPaths = {};
+    foreach(QString filename, images) {
+        mPaths.append(mImageRoot + filename);
+    }
+    mItemList = QVariant(mPaths);
 }
