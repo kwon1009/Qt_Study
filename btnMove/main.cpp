@@ -1,8 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <Connector.h>
-
+#include "Connector.h"
+using namespace std;
 
 int main(int argc, char *argv[])
 {

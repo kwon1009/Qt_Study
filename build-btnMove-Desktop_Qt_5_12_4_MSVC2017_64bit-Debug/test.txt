@@ -1,1 +1,6 @@
-The magic number is: 49
+0:Kittens.jpg
+1:Happy dog.jpg
+2:On the Street.jpg
+3:Husky.jpg
+4:HamZzi.jpg
+5:So cute.jpg

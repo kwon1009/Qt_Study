@@ -10,18 +10,11 @@ class FileIO {
 
     QString mFileRoot = "./";
     QString mFileName;
-    QVector<QString> mFileList;
-
-    QMap<int, QString> mMatchings;
-
-    void read();            // 저장된 이미지 정보 불러옴
-    void write();           // save 버튼 클릭 시, 이미지 저장
-    void setMatchings();
 
 public:
     FileIO(QString filename);
-    QMap<int, QString> getMatchings();
-    void saveImages(QVariantList images);
+    QVector<QString> read();                // 파일 정보 불러오기
+    void write(QVector<QString> contents);  // 파일 저장하기
 };
 
 #endif // FILEIO_H

@@ -5,29 +5,30 @@
 
 FileIO::FileIO(QString filename) {
     mFileName = filename;
-    read();
-    setMatchings();
+    QVector<QString> contents = read();
 }
 
-void FileIO::read() {
+QVector<QString> FileIO::read() {
+    QVector<QString> contents;
     QString filePath = mFileRoot + mFileName;
     QFile file(filePath);
 
     if(!file.open(QFile::ReadOnly | QFile::Text)) {
         qDebug() << "Could not open file for read";
-        return;
+        return contents;
     }
 
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();
-        mFileList.push_back(line);
+        contents.push_back(line);
     }
 
     file.close();
+    return contents;
 }
 
-void FileIO::write() {
+void FileIO::write(QVector<QString> contents) {
     QString filePath = mFileRoot + mFileName;
     QFile file(filePath);
 
@@ -37,31 +38,8 @@ void FileIO::write() {
     }
 
     QTextStream out(&file);
-    for(int i=0; i<mMatchings.size(); i++) {
-        out << i << ":" << mMatchings[i] << "\n";
+    for(int i=0; i<contents.size(); i++) {
+        out << contents[i] << "\n";
     }
     file.close();
-}
-
-void FileIO::setMatchings() {
-    for(int i=0; i<mFileList.size(); i++) {
-        int btnNo = (mFileList[i].split(":")[0]).toInt();
-        QString imgName = mFileList[i].split(":")[1];
-        mMatchings[btnNo] = imgName;
-    }
-}
-
-QMap<int, QString> FileIO::getMatchings() {
-    return mMatchings;
-}
-
-void FileIO::saveImages(QVariantList images) {
-    for(int i=0; i<images.size(); i++) {
-        // change mMatchings
-        QString imgPath = images[i].toString();
-        mMatchings[i] = imgPath.split("/").back();
-
-    }
-    // save file
-    write();
 }
