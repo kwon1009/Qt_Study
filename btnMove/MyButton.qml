@@ -22,8 +22,6 @@ Rectangle {
         width: 100
         height: 100
         anchors.centerIn: parent
-        // !!이미지가 붙어 있도록 해야 함
-        // !!parent로 할 시, 이미지가 분리됨
     }
 
     MouseArea {

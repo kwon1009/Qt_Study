@@ -5,6 +5,8 @@
 #include <QQuickWindow>
 #include <QDir>
 #include <iostream>
+
+#include "FileIO.h"
 using namespace std;
 
 struct ItemStruct {
@@ -27,6 +29,8 @@ public:
 
 private:
     QQuickWindow* mMainView;
+    FileIO* fileIO;
+    QString mFileName = "matching.txt"; // 버튼 정렬 매칭 파일
 
     QString mImageRoot = "./src/";  // 이미지 루트 폴더
     QVariant mItemList;  // 아이템 목록

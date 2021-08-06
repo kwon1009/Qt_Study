@@ -1,10 +1,12 @@
 #include "Connector.h"
+#include <QFile>
 
 #include <QDebug>
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     setImages();
+    fileIO = new FileIO(mFileName);
 }
 
 Connector::~Connector() {
