@@ -25,13 +25,16 @@ public:
     void setWindow(QQuickWindow* Widnow);
 
     // qml onCompleted
+    Q_INVOKABLE int getSpacingSize();
     Q_INVOKABLE QVariant getImages();
 
 private:
     QQuickWindow* mMainView;
     FileIO* fileIO;
     QString mFileName = "matching.txt"; // 버튼 정렬 매칭 파일
+    QStringList matchings;     // 버튼 이미지 매칭 목록
 
+    int mSpacing = 6;
     QString mImageRoot = "./src/";  // 이미지 루트 폴더
     QVariant mItemList;  // 아이템 목록
 

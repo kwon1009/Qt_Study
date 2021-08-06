@@ -10,7 +10,7 @@ Window {
     // !!공통 소스 폴더를 만들기
     property var mPhotoPaths: []    // 이미지 모음
     property var mXs: []            // 좌표 모음
-    property int mSpacing: 6
+    property int mSpacing: 0        // 분할 횟수
     property var mBtns: [btn0, btn1, btn2, btn3, btn4, btn5]  // 현재 위치별 버튼들
 
     Connector { id: connector }
@@ -21,6 +21,8 @@ Window {
     visible: true
 
     Component.onCompleted: {
+        mSpacing = connector.getSpacingSize()
+
         // 이미지 파일 설정
         mPhotoPaths = connector.getImages()
 

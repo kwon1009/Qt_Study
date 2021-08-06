@@ -1,6 +1,6 @@
-1:HamZZi.jpg
-2:Happy dog.jpg
-3:Husky.jpg
-4:Kittens.jpg
-5:On the Street.jpg
-6:So cute.jpg
+0:HamZzi.jpg
+1:Happy dog.jpg
+2:Husky.jpg
+3:Kittens.jpg
+4:On the Street.jpg
+5:So cute.jpg

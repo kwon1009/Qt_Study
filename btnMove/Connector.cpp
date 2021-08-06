@@ -5,8 +5,8 @@
 
 Connector::Connector() {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-    setImages();
     fileIO = new FileIO(mFileName);
+    setImages();
 }
 
 Connector::~Connector() {
@@ -21,18 +21,14 @@ void Connector::setWindow(QQuickWindow* Window)
 
 // qml onCompleted
 QVariant Connector::getImages() { return mItemList; }
+int Connector::getSpacingSize() { return mSpacing; }
 
 // public functions
-void Connector::setImages()
-{
-    // get File names
-    QDir directory(mImageRoot);
-    QStringList images = directory.entryList(QStringList() << "*", QDir::Files);
-
-    // push names and path
+void Connector::setImages() {
     QVariantList mPaths = {};
-    foreach(QString filename, images) {
-        mPaths.append(mImageRoot + filename);
+    QMap<int, QString> m = fileIO->getMatchings();
+    for(int i=0; i<mSpacing; i++) {
+        mPaths.append(mImageRoot + m[i]);
     }
     mItemList = QVariant(mPaths);
 }

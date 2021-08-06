@@ -3,6 +3,7 @@
 
 #include <QFile>
 #include <QVector>
+#include <QMap>
 
 class FileIO {
 
@@ -10,11 +11,15 @@ class FileIO {
     QString mFileName;
     QVector<QString> mFileList;
 
-    void read(QString filename);
+    QMap<int, QString> mMatchings;
+
+    void read();
     void write(QString filename);
+    void setMatchings();
 
 public:
     FileIO(QString filename);
+    QMap<int, QString> getMatchings();
 };
 
 #endif // FILEIO_H
