@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QVector>
 #include <QMap>
+#include <QVariant>
 
 class FileIO {
 
@@ -14,12 +15,14 @@ class FileIO {
     QMap<int, QString> mMatchings;
 
     void read();
-    void write(QString filename);
+//    void write(QString filename);
+    void write();
     void setMatchings();
 
 public:
     FileIO(QString filename);
     QMap<int, QString> getMatchings();
+    void saveImages(QVariantList images);
 };
 
 #endif // FILEIO_H

@@ -27,6 +27,7 @@ public:
     // qml onCompleted
     Q_INVOKABLE int getSpacingSize();
     Q_INVOKABLE QVariant getImages();
+    Q_INVOKABLE void saveImages(QVariantList images);
 
 private:
     QQuickWindow* mMainView;

@@ -27,9 +27,9 @@ void FileIO::read() {
     file.close();
 }
 
-void FileIO::write(QString filename) {
-    QString filePath = mFileRoot + filename;
-    QFile file(filename);
+void FileIO::write() {
+    QString filePath = mFileRoot + mFileName;
+    QFile file(filePath);
 
     if(!file.open(QFile::WriteOnly | QFile::Text)) {
         qDebug() << "Could not open file for write";
@@ -37,7 +37,9 @@ void FileIO::write(QString filename) {
     }
 
     QTextStream out(&file);
-    out << "The magic number is: " << 49 << "\n";
+    for(int i=0; i<mMatchings.size(); i++) {
+        out << i << ":" << mMatchings[i] << "\n";
+    }
     file.close();
 }
 
@@ -51,4 +53,15 @@ void FileIO::setMatchings() {
 
 QMap<int, QString> FileIO::getMatchings() {
     return mMatchings;
+}
+
+void FileIO::saveImages(QVariantList images) {
+    for(int i=0; i<images.size(); i++) {
+        // change mMatchings
+        QString imgPath = images[i].toString();
+        mMatchings[i] = imgPath.split("/").back();
+
+    }
+    // save file
+    write();
 }

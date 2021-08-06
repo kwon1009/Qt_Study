@@ -91,5 +91,14 @@ Window {
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Save"
+
+        onClicked: {
+            var photos = []
+            for(var i=0; i<mSpacing; i++) {
+                photos[i] = mBtns[i].photoPath
+            }
+            console.log(photos);
+            connector.saveImages(photos);
+        }
     }
 }

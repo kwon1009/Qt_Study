@@ -20,8 +20,12 @@ void Connector::setWindow(QQuickWindow* Window)
 }
 
 // qml onCompleted
-QVariant Connector::getImages() { return mItemList; }
 int Connector::getSpacingSize() { return mSpacing; }
+QVariant Connector::getImages() { return mItemList; }
+
+void Connector::saveImages(QVariantList images) {
+    fileIO->saveImages(images);
+}
 
 // public functions
 void Connector::setImages() {
