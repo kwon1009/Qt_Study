@@ -170,6 +170,7 @@ compiler_rcc_clean:
 debug\qrc_qml.cpp: ..\btnMove\qml.qrc \
 		C:\Qt\5.12.4\msvc2017_64\bin\rcc.exe \
 		..\btnMove\MyButton.qml \
+		..\btnMove\BaseBox.qml \
 		..\btnMove\main.qml \
 		..\btnMove\src\HamZzi.jpg \
 		"..\btnMove\src\On the Street.jpg" \
