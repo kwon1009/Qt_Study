@@ -5,8 +5,8 @@ import "."
 Rectangle {
     property int position: 0
     property string photoPath: ""
-    property var btnColor: "#B0C4DE"
-    property var selBtnColor: "#FFFF66"
+    property string btnColor: "#B0C4DE"
+    property string selBtnColor: "#FFFF66"
 
     width: 150
     height: 150
@@ -31,15 +31,14 @@ Rectangle {
 
         // !!drag가 유지되지 않음
         onEntered: {
+            parent.z = mSpacing // 클릭한 버튼이 위로 오도록 설정
             parent.color = selBtnColor
-            parent.z = mSpacing
         }
 
         onExited: {
             parent.color = btnColor
-            parent.z = -1
-            sortBtns(parent)  // 버튼 재배치
-            // !!선택된 버튼이 위로 올라가도록 설정하기
+            parent.z = -1       // 새로 클릭한 버튼이 위로 올 수 있도록 변경
+            sortBtns(parent)    // 버튼 재배치
         }
     }
 

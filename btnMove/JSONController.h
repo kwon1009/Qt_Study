@@ -21,10 +21,11 @@ class JSONController {
 public:
     JSONController(QString filename);
     void open(const bool is_write);
-    void read();                // 파일 정보 불러오기
-    void write(QJsonObject contents);  // 파일 저장하기
+    void read();                        // 파일 정보 불러오기
+    void write(QJsonObject contents);   // 파일 저장하기
         // !!수정 사항만 적용 또는 전체 적용
 
+    // 원하는 설정 정보 관리
     QJsonObject getJsonObj(QString title);
     void setJsonObj(QString title, QJsonObject contents);
 };

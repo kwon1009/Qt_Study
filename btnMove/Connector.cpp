@@ -3,9 +3,11 @@
 #include <QDebug>
 
 Connector::Connector() {
+    // initialization
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     mJSONController = new JSONController(mSettingFile);
 
+    // btn img setting
     QJsonObject btns = mJSONController->getJsonObj("btns");
     mBtnImages = new BtnImages(btns);
 }

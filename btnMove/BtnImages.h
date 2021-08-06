@@ -2,17 +2,15 @@
 #define BTNIMAGES_H
 
 #include <QVariant>
+#include <QJsonObject>
 
-#include "FileIO.h"     // 이미지 정보를 관리하기 위한 파일IO
-#include "JSONController.h" // 이미지 정보를 관리하기 위한 JsonIO
+const QString mImgRoot = "./src/";    // 이미지 루트 폴더
 
 class BtnImages {
 
-    QString mImgFileName = "matching.txt";
-    QString mImgRoot = "./src/";    // 이미지 루트 폴더
-    QMap<int, QString> matchings;   // 버튼 이미지 매칭 목록
+    QMap<int, QString> matchings;       // 버튼 이미지 매칭 목록
 
-    void setImages(QJsonObject btns);               // 이미지 목록 셋팅하기
+    void setImages(QJsonObject btns);   // 이미지 목록 셋팅하기
 
 public:
     BtnImages(QJsonObject btns);
