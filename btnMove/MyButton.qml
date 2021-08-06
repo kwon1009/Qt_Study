@@ -32,10 +32,12 @@ Rectangle {
         // !!drag가 유지되지 않음
         onEntered: {
             parent.color = selBtnColor
+            parent.z = mSpacing
         }
 
         onExited: {
             parent.color = btnColor
+            parent.z = -1
             sortBtns(parent)  // 버튼 재배치
             // !!선택된 버튼이 위로 올라가도록 설정하기
         }
