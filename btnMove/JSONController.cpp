@@ -52,4 +52,6 @@ void JSONController::write(QJsonObject contents) {
     file.close();
 }
 
-QJsonObject JSONController::getJsonObj(QString title)
+//QJsonObject JSONController::getJsonObj(QString title) {
+//    return
+//}
