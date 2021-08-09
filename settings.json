@@ -1,15 +1,11 @@
 {
     "btns": {
-        "0": "HamZzi.jpg",
-        "1": "Happy dog.jpg",
-        "2": "Husky.jpg",
-        "3": "Kittens.jpg",
-        "4": "On the Street.jpg",
-        "5": "So cute.jpg",
-        "6": "Thinking.jpg",
-        "7": "We are animals.jpg",
-        "8": "Weather is good.jpg",
-        "9": "What.jpg"
+        "0": "Happy dog.jpg",
+        "1": "HamZzi.jpg",
+        "2": "Kittens.jpg",
+        "3": "On the Street.jpg",
+        "4": "Husky.jpg",
+        "5": "So cute.jpg"
     },
     "path": {
         "img": "../src/"

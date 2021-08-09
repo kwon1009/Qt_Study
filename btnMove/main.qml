@@ -21,6 +21,12 @@ Window {
 
     Connector { id: connector }
 
+    // slot
+    function slot_showError(err) {
+        logText.text = err
+        logText.color = "red"
+    }
+
     Component.onCompleted: {
         // 이미지 파일 설정
         mPhotoPaths = connector.getImagePaths()
@@ -74,9 +80,9 @@ Window {
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: 10
             Text {
+                id: logText
                 anchors.centerIn: parent
                 text: log
-                color: "blue"
             }
         }
 
@@ -98,7 +104,8 @@ Window {
                         photos[i] = mBtns[i].photoPath
                     }
                     connector.saveImages(photos);
-                    log = "Save Complete."
+                    logText.log = "Save Complete."
+                    logText.color = "brue"
                     console.log("main: Save Btn information complete.")
                 }
             }
@@ -115,7 +122,8 @@ Window {
                     for(var i=0; i<mSpacing; i++) {
                         mBtns[i].photoPath = mPhotoPaths[i]
                     }
-                    log = "Reload Complete."
+                    logText.log = "Reload Complete."
+                    logText.color = "brue"
                     console.log("main: Reload Btn information complete.")
                 }
             }

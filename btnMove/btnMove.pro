@@ -9,6 +9,7 @@ CONFIG += c++11
 SOURCES += \
         BtnImages.cpp \
         Connector.cpp \
+        ErrorController.cpp \
         FileIO.cpp \
         JSONController.cpp \
         main.cpp
@@ -29,5 +30,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     BtnImages.h \
     Connector.h \
+    ErrorController.h \
     FileIO.h \
     JSONController.h

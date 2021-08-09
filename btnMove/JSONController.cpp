@@ -3,10 +3,11 @@
 #include <QDebug>
 #include <QDir>
 
+// function: 새로운 설정 파일 생성
 void makeSettingFile(QString filename) {
     QFile file;
     file.setFileName("../settings.json");
-    file.open(QIODevice::WriteOnly);    // 새로운 세팅 파일 생성
+    file.open(QIODevice::WriteOnly);    // 새로운 설정 파일 생성
 
     // 저장할 JSON obj
     QJsonObject settings;
@@ -83,6 +84,8 @@ void JSONController::read() {
         }
         file.close();
         qDebug() << "JSONController: Setting file read complete.";
+    } else {
+        // file read error
     }
 }
 

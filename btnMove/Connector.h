@@ -5,6 +5,7 @@
 #include <QQuickWindow>
 #include <QDir>
 
+#include "ErrorController.h"
 #include "JSONController.h"
 #include "BtnImages.h"
 
@@ -14,6 +15,14 @@ const QString SETTING_FILE = "../settings.json";
 class Connector : public QObject {
     Q_OBJECT
 
+private:
+    QQuickWindow* mMainView;
+    ErrorController* mErrorController;
+    JSONController* mJSONController;
+    BtnImages* mBtnImages;
+
+    int mSpacing = 6;   // 영역 분할 수
+
 public:
     Connector();
     ~Connector();
@@ -21,17 +30,12 @@ public:
     // overriding
     void setWindow(QQuickWindow* Widnow);
 
+    void setConnection();
+
     // qml onCompleted
     Q_INVOKABLE int getSpacingSize();
     Q_INVOKABLE QVariant getImagePaths();
     Q_INVOKABLE void saveImages(QVariantList images);
-
-private:
-    QQuickWindow* mMainView;
-    JSONController* mJSONController;
-    BtnImages* mBtnImages;
-
-    int mSpacing = 6;   // 영역 분할 수
 };
 
 #endif // CONNECTOR_H

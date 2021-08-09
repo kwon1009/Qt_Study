@@ -7,6 +7,7 @@
 Connector::Connector() {
     // initialization
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
+    mErrorController = new ErrorController();
     mJSONController = new JSONController(SETTING_TITLES, SETTING_FILE);
 
     // btn img setting
@@ -23,6 +24,11 @@ Connector::~Connector() {
 void Connector::setWindow(QQuickWindow* Window)
 {
     mMainView = Window;
+}
+
+void Connector::setConnection() {
+    QObject::connect(mErrorController, SIGNAL(sg_printError(QVariant)), mMainView, SLOT(slot_showError(QVariant)));
+    mErrorController->getError("err");
 }
 
 // qml onCompleted
