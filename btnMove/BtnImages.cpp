@@ -4,6 +4,7 @@
 
 BtnImages::BtnImages(QJsonObject btns) {
     setImages(btns);
+    qDebug() << "Setting Button Images complete.";
 }
 
 void BtnImages::setImages(QJsonObject btns) {

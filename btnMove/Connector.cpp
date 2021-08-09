@@ -13,6 +13,7 @@ Connector::Connector() {
 }
 
 Connector::~Connector() {
+    mJSONController->~JSONController();
 }
 
 // overriding
