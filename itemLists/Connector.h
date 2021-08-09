@@ -32,6 +32,7 @@ public:
 
 private:
     QQuickWindow* mMainView;
+    QTimer* timer;
 
     QString mImageRoot = "../src/";  // 이미지 루트 폴더
     QVector<QString> mImages;       // 이미지 목록

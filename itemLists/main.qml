@@ -14,6 +14,7 @@ Window {
 
     Connector { id: connector }
 
+    // slots
     property int time: 0
     function slot_time() {
         time++
