@@ -29,6 +29,6 @@ QVariant Connector::getImagePaths() {
 
 void Connector::saveImages(QVariantList images) {
     QJsonObject btns = mBtnImages->saveImages(images);
-    mJSONController->write(btns);
+    mJSONController->setJsonObj("btns", btns);
 }
 

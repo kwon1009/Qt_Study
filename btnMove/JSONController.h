@@ -7,7 +7,7 @@
 #include <QJsonObject>
 
 const QString mJsonFileRoot = "../";
-const QStringList cnstTitles = { "btns" };
+const QStringList cnstTitles = { "path", "btns" };
 
 class JSONController {
 

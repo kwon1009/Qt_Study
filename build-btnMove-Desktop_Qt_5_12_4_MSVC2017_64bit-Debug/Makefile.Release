@@ -343,6 +343,16 @@ release\moc_Connector.cpp: ..\btnMove\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\btnMove\JSONController.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QFile \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QIODevice \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonDocument \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsondocument.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h \
+		..\btnMove\BtnImages.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
 		release\moc_predefs.h \
 		C:\Qt\5.12.4\msvc2017_64\bin\moc.exe
 	C:\Qt\5.12.4\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/ypd00/Desktop/kwonhs/01_Lists/build-btnMove-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/release/moc_predefs.h -IC:/Qt/5.12.4/msvc2017_64/mkspecs/win32-msvc -IC:/Users/ypd00/Desktop/kwonhs/01_Lists/btnMove -IC:/Qt/5.12.4/msvc2017_64/include -IC:/Qt/5.12.4/msvc2017_64/include/QtQuick -IC:/Qt/5.12.4/msvc2017_64/include/QtGui -IC:/Qt/5.12.4/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.4/msvc2017_64/include/QtQml -IC:/Qt/5.12.4/msvc2017_64/include/QtNetwork -IC:/Qt/5.12.4/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\btnMove\Connector.h -o release\moc_Connector.cpp
@@ -428,12 +438,9 @@ release\BtnImages.obj: ..\btnMove\BtnImages.cpp ..\btnMove\BtnImages.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qcontiguouscache.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		..\btnMove\FileIO.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QFile \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfile.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfiledevice.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVector \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QMap \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug
 
 release\Connector.obj: ..\btnMove\Connector.cpp ..\btnMove\Connector.h \
@@ -575,6 +582,16 @@ release\Connector.obj: ..\btnMove\Connector.cpp ..\btnMove\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\btnMove\JSONController.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QFile \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QIODevice \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonDocument \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsondocument.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h \
+		..\btnMove\BtnImages.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug
 
 release\FileIO.obj: ..\btnMove\FileIO.cpp ..\btnMove\FileIO.h \
@@ -873,7 +890,17 @@ release\main.obj: ..\btnMove\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QGu
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qtouchdevice.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDir \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdir.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\btnMove\JSONController.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QFile \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QIODevice \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonDocument \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsondocument.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonvalue.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QJsonObject \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qjsonobject.h \
+		..\btnMove\BtnImages.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant
 
 release\qrc_qml.obj: release\qrc_qml.cpp 
 

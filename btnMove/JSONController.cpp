@@ -8,6 +8,7 @@ JSONController::JSONController(QString filename) {
         qDebug() << "Setting file is not exists.";
     }
     read();
+    qDebug() << "Setting file read complete.";
 }
 
 void JSONController::open(const bool is_write) {
@@ -49,4 +50,5 @@ QJsonObject JSONController::getJsonObj(QString title) {
 
 void JSONController::setJsonObj(QString title, QJsonObject contents) {
     jsonTitles[title] = contents;
+    write(jsonTitles);
 }
