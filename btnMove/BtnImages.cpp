@@ -1,4 +1,5 @@
 #include "BtnImages.h"
+#include "ErrorController.h"
 
 #include <QDebug>
 

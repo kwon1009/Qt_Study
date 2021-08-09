@@ -7,7 +7,6 @@ import Connector 1.0
 import "."
 
 Window {
-    // !!공통 소스 폴더를 만들기
     property int mSpacing: 6        // 배치할 버튼 수
     property var mPhotoPaths: []    // 이미지 모음. 동적할당
     property var mXs: []            // 좌표 모음. 동적 할당
@@ -42,6 +41,7 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.bottomMargin: 10
         spacing: 3
 
         Rectangle {
@@ -104,8 +104,8 @@ Window {
                         photos[i] = mBtns[i].photoPath
                     }
                     connector.saveImages(photos);
-                    logText.log = "Save Complete."
-                    logText.color = "brue"
+                    logText.color = "blue"
+                    logText.text = "Save Complete."
                     console.log("main: Save Btn information complete.")
                 }
             }
@@ -122,8 +122,8 @@ Window {
                     for(var i=0; i<mSpacing; i++) {
                         mBtns[i].photoPath = mPhotoPaths[i]
                     }
-                    logText.log = "Reload Complete."
-                    logText.color = "brue"
+                    logText.color = "blue"
+                    logText.text = "Reload Complete."
                     console.log("main: Reload Btn information complete.")
                 }
             }

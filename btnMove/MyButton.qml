@@ -5,6 +5,7 @@ import "."
 Rectangle {
     property int position: 0
     property int mBtnSize: 0
+    property string photoName: ""
     property string photoPath: ""
     property var btnColor: "#B0C4DE"
     property var selBtnColor: "#FFFF66"
@@ -24,6 +25,12 @@ Rectangle {
         width: 100
         height: 100
         anchors.centerIn: parent
+    }
+
+    Text {
+        text: "No." + (position+1)
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     MouseArea {

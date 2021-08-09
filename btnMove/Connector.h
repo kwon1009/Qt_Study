@@ -9,8 +9,8 @@
 #include "JSONController.h"
 #include "BtnImages.h"
 
-const QStringList SETTING_TITLES = { "path", "btns" };
 const QString SETTING_FILE = "../settings.json";
+const QStringList SETTING_TITLES = { "path", "btns" };
 
 class Connector : public QObject {
     Q_OBJECT

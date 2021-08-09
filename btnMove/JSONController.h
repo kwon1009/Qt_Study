@@ -20,7 +20,7 @@ public:
     JSONController(QStringList setTitles, QString filename);
     ~JSONController();
 
-    bool open(const bool is_write);
+    void open(const bool is_write);
     void read();                        // 파일 정보 불러오기
     void write(QJsonObject contents);   // 파일 저장하기
 

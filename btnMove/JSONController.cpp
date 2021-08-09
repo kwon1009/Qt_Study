@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QDir>
+#include "ErrorController.h"
 
 // function: 새로운 설정 파일 생성
 void makeSettingFile(QString filename) {
@@ -57,45 +58,40 @@ JSONController::~JSONController() {
     write(jsonTitles);  // 변경 사항들 한번에 적용
 }
 
-bool JSONController::open(const bool is_write) {
+void JSONController::open(const bool is_write) {
     file.setFileName(mFilePath);
     if(is_write) {
         if(!file.open(QIODevice::WriteOnly)) {
             qDebug() << "JSONController: Could not open file for write";
-            return false;
+            throw JSON_WRITE_OPEN;
         }
     }
     else {
         if(!file.open(QIODevice::ReadWrite)) {
             qDebug() << "JSONController: Could not open file for read";
-            return false;
+            throw JSON_READ_OPEN;
         }
     }
     QByteArray loadData = file.readAll();
     doc = QJsonDocument::fromJson(loadData);
-    return true;
 }
 
 void JSONController::read() {
-    if(open(false)) {
-        for(int i=0; i<mSetTitles.size(); i++) {
-            QString title = mSetTitles[i];
-            jsonTitles[title] = doc.object()[title].toObject();
-        }
-        file.close();
-        qDebug() << "JSONController: Setting file read complete.";
-    } else {
-        // file read error
+    open(false);
+    for(int i=0; i<mSetTitles.size(); i++) {
+        QString title = mSetTitles[i];
+        jsonTitles[title] = doc.object()[title].toObject();
     }
+    file.close();
+    qDebug() << "JSONController: Setting file read complete.";
 }
 
 void JSONController::write(QJsonObject contents) {
-    if(open(true)) {
-        doc.setObject(contents);
-        file.write(doc.toJson());
-        file.close();
-        qDebug() << "JSONController: Setting file write is complete.";
-    }
+    open(true);
+    doc.setObject(contents);
+    file.write(doc.toJson());
+    file.close();
+    qDebug() << "JSONController: Setting file write is complete.";
 }
 
 QJsonObject JSONController::getJsonObj(QString title) {
