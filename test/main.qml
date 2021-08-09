@@ -9,5 +9,16 @@ Window {
     height: 400
     visible: true
 
-    property variant test: []
+    // slots
+    function slot_time() {
+        console.log("tic tok")
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 30
+        Text {
+            text: "test"
+        }
+    }
 }
