@@ -5,6 +5,7 @@
 #include <QQuickWindow>
 #include <QDir>
 #include <iostream>
+#include "MyTimer.h"
 using namespace std;
 
 struct ItemStruct {
