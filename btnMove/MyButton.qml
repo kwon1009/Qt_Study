@@ -89,6 +89,6 @@ Rectangle {
         mBtns[prev] = tempBtn
         mBtns[prev].position = prev
         mBtns[prev].x = mXs[prev]
-        mBtns[prev].y = parent.parent.height/2 - mBtnSize/2
+        mBtns[prev].y = btnArea.height/2 - mBtnSize/2
     }
 }

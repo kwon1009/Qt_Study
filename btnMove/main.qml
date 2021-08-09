@@ -33,67 +33,77 @@ Window {
         console.log("main: mXs setting complete.")
     }
 
-    Item {
+    ColumnLayout {
         anchors.fill: parent
-        Component.onCompleted: {
-            var btnSize = 150
-            for(var i=0; i<mSpacing; i++) {
-                var component = Qt.createComponent("MyButton.qml")
-                var btn = component.createObject(parent, {
-                                           position: i,
-                                           mBtnSize: btnSize,
-                                           photoPath: mPhotoPaths[i],
-                                           x: parent.width/mSpacing * i,
-                                           y: mainWindow.height/2 - btnSize/2
-                                         });
-                mBtns.push(btn)
-                console.log("main: component[", i, "]", component, btn)
-            }
-            console.log("main: MyButton component setting complete.")
-        }
-        // !!빈 이미지 하나가 추가로 생성됨
-        // - width와 height가 MyButton.qml에 고정값으로 존재할 시, 이와 같은 오류가 발생됨
+        spacing: 2
 
-        Component {
-            id: myBtnComponent
-            MyButton {}
-        }
-        Loader { id: myBtnLoader; sourceComponent: myBtnComponent }
-    }
-
-    Item {
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        Button {
-            id: saveBtn
-            width: 300
-            height: 50
-            anchors.right: reloadBtn.left
-            anchors.rightMargin: 20
-            text: "Save"
-
-            onClicked: {
-                var photos = []
+        Rectangle {
+            id: btnArea
+            width: parent.width
+            height: parent.height - 100
+            Layout.alignment: Qt.AlignCenter
+            Component.onCompleted: {
+                var btnSize = 150
                 for(var i=0; i<mSpacing; i++) {
-                    photos[i] = mBtns[i].photoPath
+                    var component = Qt.createComponent("MyButton.qml")
+                    var btn = component.createObject(parent, {
+                                               position: i,
+                                               mBtnSize: btnSize,
+                                               photoPath: mPhotoPaths[i],
+                                               x: parent.width/mSpacing * i,
+                                               y: btnArea.height/2 - btnSize/2
+                                             });
+                    mBtns.push(btn)
+                    console.log("main: component[", i, "]", component, btn)
                 }
-                connector.saveImages(photos);
-                console.log("main: Save Btn information complete.")
+                console.log("main: MyButton component setting complete.")
             }
+            // !!빈 이미지 하나가 추가로 생성됨
+            // - width와 height가 MyButton.qml에 고정값으로 존재할 시, 이와 같은 오류가 발생됨
+
+            Component {
+                id: myBtnComponent
+                MyButton {}
+            }
+            Loader { id: myBtnLoader; sourceComponent: myBtnComponent }
         }
 
-        Button {
-            id: reloadBtn
-            width: 300
-            height: 50
-            text: "Reload"
+        Rectangle {
+            width: parent.width
+            height: 80
+            Layout.alignment: Qt.AlignCenter
 
-            onClicked: {
-                mPhotoPaths = connector.getImagePaths()
-                for(var i=0; i<mSpacing; i++) {
-                    mBtns[i].photoPath = mPhotoPaths[i]
+            Button {
+                id: saveBtn
+                width: 300
+                height: 50
+                anchors.right: reloadBtn.left
+                anchors.rightMargin: 20
+                text: "Save"
+
+                onClicked: {
+                    var photos = []
+                    for(var i=0; i<mSpacing; i++) {
+                        photos[i] = mBtns[i].photoPath
+                    }
+                    connector.saveImages(photos);
+                    console.log("main: Save Btn information complete.")
                 }
-                console.log("main: Reload Btn information complete.")
+            }
+
+            Button {
+                id: reloadBtn
+                width: 300
+                height: 50
+                text: "Reload"
+
+                onClicked: {
+                    mPhotoPaths = connector.getImagePaths()
+                    for(var i=0; i<mSpacing; i++) {
+                        mBtns[i].photoPath = mPhotoPaths[i]
+                    }
+                    console.log("main: Reload Btn information complete.")
+                }
             }
         }
     }
