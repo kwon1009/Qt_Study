@@ -30,6 +30,7 @@ Rectangle {
     Text {
         text: "No." + (position+1)
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
         anchors.horizontalCenter: parent.horizontalCenter
     }
 

@@ -32,7 +32,7 @@ public:
 private:
     QQuickWindow* mMainView;
 
-    QString mImageRoot = "./src/";  // 이미지 루트 폴더
+    QString mImageRoot = "../src/";  // 이미지 루트 폴더
     QVector<QString> mImages;       // 이미지 목록
     QVector<ItemStruct> mItemList;  // 아이템 목록
 
