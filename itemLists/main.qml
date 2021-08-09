@@ -14,6 +14,18 @@ Window {
 
     Connector { id: connector }
 
+    // slots
+    // check time
+    property int time: 0
+    function slot_time() {
+        time++
+        console.log("timer:", time)
+        if(time == 5) {
+            console.log("check 5 sec:", time)
+            time = 0
+        }
+    }
+
     id: mainWindow
     width: 400
     height: 600

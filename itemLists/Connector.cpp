@@ -7,6 +7,8 @@ Connector::Connector() {
 
     setImages();
     setItemLists();
+
+    timer = new QTimer(this);
 }
 
 Connector::~Connector() {
@@ -47,6 +49,8 @@ void Connector::setItemLists()
 
 void Connector::setConnection() {
     // QObject::connect
+    QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_time()));
+    timer->start(1000);
 }
 
 
