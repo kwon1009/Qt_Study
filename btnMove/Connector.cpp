@@ -5,11 +5,12 @@
 Connector::Connector() {
     // initialization
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-    mJSONController = new JSONController(mSettingFile);
+    mJSONController = new JSONController(SETTING_TITLES, SETTING_FILE);
 
     // btn img setting
+    QString imgPath = mJSONController->getJsonObj("path")["img"].toString();
     QJsonObject btns = mJSONController->getJsonObj("btns"); // settings.txt 파일에서 btns 설정 정보 받아오기
-    mBtnImages = new BtnImages(btns);
+    mBtnImages = new BtnImages(imgPath, btns);
 }
 
 Connector::~Connector() {

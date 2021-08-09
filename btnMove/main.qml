@@ -23,14 +23,14 @@ Window {
     Component.onCompleted: {
         // 이미지 파일 설정
         mPhotoPaths = connector.getImagePaths()
-        console.log("mPhotoPaths setting complete.")
+        console.log("main: mPhotoPaths setting complete.")
 
         // 기준 좌표 설정
         var w = mainWindow.width/mSpacing
         for(var i=0; i<mSpacing; i++) {
             mXs[i] = w*i
         }
-        console.log("mXs setting complete.")
+        console.log("main: mXs setting complete.")
     }
 
     Item {
@@ -47,9 +47,9 @@ Window {
                                            y: mainWindow.height/2 - btnSize/2
                                          });
                 mBtns.push(btn)
-                console.log("component:", component, btn)
+                console.log("main: component[", i, "]", component, btn)
             }
-            console.log("MyButton component setting complete.")
+            console.log("main: MyButton component setting complete.")
         }
         // !!빈 이미지 하나가 추가로 생성됨
         // - width와 height가 MyButton.qml에 고정값으로 존재할 시, 이와 같은 오류가 발생됨
@@ -78,7 +78,7 @@ Window {
                     photos[i] = mBtns[i].photoPath
                 }
                 connector.saveImages(photos);
-                console.log("Save complete.")
+                console.log("main: Save Btn information complete.")
             }
         }
 
@@ -93,7 +93,7 @@ Window {
                 for(var i=0; i<mSpacing; i++) {
                     mBtns[i].photoPath = mPhotoPaths[i]
                 }
-                console.log("Reload complete.")
+                console.log("main: Reload Btn information complete.")
             }
         }
     }

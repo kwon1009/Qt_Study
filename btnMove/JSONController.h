@@ -6,26 +6,23 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-const QString mJsonFileRoot = "../";
-const QStringList cnstTitles = { "path", "btns" };
 
 class JSONController {
 
+    QStringList mSetTitles;    // 읽어올 설정 정보 목록
     QString mFilePath;
 
     QFile file;
-
     QJsonDocument doc;
     QJsonObject jsonTitles;
 
 public:
-    JSONController(QString filename);
+    JSONController(QStringList setTitles, QString filename);
     ~JSONController();
 
     void open(const bool is_write);
     void read();                        // 파일 정보 불러오기
     void write(QJsonObject contents);   // 파일 저장하기
-        // !!수정 사항만 적용 또는 전체 적용
 
     // 원하는 설정 정보 관리
     QJsonObject getJsonObj(QString title);

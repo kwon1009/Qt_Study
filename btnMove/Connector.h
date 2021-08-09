@@ -8,6 +8,9 @@
 #include "JSONController.h"
 #include "BtnImages.h"
 
+const QStringList SETTING_TITLES = { "path", "btns" };
+const QString SETTING_FILE = "../settings.json";
+
 class Connector : public QObject {
     Q_OBJECT
 
@@ -24,8 +27,6 @@ public:
     Q_INVOKABLE void saveImages(QVariantList images);
 
 private:
-    QString mSettingFile = "settings.json";
-
     QQuickWindow* mMainView;
     JSONController* mJSONController;
     BtnImages* mBtnImages;

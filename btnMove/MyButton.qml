@@ -35,14 +35,14 @@ Rectangle {
         onEntered: {
             parent.color = selBtnColor
             parent.z = parent.z + mSpacing  // 클릭한 버튼이 위로 오도록 설정
-            console.log("click btn position", position)
+            console.log("MyButton: click btn position", position)
         }
 
         onExited: {
             parent.color = btnColor
             parent.z = parent.z - mSpacing  // 새로 클릭한 버튼이 위로 올 수 있도록 변경
             sortBtns(parent)  // 버튼 재배치
-            console.log("move btn position", position)
+            console.log("MyButton: move btn position", position)
         }
     }
 
