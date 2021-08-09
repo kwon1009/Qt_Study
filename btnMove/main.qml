@@ -12,6 +12,7 @@ Window {
     property var mPhotoPaths: []    // 이미지 모음. 동적할당
     property var mXs: []            // 좌표 모음. 동적 할당
     property var mBtns: []          // 현재 위치별 버튼들
+    property var log: ""            // 진행 상태 조회
 
     id: mainWindow
     width: 1000
@@ -35,13 +36,13 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        spacing: 2
+        spacing: 3
 
         Rectangle {
             id: btnArea
-            width: parent.width
-            height: parent.height - 100
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height - 70
             Component.onCompleted: {
                 var btnSize = 150
                 for(var i=0; i<mSpacing; i++) {
@@ -69,16 +70,26 @@ Window {
         }
 
         Rectangle {
-            width: parent.width
-            height: 80
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: 10
+            Text {
+                anchors.centerIn: parent
+                text: log
+                color: "blue"
+            }
+        }
+
+        RowLayout {
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: 60
 
             Button {
                 id: saveBtn
-                width: 300
-                height: 50
-                anchors.right: reloadBtn.left
-                anchors.rightMargin: 20
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: 300
+                Layout.preferredHeight: 50
                 text: "Save"
 
                 onClicked: {
@@ -87,14 +98,16 @@ Window {
                         photos[i] = mBtns[i].photoPath
                     }
                     connector.saveImages(photos);
+                    log = "Save Complete."
                     console.log("main: Save Btn information complete.")
                 }
             }
 
             Button {
                 id: reloadBtn
-                width: 300
-                height: 50
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: 300
+                Layout.preferredHeight: 50
                 text: "Reload"
 
                 onClicked: {
@@ -102,6 +115,7 @@ Window {
                     for(var i=0; i<mSpacing; i++) {
                         mBtns[i].photoPath = mPhotoPaths[i]
                     }
+                    log = "Reload Complete."
                     console.log("main: Reload Btn information complete.")
                 }
             }

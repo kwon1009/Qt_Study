@@ -5,7 +5,6 @@
 
 FileIO::FileIO(QString filename) {
     mFileName = filename;
-    QVector<QString> contents = read();
 }
 
 QVector<QString> FileIO::read() {

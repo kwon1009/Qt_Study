@@ -1,12 +1,53 @@
 #include "JSONController.h"
 
 #include <QDebug>
+#include <QDir>
+
+void makeSettingFile(QString filename) {
+    QFile file;
+    file.setFileName("../settings.json");
+    file.open(QIODevice::WriteOnly);    // 새로운 세팅 파일 생성
+
+    // 저장할 JSON obj
+    QJsonObject settings;
+
+    // Data default Root Path
+    QString imgPath = "../src/";
+
+    QJsonObject path;
+    path["img"] = imgPath;
+    settings["path"] = path;
+
+    // src 폴더에 존재하는 이미지 목록 가져오기
+    QVector<QString> imgList;
+    QDir directory(imgPath);
+    QStringList images = directory.entryList(QStringList() << "*", QDir::Files);
+
+    // 이미지 정보 저장
+    QJsonObject btnList;
+    for(int i=0; i<images.size(); i++) {
+        btnList[QString("%1").arg(i)] = images[i];
+    }
+    qDebug() << btnList;
+    settings["btns"] = btnList;
+
+    // json 파일로 저장
+    QByteArray loadData = file.readAll();
+    QJsonDocument doc;
+    doc = QJsonDocument::fromJson(loadData);
+    doc.setObject(settings);
+    file.write(doc.toJson());
+    file.close();
+}
 
 JSONController::JSONController(QStringList setTitles, QString filename) {
     mSetTitles = setTitles;
     mFilePath = filename;
     if(QFile::exists(mFilePath) == false) {
         qDebug() << "JSONController: Setting file is not exists.";
+        qDebug() << "JSONController: Making new setting file.";
+
+        makeSettingFile(filename);  // 새로운 setting.json 파일 생성
     }
     read();
 }
@@ -15,38 +56,43 @@ JSONController::~JSONController() {
     write(jsonTitles);  // 변경 사항들 한번에 적용
 }
 
-void JSONController::open(const bool is_write) {
+bool JSONController::open(const bool is_write) {
     file.setFileName(mFilePath);
     if(is_write) {
         if(!file.open(QIODevice::WriteOnly)) {
             qDebug() << "JSONController: Could not open file for write";
+            return false;
         }
     }
     else {
         if(!file.open(QIODevice::ReadWrite)) {
             qDebug() << "JSONController: Could not open file for read";
+            return false;
         }
     }
     QByteArray loadData = file.readAll();
     doc = QJsonDocument::fromJson(loadData);
+    return true;
 }
 
 void JSONController::read() {
-    open(false);
-    for(int i=0; i<mSetTitles.size(); i++) {
-        QString title = mSetTitles[i];
-        jsonTitles[title] = doc.object()[title].toObject();
+    if(open(false)) {
+        for(int i=0; i<mSetTitles.size(); i++) {
+            QString title = mSetTitles[i];
+            jsonTitles[title] = doc.object()[title].toObject();
+        }
+        file.close();
+        qDebug() << "JSONController: Setting file read complete.";
     }
-    file.close();
-    qDebug() << "JSONController: Setting file read complete.";
 }
 
 void JSONController::write(QJsonObject contents) {
-    open(true);
-    doc.setObject(contents);
-    file.write(doc.toJson());
-    file.close();
-    qDebug() << "JSONController: Setting file write is complete.";
+    if(open(true)) {
+        doc.setObject(contents);
+        file.write(doc.toJson());
+        file.close();
+        qDebug() << "JSONController: Setting file write is complete.";
+    }
 }
 
 QJsonObject JSONController::getJsonObj(QString title) {

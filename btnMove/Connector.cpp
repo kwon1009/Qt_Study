@@ -1,6 +1,8 @@
 #include "Connector.h"
 
 #include <QDebug>
+#include "FileIO.h"
+#include <QDir>
 
 Connector::Connector() {
     // initialization
@@ -9,7 +11,7 @@ Connector::Connector() {
 
     // btn img setting
     QString imgPath = mJSONController->getJsonObj("path")["img"].toString();
-    QJsonObject btns = mJSONController->getJsonObj("btns"); // settings.txt 파일에서 btns 설정 정보 받아오기
+    QJsonObject btns = mJSONController->getJsonObj("btns");     // settings.txt 파일에서 btns 설정 정보 받아오기
     mBtnImages = new BtnImages(imgPath, btns);
 }
 
