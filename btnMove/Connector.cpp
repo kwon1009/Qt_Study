@@ -3,12 +3,16 @@
 #include <QDebug>
 
 Connector::Connector() {
+    // initialization
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
-    setImages();
+    mJSONController = new JSONController(mSettingFile);
+
+    // btn img setting
+    QJsonObject btns = mJSONController->getJsonObj("btns");
+    mBtnImages = new BtnImages(btns);
 }
 
 Connector::~Connector() {
-
 }
 
 // overriding
@@ -18,19 +22,13 @@ void Connector::setWindow(QQuickWindow* Window)
 }
 
 // qml onCompleted
-QVariant Connector::getImages() { return mItemList; }
-
-// public functions
-void Connector::setImages()
-{
-    // get File names
-    QDir directory(mImageRoot);
-    QStringList images = directory.entryList(QStringList() << "*", QDir::Files);
-
-    // push names and path
-    QVariantList mPaths = {};
-    foreach(QString filename, images) {
-        mPaths.append(mImageRoot + filename);
-    }
-    mItemList = QVariant(mPaths);
+int Connector::getSpacingSize() { return mSpacing; }
+QVariant Connector::getImagePaths() {
+    return mBtnImages->getImagePaths();
 }
+
+void Connector::saveImages(QVariantList images) {
+    QJsonObject btns = mBtnImages->saveImages(images);
+    mJSONController->write(btns);
+}
+

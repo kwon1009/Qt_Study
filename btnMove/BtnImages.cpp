@@ -2,23 +2,20 @@
 
 #include <QDebug>
 
-BtnImages::BtnImages() {
-    mImgFileIO = new FileIO(mImgFileName);
+BtnImages::BtnImages(QJsonObject btns) {
+    setImages(btns);
 }
 
-void BtnImages::setImages() {
-    QVector<QString> contents = mImgFileIO->read();
+void BtnImages::setImages(QJsonObject btns) {
     // set matching
-    for(int i=0; i<contents.size(); i++) {
-        int btnNo = (contents[i].split(":")[0]).toInt();
-        QString imgName = contents[i].split(":")[1];
-        matchings[btnNo] = imgName;
+    for(int i=0; i<btns.size(); i++) {
+        QString imgName = btns[QString("%1").arg(i)].toString();
+        matchings[i] = imgName;
     }
 }
 
 // public functions
 QVariant BtnImages::getImagePaths() {
-    setImages();
     QVariantList mPaths = {};
     for(int i=0; i<matchings.size(); i++) {
         mPaths.append(mImgRoot + matchings[i]);
@@ -26,16 +23,15 @@ QVariant BtnImages::getImagePaths() {
     return QVariant(mPaths);
 }
 
-void BtnImages::saveImages(QVariantList images) {
-    QVector<QString> contents;
-
+QJsonObject BtnImages::saveImages(QVariantList images) {
+    QJsonObject btn;
     for(int i=0; i<images.size(); i++) {
-        // change mMatchings
         QString imgName = images[i].toString().split("/").back();
-        QString content = QString("%1").arg(i) + ":" + imgName;
-        contents.append(content);
+        btn[QString("%1").arg(i)] = imgName;
+        matchings[i] = imgName;
     }
 
-    // save file
-    mImgFileIO->write(contents);
+    QJsonObject btns;
+    btns["btns"] = btn;
+    return btns;
 }

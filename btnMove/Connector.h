@@ -4,13 +4,9 @@
 #include <QObject>
 #include <QQuickWindow>
 #include <QDir>
-#include <iostream>
-using namespace std;
 
-struct ItemStruct {
-    QString title;
-    QString imagePath;
-};
+#include "JSONController.h"
+#include "BtnImages.h"
 
 class Connector : public QObject {
     Q_OBJECT
@@ -23,15 +19,18 @@ public:
     void setWindow(QQuickWindow* Widnow);
 
     // qml onCompleted
-    Q_INVOKABLE QVariant getImages();
+    Q_INVOKABLE int getSpacingSize();
+    Q_INVOKABLE QVariant getImagePaths();
+    Q_INVOKABLE void saveImages(QVariantList images);
 
 private:
+    QString mSettingFile = "settings.json";
+
     QQuickWindow* mMainView;
+    JSONController* mJSONController;
+    BtnImages* mBtnImages;
 
-    QString mImageRoot = "./src/";  // 이미지 루트 폴더
-    QVariant mItemList;  // 아이템 목록
-
-    void setImages();
+    int mSpacing = 6;   // 영역 분할 수
 };
 
 #endif // CONNECTOR_H

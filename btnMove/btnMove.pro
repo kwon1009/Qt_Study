@@ -10,6 +10,7 @@ SOURCES += \
         BtnImages.cpp \
         Connector.cpp \
         FileIO.cpp \
+        JSONController.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -28,4 +29,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     BtnImages.h \
     Connector.h \
-    FileIO.h
+    FileIO.h \
+    JSONController.h

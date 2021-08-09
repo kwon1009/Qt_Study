@@ -24,7 +24,7 @@ Window {
 
     Component.onCompleted: {
         // 이미지 파일 설정
-        mPhotoPaths = connector.getImages()
+        mPhotoPaths = connector.getImagePaths()
 
         // 기준 좌표 설정
         var w = mainWindow.width/mSpacing
