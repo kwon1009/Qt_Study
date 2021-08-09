@@ -4,12 +4,14 @@ import "."
 
 Rectangle {
     property int position: 0
+    property int mBtnSize: 0
     property string photoPath: ""
     property var btnColor: "#B0C4DE"
     property var selBtnColor: "#FFFF66"
 
-    width: 150
-    height: 150
+    id: btn
+    width: mBtnSize
+    height: mBtnSize
     color: btnColor
 
     Drag.active: btnMouseArea.drag.active
@@ -33,12 +35,14 @@ Rectangle {
         onEntered: {
             parent.color = selBtnColor
             parent.z = parent.z + mSpacing  // 클릭한 버튼이 위로 오도록 설정
+            console.log("click btn position", position)
         }
 
         onExited: {
             parent.color = btnColor
             parent.z = parent.z - mSpacing  // 새로 클릭한 버튼이 위로 올 수 있도록 변경
             sortBtns(parent)  // 버튼 재배치
+            console.log("move btn position", position)
         }
     }
 
@@ -85,6 +89,6 @@ Rectangle {
         mBtns[prev] = tempBtn
         mBtns[prev].position = prev
         mBtns[prev].x = mXs[prev]
-        mBtns[prev].y = parent.parent.height/2 - parent.height/2
+        mBtns[prev].y = parent.parent.height/2 - mBtnSize/2
     }
 }

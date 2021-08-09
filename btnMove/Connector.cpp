@@ -8,7 +8,7 @@ Connector::Connector() {
     mJSONController = new JSONController(mSettingFile);
 
     // btn img setting
-    QJsonObject btns = mJSONController->getJsonObj("btns");
+    QJsonObject btns = mJSONController->getJsonObj("btns"); // settings.txt 파일에서 btns 설정 정보 받아오기
     mBtnImages = new BtnImages(btns);
 }
 

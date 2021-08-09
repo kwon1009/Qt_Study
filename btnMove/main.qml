@@ -36,20 +36,23 @@ Window {
     Item {
         anchors.fill: parent
         Component.onCompleted: {
+            var btnSize = 150
             for(var i=0; i<mSpacing; i++) {
                 var component = Qt.createComponent("MyButton.qml")
                 var btn = component.createObject(parent, {
                                            position: i,
+                                           mBtnSize: btnSize,
                                            photoPath: mPhotoPaths[i],
                                            x: parent.width/mSpacing * i,
-                                           y: parent.height/2 - height/2
+                                           y: mainWindow.height/2 - btnSize/2
                                          });
                 mBtns.push(btn)
-                console.log("conponent:", i, btn.photoPath)
+                console.log("component:", component, btn)
             }
             console.log("MyButton component setting complete.")
-        }   // !!빈 이미지 하나가 추가로 생성됨
-        // !!로그 작성하여 빈 이미지가 어디서 발생하는지 확인해보기
+        }
+        // !!빈 이미지 하나가 추가로 생성됨
+        // - width와 height가 MyButton.qml에 고정값으로 존재할 시, 이와 같은 오류가 발생됨
 
         Component {
             id: myBtnComponent
@@ -58,17 +61,40 @@ Window {
         Loader { id: myBtnLoader; sourceComponent: myBtnComponent }
     }
 
-    Button {
-        id: saveBtn
-        width: 300
-        height: 50
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+    Item {
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "Save"
 
-        onClicked: {
-            console.log(myBtnLoader.loaded())
+        Button {
+            id: saveBtn
+            width: 300
+            height: 50
+            anchors.right: reloadBtn.left
+            anchors.rightMargin: 20
+            text: "Save"
+
+            onClicked: {
+                var photos = []
+                for(var i=0; i<mSpacing; i++) {
+                    photos[i] = mBtns[i].photoPath
+                }
+                connector.saveImages(photos);
+                console.log("Save complete.")
+            }
+        }
+
+        Button {
+            id: reloadBtn
+            width: 300
+            height: 50
+            text: "Reload"
+
+            onClicked: {
+                mPhotoPaths = connector.getImagePaths()
+                for(var i=0; i<mSpacing; i++) {
+                    mBtns[i].photoPath = mPhotoPaths[i]
+                }
+                console.log("Reload complete.")
+            }
         }
     }
 }

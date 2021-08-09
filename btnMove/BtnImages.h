@@ -4,7 +4,7 @@
 #include <QVariant>
 #include <QJsonObject>
 
-const QString mImgRoot = "./src/";    // 이미지 루트 폴더
+const QString mImgRoot = "../src/";    // 이미지 루트 폴더
 
 class BtnImages {
 
