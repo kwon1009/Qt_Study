@@ -25,7 +25,8 @@ Rectangle {
     }
 
     SequentialAnimation {
-        running: true
+        id: forward
+        running: false
         loops: Animation.Infinite;
 
         NumberAnimation {
@@ -58,6 +59,44 @@ Rectangle {
             from : photoWindow.height - photoBox.height
             to : 0
             duration: 5000
+        }
+    }
+
+    SequentialAnimation {
+        id: backward
+        running: true
+        loops: Animation.Infinite;
+
+        NumberAnimation {
+            target: photoBox
+            property: "y"
+            from : photoWindow.height - photoBox.height
+            to : 0
+            duration: 5000
+        }
+
+        NumberAnimation {
+            target: photoBox
+            property: "x"
+            from : photoWindow.width - photoBox.width
+            to : 0
+            duration: 3000
+        }
+
+        NumberAnimation {
+            target: photoBox
+            property: "y"
+            from : 0
+            to : photoWindow.height - photoBox.height
+            duration: 5000
+        }
+
+        NumberAnimation {
+            target: photoBox
+            property: "x"
+            from : 0
+            to : photoWindow.width - photoBox.width
+            duration: 3000
         }
     }
 
