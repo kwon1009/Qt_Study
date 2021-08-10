@@ -5,6 +5,7 @@ Item {
     height: 100
 
     Rectangle {
+        objectName: "rect"
         anchors.fill: parent
         color: "blue"
     }
