@@ -49,8 +49,11 @@ void Connector::setItemLists()
 
 void Connector::setConnection() {
     // QObject::connect
-    QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_time()));
-    timer->start(1000);
+    // timer
+    QObject::connect(mMainView, SIGNAL(sg_infiReverse()), this, SLOT(slot_startInfiReverse()));
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(slot_thisTime()));
+    QObject::connect(this, SIGNAL(sg_checkTime()), mMainView, SLOT(slog_checkTime()));
+
 }
 
 
@@ -59,4 +62,20 @@ int Connector::getItemListSize() { return mImages.size(); }
 QString Connector::getPhotoTitle(int index) { return mItemList.at(index).title; }
 QString Connector::getPhotoPath(int index) { return mItemList.at(index).imagePath; }
 
+
+// slots
+void Connector::slot_startInfiReverse() {
+    time = 0;
+    qDebug() << "Connector: Start timer.";
+    timer->start(1000);   // 시그널 받을 시, 타이머 동작 시작
+}
+
+void Connector::slot_thisTime() {
+    time++;
+    if(time == 5) {
+        qDebug() << "Connector: Check 5 sec.";
+        emit sg_checkTime();
+        time = 0;
+    }
+}
 

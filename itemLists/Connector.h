@@ -16,6 +16,18 @@ struct ItemStruct {
 class Connector : public QObject {
     Q_OBJECT
 
+private:
+    QQuickWindow* mMainView;
+    QTimer* timer;
+    int time;
+
+    QString mImageRoot = "../src/";  // 이미지 루트 폴더
+    QVector<QString> mImages;       // 이미지 목록
+    QVector<ItemStruct> mItemList;  // 아이템 목록
+
+    void setImages();
+    void setItemLists();
+
 public:
     Connector();
     ~Connector();
@@ -30,16 +42,12 @@ public:
     Q_INVOKABLE QString getPhotoTitle(int index);
     Q_INVOKABLE QString getPhotoPath(int index);
 
-private:
-    QQuickWindow* mMainView;
-    QTimer* timer;
+signals:
+    void sg_checkTime();
 
-    QString mImageRoot = "../src/";  // 이미지 루트 폴더
-    QVector<QString> mImages;       // 이미지 목록
-    QVector<ItemStruct> mItemList;  // 아이템 목록
-
-    void setImages();
-    void setItemLists();
+private slots:
+    void slot_startInfiReverse();
+    void slot_thisTime();
 };
 
 

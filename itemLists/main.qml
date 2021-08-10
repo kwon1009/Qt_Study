@@ -14,16 +14,13 @@ Window {
 
     Connector { id: connector }
 
+    // signal
+    signal sg_infiReverse();
+
     // slots
-    // check time
-    property int time: 0
-    function slot_time() {
-        time++
-        console.log("timer:", time)
-        if(time == 5) {
-            console.log("check 5 sec:", time)
-            time = 0
-        }
+    function slog_checkTime() {
+        // 5초마다 cpp에서 신호를 주면, 회전을 변환함
+        console.log("Get check time Signal.")
     }
 
     id: mainWindow
