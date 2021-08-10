@@ -1,5 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickView>
+#include <QObject>
+#include <QDebug>
+#include <QQuickItem>
 
 int main(int argc, char *argv[])
 {
@@ -18,5 +22,13 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    // 화면 연결
+    QQuickView view;
+    view.setSource(QUrl::fromLocalFile("test.qml"));
+    view.show();
+    QObject* object;
+    object = view.rootObject();
+
+    delete object;
     return app.exec();
 }
