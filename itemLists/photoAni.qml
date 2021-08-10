@@ -28,6 +28,29 @@ Item {
             fillMode: Image.PreserveAspectCrop
             source: mPhotoPath
         }
+
+        function checkDirection(x, y) {
+            if(y == 0 & x < mMaxWidth) {
+                console.log("Forward photoBox is side1")
+                forward_side1.running = !forward_side1.running
+                backward_side1.running = !backward_side1.running
+
+            } else if(x == mMaxWidth && y < mMaxHeight) {
+                console.log("Forward photoBox is side 2")
+                forward_side2.running = !forward_side2.running
+                backward_side2.running = !backward_side2.running
+
+            } else if(y == mMaxHeight && x < mMaxWidth) {
+                console.log("Forward photoBox is side3")
+                forward_side3.running = !forward_side3.running
+                backward_side3.running = !backward_side3.running
+
+            } else {
+                console.log("Forward photoBox is side4")
+                forward_side4.running = !forward_side4.running
+                backward_side4.running = !backward_side4.running
+            }
+        }
     }
 
 
@@ -45,36 +68,21 @@ Item {
                 onClicked: {
                     // 타이머 종료 및 화면 전환
                     sg_stopTimer()
-                    time = 0
                     firstView.visible = true
-                    secondView.visible = false  // secondView
+                    secondView.visible = false
                 }
             }
 
             Button {
                 id: oneTime;
-                text: "One Time"
+                text: "Reverse"
                 onClicked: {
-                    console.log("photoAni.qml one time btn click.")
-                    console.log("photoBox x y:", photoBox.x, photoBox.y)
+                    console.log("photoAni.qml timer stop")
+                    sg_stopTimer()      // 타이머 종료
 
-                    if(photoBox.y == 0 & photoBox.x < mMaxWidth) {
-                        console.log("Forward photoBox is side1")
-                        forward_side1.running = !forward_side1.running
-                        backward_side1.running = !backward_side1.running
-                    } else if(photoBox.x == mMaxWidth && photoBox.y < mMaxHeight) {
-                        console.log("Forward photoBox is side 2")
-                        forward_side2.running = !forward_side2.running
-                        backward_side2.running = !backward_side2.running
-                    } else if(photoBox.y == mMaxHeight && photoBox.x < mMaxWidth) {
-                        console.log("Forward photoBox is side3")
-                        forward_side3.running = !forward_side3.running
-                        backward_side3.running = !backward_side3.running
-                    } else {
-                        console.log("Forward photoBox is side4")
-                        forward_side4.running = !forward_side4.running
-                        backward_side4.running = !backward_side4.running
-                    }
+                    console.log("photoAni.qml one time btn click.")
+                    console.log("photoAni.qml photoBox x y:", photoBox.x, photoBox.y)
+                    photoBox.checkDirection(photoBox.x, photoBox.y)
                 }
             }
 
@@ -83,13 +91,17 @@ Item {
                 text: "Infinity"
                 onClicked: {
                     console.log("photoAni.qml infinity btn click.")
-                    sg_infiReverse()    // timer 시작
-                    // !!멈추게 하는 법?
+                    console.log("photoAni.qml setting photoBox.")
+                    mPhotoBox = photoBox
+                    photoBox.checkDirection(photoBox.x, photoBox.y) // 변경 먼저 수행
+                    sg_startTimer()     // 타이머 시작
+
                 }
             }
         }
     }
 
+    // 각 변마다 애니메이션 구현
     // forward
     NumberAnimation {
         id: forward_side1

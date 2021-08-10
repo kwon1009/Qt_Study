@@ -53,11 +53,6 @@ void Connector::setConnection() {
     QObject::connect(mMainView, SIGNAL(sg_startTimer()), this, SLOT(slot_startTimer()));
     QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
     QObject::connect(mMainView, SIGNAL(sg_stopTimer()), this, SLOT(slot_stopTimer()));
-//    QObject::connect(mMainView, SIGNAL(sg_infiReverse()), this, SLOT(slot_startInfiReverse()));
-//    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(slot_thisTime()));
-//    QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
-//    timer->start(1000);
-//    QObject::connect(this, SIGNAL(sg_checkTime()), mMainView, SLOT(slot_checkTime()));
 
 }
 
@@ -70,26 +65,9 @@ QString Connector::getPhotoPath(int index) { return mItemList.at(index).imagePat
 
 // slots
 void Connector::slot_startTimer() {
-    timer->start(1000);
+    timer->start(5000);
     qDebug() << "Connector: Start timer.";
 }
-
-void Connector::slot_startInfiReverse() {
-    time = 0;
-    qDebug() << "Connector: Start timer.";
-    timer->start(1000);   // 시그널 받을 시, 타이머 동작 시작
-}
-
 void Connector::slot_stopTimer() {
     timer->stop();
 }
-
-//void Connector::slot_thisTime() {
-//    time++;
-//    if(time == 5) {
-//        qDebug() << "Connector: Check 5 sec.";
-//        emit sg_checkTime();
-//        time = 0;
-//    }
-//}
-

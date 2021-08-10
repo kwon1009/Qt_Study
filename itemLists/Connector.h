@@ -47,9 +47,7 @@ signals:
 
 private slots:
     void slot_startTimer();
-    void slot_startInfiReverse();
     void slot_stopTimer();
-//    void slot_thisTime();
 };
 
 

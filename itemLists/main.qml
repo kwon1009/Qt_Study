@@ -11,6 +11,7 @@ import "."
 Window {
     property int mPhotoSize: 0
     property string mPhotoPath: ""  // photoAni.qml -> photoBox
+    property var mPhotoBox: 0
 
     Connector { id: connector }
 
@@ -19,19 +20,11 @@ Window {
     signal sg_stopTimer();
 
     // slots
-    property int time: 0
+    // 5초마다 해당 timer 호출, 방향 전환
     function slot_timer() {
-        time++
-
-//        console.log("main-timer:", time)
+        console.log("main.qml time out, reverse direction")
+        mPhotoBox.checkDirection(mPhotoBox.x, mPhotoBox.y)
     }
-
-    function slog_checkTime() {
-        // 5초마다 cpp에서 신호를 주면, 회전을 변환함
-        console.log("Get check time Signal.")
-    }
-
-    property bool btnOneTimeClick: false
 
     id: mainWindow
     width: 400
