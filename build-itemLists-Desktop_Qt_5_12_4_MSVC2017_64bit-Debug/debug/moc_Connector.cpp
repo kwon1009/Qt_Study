@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Connector_t {
-    QByteArrayData data[9];
-    char stringdata0[109];
+    QByteArrayData data[10];
+    char stringdata0[126];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,17 +34,19 @@ static const qt_meta_stringdata_Connector_t qt_meta_stringdata_Connector = {
 QT_MOC_LITERAL(0, 0, 9), // "Connector"
 QT_MOC_LITERAL(1, 10, 12), // "sg_checkTime"
 QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 21), // "slot_startInfiReverse"
-QT_MOC_LITERAL(4, 46, 13), // "slot_thisTime"
-QT_MOC_LITERAL(5, 60, 15), // "getItemListSize"
-QT_MOC_LITERAL(6, 76, 13), // "getPhotoTitle"
-QT_MOC_LITERAL(7, 90, 5), // "index"
-QT_MOC_LITERAL(8, 96, 12) // "getPhotoPath"
+QT_MOC_LITERAL(3, 24, 15), // "slot_startTimer"
+QT_MOC_LITERAL(4, 40, 21), // "slot_startInfiReverse"
+QT_MOC_LITERAL(5, 62, 14), // "slot_stopTimer"
+QT_MOC_LITERAL(6, 77, 15), // "getItemListSize"
+QT_MOC_LITERAL(7, 93, 13), // "getPhotoTitle"
+QT_MOC_LITERAL(8, 107, 5), // "index"
+QT_MOC_LITERAL(9, 113, 12) // "getPhotoPath"
 
     },
-    "Connector\0sg_checkTime\0\0slot_startInfiReverse\0"
-    "slot_thisTime\0getItemListSize\0"
-    "getPhotoTitle\0index\0getPhotoPath"
+    "Connector\0sg_checkTime\0\0slot_startTimer\0"
+    "slot_startInfiReverse\0slot_stopTimer\0"
+    "getItemListSize\0getPhotoTitle\0index\0"
+    "getPhotoPath"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +56,7 @@ static const uint qt_meta_data_Connector[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,16 +64,17 @@ static const uint qt_meta_data_Connector[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x06 /* Public */,
+       1,    0,   49,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
+       3,    0,   50,    2, 0x08 /* Private */,
+       4,    0,   51,    2, 0x08 /* Private */,
+       5,    0,   52,    2, 0x08 /* Private */,
 
  // methods: name, argc, parameters, tag, flags
-       5,    0,   47,    2, 0x02 /* Public */,
-       6,    1,   48,    2, 0x02 /* Public */,
-       8,    1,   51,    2, 0x02 /* Public */,
+       6,    0,   53,    2, 0x02 /* Public */,
+       7,    1,   54,    2, 0x02 /* Public */,
+       9,    1,   57,    2, 0x02 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -79,11 +82,12 @@ static const uint qt_meta_data_Connector[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
 
  // methods: parameters
     QMetaType::Int,
-    QMetaType::QString, QMetaType::Int,    7,
-    QMetaType::QString, QMetaType::Int,    7,
+    QMetaType::QString, QMetaType::Int,    8,
+    QMetaType::QString, QMetaType::Int,    8,
 
        0        // eod
 };
@@ -95,13 +99,14 @@ void Connector::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->sg_checkTime(); break;
-        case 1: _t->slot_startInfiReverse(); break;
-        case 2: _t->slot_thisTime(); break;
-        case 3: { int _r = _t->getItemListSize();
+        case 1: _t->slot_startTimer(); break;
+        case 2: _t->slot_startInfiReverse(); break;
+        case 3: _t->slot_stopTimer(); break;
+        case 4: { int _r = _t->getItemListSize();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 4: { QString _r = _t->getPhotoTitle((*reinterpret_cast< int(*)>(_a[1])));
+        case 5: { QString _r = _t->getPhotoTitle((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 5: { QString _r = _t->getPhotoPath((*reinterpret_cast< int(*)>(_a[1])));
+        case 6: { QString _r = _t->getPhotoPath((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -146,13 +151,13 @@ int Connector::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

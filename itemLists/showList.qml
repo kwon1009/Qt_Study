@@ -81,7 +81,9 @@ Item {
                             hoverEnabled: true
                             onClicked: {
                                 mPhotoPath = photoPath;
-                                loaderView.source = "photoAni.qml"  // secondView
+                                sg_startTimer()     // 화면 전환과 함께 타이머 시작
+                                firstView.visible = false
+                                secondView.visible = true  // secondView
                             }
                         }
                     }

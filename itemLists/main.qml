@@ -15,20 +15,22 @@ Window {
     Connector { id: connector }
 
     // signal
-    signal sg_infiReverse();
+    signal sg_startTimer();
+    signal sg_stopTimer();
 
     // slots
+    property int time: 0
+    function slot_timer() {
+        time++
+        console.log("main-timer:", time)
+    }
+
     function slog_checkTime() {
         // 5초마다 cpp에서 신호를 주면, 회전을 변환함
         console.log("Get check time Signal.")
     }
 
     property bool btnOneTimeClick: false
-    property int time: 0
-    function slot_timer() {
-        time++
-        console.log("main-timer:", time)
-    }
 
     id: mainWindow
     width: 400
@@ -38,8 +40,16 @@ Window {
 
 
     Loader {
-        id: loaderView
+        id: firstView
         source: "showList.qml"  // firstView
         anchors.fill: parent
+        visible: true
+    }
+
+    Loader {
+        id: secondView
+        source: "photoAni.qml"  // secondView
+        anchors.fill: parent
+        visible: false
     }
 }

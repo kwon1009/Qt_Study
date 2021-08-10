@@ -46,8 +46,10 @@ signals:
     void sg_checkTime();
 
 private slots:
+    void slot_startTimer();
     void slot_startInfiReverse();
-    void slot_thisTime();
+    void slot_stopTimer();
+//    void slot_thisTime();
 };
 
 

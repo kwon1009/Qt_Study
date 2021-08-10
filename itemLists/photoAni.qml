@@ -11,8 +11,8 @@ import "./src"
 // secondView
 
 Item {
-    function boxAni() {
-        photoBox.x++
+    function test() {
+        console.log("test")
     }
 
     Rectangle {
@@ -42,7 +42,11 @@ Item {
                     id: backBtn;
                     text: "Back"
                     onClicked: {
-                        stackPhotoAni.pop()
+                        // 타이머 종료 및 화면 전환
+                        sg_stopTimer()
+                        time = 0
+                        firstView.visible = true
+                        secondView.visible = false  // secondView
                     }
                 }
 
@@ -50,7 +54,7 @@ Item {
                     id: oneTime;
                     text: "One Time"
                     onClicked: {
-                        boxAni()
+
                     }
                 }
 
