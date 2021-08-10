@@ -22,7 +22,7 @@ Window {
     property int time: 0
     function slot_timer() {
         time++
-        console.log("main-timer:", time)
+//        console.log("main-timer:", time)
     }
 
     function slog_checkTime() {

@@ -11,9 +11,11 @@ import "./src"
 // secondView
 
 Item {
-    function test() {
-        console.log("test")
-    }
+    property int mMaxWidth: photoWindow.width - photoBox.width
+    property int mMaxHeight: photoWindow.height - photoBox.height
+    property bool mIsForward: true
+    property var mForwards: [aniForSide1, aniForSide2, aniForSide3, aniForSide4]
+    property var mBackwards: [aniBackSide1, aniBackSide2, aniBackSide3, aniBackSide4]
 
     Rectangle {
         id: photoWindow
@@ -54,7 +56,49 @@ Item {
                     id: oneTime;
                     text: "One Time"
                     onClicked: {
+                        console.log("photoAni.qml one time btn click.")
+                        for(var i=0; i<4; i++) {
+                            if(mForwards[i].running == true) {
+                                mForwards[i].running = false
+                            }
+                            if(mBackwards[i].running == true) {
+                                mBackwards[i].running = false
+                            }
+                            console.log(i, "change all false")
+                        }
 
+                        if(mIsForward) {
+                            if(photoBox.y == 0 & photoBox.x < mMaxWidth) {
+                                console.log("Forward photoBox is side1")
+                                mBackwards[0].running = true
+                            } else if(photoBox.x == mMaxWidth && photoBox.y < mMaxHeight) {
+                                console.log("Forward photoBox is side 2")
+                                mBackwards[1].running = true
+                            } else if(photoBox.y == mMaxHeight && photoBox.x < mMaxWidth) {
+                                console.log("Forward photoBox is side3")
+                                mBackwards[2].running = true
+                            } else {
+                                console.log("Forward photoBox is side4")
+                                mBackwards[3].running = true
+                            }
+                            mIsForward = !mIsForward
+
+                        } else {
+                            if(photoBox.y == 0 & photoBox.x < mMaxWidth) {
+                                console.log("Backward photoBox is side1")
+                                mForwards[0].running = true
+                            } else if(photoBox.x == mMaxWidth && photoBox.y < mMaxHeight) {
+                                console.log("Backward photoBox is side 2")
+                                mForwards[1].running = true
+                            } else if(photoBox.y == mMaxHeight && photoBox.x < mMaxWidth) {
+                                console.log("Backward photoBox is side3")
+                                mForwards[2].running = true
+                            } else {
+                                console.log("Backward photoBox is side4")
+                                mForwards[3].running = true
+                            }
+                            mIsForward = !mIsForward
+                        }
                     }
                 }
 
@@ -70,88 +114,168 @@ Item {
             }
         }
 
-//        SequentialAnimation {
-//            id: forward
-//            running: true
+        // forward side
+        SequentialAnimation {
+            id: aniForSide1
+            running: true
+            loops: Animation.Infinite
+            animations: [
+                forward_side1,
+                forward_side2,
+                forward_side3,
+                forward_side4
+            ]
+        }
 
-//            NumberAnimation {
-//                id: forward1
-//                target: photoBox
-//                property: "x"
-//                from : parent.x
-//                to : photoWindow.width - photoBox.width
-//                duration: 3000
-//            }
+        SequentialAnimation {
+            id: aniForSide2
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                forward_side2,
+                forward_side3,
+                forward_side4,
+                forward_side1
+            ]
+        }
 
-//            NumberAnimation {
-//                id: forward2
-//                target: photoBox
-//                property: "y"
-//                from : parent.y
-//                to : photoWindow.height - photoBox.height
-//                duration: 5000
-//            }
+        SequentialAnimation {
+            id: aniForSide3
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                forward_side3,
+                forward_side4,
+                forward_side1,
+                forward_side2
+            ]
+        }
 
-//            NumberAnimation {
-//                id: forward3
-//                target: photoBox
-//                property: "x"
-//                from : photoWindow.width - photoBox.width
-//                to : parent.x
-//                duration: 3000
-//            }
+        SequentialAnimation {
+            id: aniForSide4
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                forward_side4,
+                forward_side1,
+                forward_side2,
+                forward_side3
+            ]
+        }
 
-//            NumberAnimation {
-//                id: forward4
-//                target: photoBox
-//                property: "y"
-//                from : photoWindow.height - photoBox.height
-//                to : parent.y
-//                duration: 5000
-//            }
-//        }
+        // backward side
+        SequentialAnimation {
+            id: aniBackSide1
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                backward_side1,
+                backward_side4,
+                backward_side3,
+                backward_side2
+            ]
+        }
 
-        // backword animation
-//        SequentialAnimation {
-//            id: backward
-//            running: false
-//            loops: Animation.Infinite;
+        SequentialAnimation {
+            id: aniBackSide2
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                backward_side2,
+                backward_side1,
+                backward_side4,
+                backward_side3
+            ]
+        }
 
-//            NumberAnimation {
-//                id: backward1
-//                target: photoBox
-//                property: "y"
-//                from : parent.y
-//                to : photoWindow.height - photoBox.height
-//                duration: 5000
-//            }
+        SequentialAnimation {
+            id: aniBackSide3
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                backward_side3,
+                backward_side2,
+                backward_side1,
+                backward_side4
+            ]
+        }
 
-//            NumberAnimation {
-//                id: backward2
-//                target: photoBox
-//                property: "x"
-//                from : parent.x
-//                to : photoWindow.width - photoBox.width
-//                duration: 3000
-//            }
+        SequentialAnimation {
+            id: aniBackSide4
+            running: false
+            loops: Animation.Infinite
+            animations: [
+                backward_side4,
+                backward_side3,
+                backward_side2,
+                backward_side1
+            ]
+        }
 
-//            NumberAnimation {
-//                id: backward3
-//                target: photoBox
-//                property: "y"
-//                from : photoWindow.height - photoBox.height
-//                to : parent.y
-//                duration: 5000
-//            }
+        // forward
+        NumberAnimation {
+            id: forward_side1
+            target: photoBox
+            property: "x"
+            to : mMaxWidth
+            duration: 3000
+        }
 
-//            NumberAnimation {
-//                id: backward4
-//                target: photoBox
-//                property: "x"
-//                from : photoWindow.width - photoBox.width
-//                to : parent.x
-//                duration: 3000
-//            }
-//        }
+        NumberAnimation {
+            id: forward_side2
+            target: photoBox
+            property: "y"
+            to : mMaxHeight
+            duration: 5000
+        }
+
+        NumberAnimation {
+            id: forward_side3
+            target: photoBox
+            property: "x"
+            to : photoWindow.x
+            duration: 3000
+        }
+
+        NumberAnimation {
+            id: forward_side4
+            target: photoBox
+            property: "y"
+            to : photoWindow.y
+            duration: 5000
+        }
+
+        // backward
+        NumberAnimation {
+            id: backward_side1
+            target: photoBox
+            property: "x"
+            to : photoWindow.x
+            duration: 3000
+        }
+
+        NumberAnimation {
+            id: backward_side2
+            target: photoBox
+            property: "y"
+            to : photoWindow.y
+            duration: 5000
+        }
+
+        NumberAnimation {
+            id: backward_side3
+            target: photoBox
+            property: "x"
+            to : mMaxWidth
+            duration: 3000
+        }
+
+        NumberAnimation {
+            id: backward_side4
+            target: photoBox
+            property: "y"
+            to : mMaxHeight
+            duration: 5000
+        }
     }
 }
