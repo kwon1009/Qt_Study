@@ -23,6 +23,13 @@ Window {
         console.log("Get check time Signal.")
     }
 
+    property bool btnOneTimeClick: false
+    property int time: 0
+    function slot_timer() {
+        time++
+        console.log("main-timer:", time)
+    }
+
     id: mainWindow
     width: 400
     height: 600

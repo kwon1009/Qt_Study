@@ -51,7 +51,9 @@ void Connector::setConnection() {
     // QObject::connect
     // timer
     QObject::connect(mMainView, SIGNAL(sg_infiReverse()), this, SLOT(slot_startInfiReverse()));
-    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(slot_thisTime()));
+//    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(slot_thisTime()));
+    QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
+    timer->start(1000);
     QObject::connect(this, SIGNAL(sg_checkTime()), mMainView, SLOT(slog_checkTime()));
 
 }

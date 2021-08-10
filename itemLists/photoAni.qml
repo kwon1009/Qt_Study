@@ -9,8 +9,6 @@ import "./components"
 import "./src"
 
 Item {
-    property var fwAnimation: [forward1, forward2, forward3, forward4]
-    property var bwAnimation: []
     property int thisAni: 0
 
     Rectangle {
@@ -48,9 +46,6 @@ Item {
                     id: oneTime;
                     text: "One Time"
                     onClicked: {
-                        forward.running = !forward.running
-                        backward.running = !backward.running
-                        // !!현재 위치에 맞는 reverse 구현하기
                     }
                 }
 
@@ -66,11 +61,9 @@ Item {
             }
         }
 
-        // forward animation
         SequentialAnimation {
             id: forward
-            running: false
-            loops: Animation.Infinite;
+            running: true
 
             NumberAnimation {
                 id: forward1
@@ -110,42 +103,46 @@ Item {
         }
 
         // backword animation
-        SequentialAnimation {
-            id: backward
-            running: true
-            loops: Animation.Infinite;
+//        SequentialAnimation {
+//            id: backward
+//            running: false
+//            loops: Animation.Infinite;
 
-            NumberAnimation {
-                target: photoBox
-                property: "y"
-                from : 0
-                to : photoWindow.height - photoBox.height
-                duration: 5000
-            }
+//            NumberAnimation {
+//                id: backward1
+//                target: photoBox
+//                property: "y"
+//                from : parent.y
+//                to : photoWindow.height - photoBox.height
+//                duration: 5000
+//            }
 
-            NumberAnimation {
-                target: photoBox
-                property: "x"
-                from : 0
-                to : photoWindow.width - photoBox.width
-                duration: 3000
-            }
+//            NumberAnimation {
+//                id: backward2
+//                target: photoBox
+//                property: "x"
+//                from : parent.x
+//                to : photoWindow.width - photoBox.width
+//                duration: 3000
+//            }
 
-            NumberAnimation {
-                target: photoBox
-                property: "y"
-                from : photoWindow.height - photoBox.height
-                to : 0
-                duration: 5000
-            }
+//            NumberAnimation {
+//                id: backward3
+//                target: photoBox
+//                property: "y"
+//                from : photoWindow.height - photoBox.height
+//                to : parent.y
+//                duration: 5000
+//            }
 
-            NumberAnimation {
-                target: photoBox
-                property: "x"
-                from : photoWindow.width - photoBox.width
-                to : 0
-                duration: 3000
-            }
-        }
+//            NumberAnimation {
+//                id: backward4
+//                target: photoBox
+//                property: "x"
+//                from : photoWindow.width - photoBox.width
+//                to : parent.x
+//                duration: 3000
+//            }
+//        }
     }
 }
