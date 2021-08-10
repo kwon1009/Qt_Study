@@ -14,5 +14,6 @@
         <file>photoAni.qml</file>
         <file>components/Border.qml</file>
         <file>components/ListButton.qml</file>
+        <file>showList.qml</file>
     </qresource>
 </RCC>

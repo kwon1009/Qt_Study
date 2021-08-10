@@ -8,8 +8,12 @@ import Connector 1.0
 import "./components"
 import "./src"
 
+// secondView
+
 Item {
-    property int thisAni: 0
+    function boxAni() {
+        photoBox.x++
+    }
 
     Rectangle {
         id: photoWindow
@@ -46,6 +50,7 @@ Item {
                     id: oneTime;
                     text: "One Time"
                     onClicked: {
+                        boxAni()
                     }
                 }
 
@@ -61,46 +66,46 @@ Item {
             }
         }
 
-        SequentialAnimation {
-            id: forward
-            running: true
+//        SequentialAnimation {
+//            id: forward
+//            running: true
 
-            NumberAnimation {
-                id: forward1
-                target: photoBox
-                property: "x"
-                from : parent.x
-                to : photoWindow.width - photoBox.width
-                duration: 3000
-            }
+//            NumberAnimation {
+//                id: forward1
+//                target: photoBox
+//                property: "x"
+//                from : parent.x
+//                to : photoWindow.width - photoBox.width
+//                duration: 3000
+//            }
 
-            NumberAnimation {
-                id: forward2
-                target: photoBox
-                property: "y"
-                from : parent.y
-                to : photoWindow.height - photoBox.height
-                duration: 5000
-            }
+//            NumberAnimation {
+//                id: forward2
+//                target: photoBox
+//                property: "y"
+//                from : parent.y
+//                to : photoWindow.height - photoBox.height
+//                duration: 5000
+//            }
 
-            NumberAnimation {
-                id: forward3
-                target: photoBox
-                property: "x"
-                from : photoWindow.width - photoBox.width
-                to : parent.x
-                duration: 3000
-            }
+//            NumberAnimation {
+//                id: forward3
+//                target: photoBox
+//                property: "x"
+//                from : photoWindow.width - photoBox.width
+//                to : parent.x
+//                duration: 3000
+//            }
 
-            NumberAnimation {
-                id: forward4
-                target: photoBox
-                property: "y"
-                from : photoWindow.height - photoBox.height
-                to : parent.y
-                duration: 5000
-            }
-        }
+//            NumberAnimation {
+//                id: forward4
+//                target: photoBox
+//                property: "y"
+//                from : photoWindow.height - photoBox.height
+//                to : parent.y
+//                duration: 5000
+//            }
+//        }
 
         // backword animation
 //        SequentialAnimation {
