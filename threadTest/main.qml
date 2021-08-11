@@ -9,14 +9,27 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
+    // signals
+    signal sg_clkStartBtn1();
+    signal sg_clkStopBtn1();
+
+    // slots
+    function slot_showTime(time) {
+        console.log("main.qml: time is", time)
+        showTime1Txt.text = time
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 2
 
+        // timer1
         Rectangle {
             id: chk1
             Layout.fillHeight: true
             Layout.preferredWidth: 100
+
+            // display1
             Rectangle {
                 id: showTime1
                 width: 180
@@ -26,6 +39,7 @@ Window {
                 Text {
                     id: showTime1Txt
                     text: ""
+                    anchors.centerIn: parent
                 }
             }
 
@@ -38,6 +52,7 @@ Window {
                 text: "Start 1"
                 onClicked: {
                     console.log("main.qml: startBtn1 clicked.")
+                    sg_clkStartBtn1()
                 }
             }
 
@@ -50,10 +65,12 @@ Window {
                 text: "Stop 1"
                 onClicked: {
                     console.log("main.qml: stopBtn1 clicked.")
+                    sg_clkStopBtn1()
                 }
             }
         }
 
+        // timer2
         Rectangle {
             id: chk2
             Layout.fillHeight: true
@@ -67,6 +84,7 @@ Window {
                 Text {
                     id: showTime2Txt
                     text: ""
+                    anchors.centerIn: parent
                 }
             }
 

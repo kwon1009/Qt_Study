@@ -26,6 +26,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    CheckTimer.h \
     MyThread.h \
     MyThread.h \
     MyThread.h \
