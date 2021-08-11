@@ -175,6 +175,7 @@ compiler_rcc_clean:
 release\qrc_qml.cpp: ..\itemLists\qml.qrc \
 		C:\Qt\5.12.4\msvc2017_64\bin\rcc.exe \
 		..\itemLists\photoAni.qml \
+		..\itemLists\showList.qml \
 		..\itemLists\main.qml \
 		..\itemLists\src\HamZzi.jpg \
 		"..\itemLists\src\On the Street.jpg" \
@@ -342,6 +343,8 @@ release\moc_Connector.cpp: ..\itemLists\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\QQuickView \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\qquickview.h \
 		release\moc_predefs.h \
 		C:\Qt\5.12.4\msvc2017_64\bin\moc.exe
 	C:\Qt\5.12.4\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/ypd00/Desktop/kwonhs/01_Lists/build-itemLists-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/release/moc_predefs.h -IC:/Qt/5.12.4/msvc2017_64/mkspecs/win32-msvc -IC:/Users/ypd00/Desktop/kwonhs/01_Lists/itemLists -IC:/Qt/5.12.4/msvc2017_64/include -IC:/Qt/5.12.4/msvc2017_64/include/QtQuick -IC:/Qt/5.12.4/msvc2017_64/include/QtGui -IC:/Qt/5.12.4/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.4/msvc2017_64/include/QtQml -IC:/Qt/5.12.4/msvc2017_64/include/QtNetwork -IC:/Qt/5.12.4/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\itemLists\Connector.h -o release\moc_Connector.cpp
@@ -562,6 +565,8 @@ release\Connector.obj: ..\itemLists\Connector.cpp ..\itemLists\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\QQuickView \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\qquickview.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug
 
 release\MyTimer.obj: ..\itemLists\MyTimer.cpp ..\itemLists\MyTimer.h \
@@ -786,7 +791,12 @@ release\main.obj: ..\itemLists\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\Q
 		..\itemLists\MyTimer.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\QQuickView \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQuick\qquickview.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQml\QQmlComponent \
+		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmlcomponent.h
 
 release\qrc_qml.obj: release\qrc_qml.cpp 
 

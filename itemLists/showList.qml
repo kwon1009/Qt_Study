@@ -7,6 +7,8 @@ import "./src"
 // firstView
 
 Item {
+    objectName: "firstView"
+
     Component.onCompleted: {
         mPhotoSize = connector.getItemListSize();
         // !!한번에 모두 받아올 수 있는 방법 알아보기

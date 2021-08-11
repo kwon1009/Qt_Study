@@ -3,6 +3,8 @@
 #include "Connector.h"
 
 #include <QDebug>
+#include <QQuickView>
+#include <QQmlComponent>
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +28,23 @@ int main(int argc, char *argv[])
     // Connector setWindow
     QObject *root = engine.rootObjects()[0];            // qrc:/main.qml를 등록한 엔진의 object값을 가져옴
     con->setWindow(qobject_cast<QQuickWindow *>(root)); // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
+
+    // ObjectName 받아오기
+    QObject *item = root->findChild<QObject*>("secondView");
+    if(!item) qDebug() << "찾는 정보가 없습니다.";
+    else con->secondView = item;
+
+//    QQmlEngine en;
+//    QQmlComponent component(&en, "photoAni.qml");
+//    QObject *object = component.create();
+//    delete object;
+
+//    QQmlComponent component()
+//    QQuickView view(QUrl::fromLocalFile("photoAni.qml"));
+//    QObject *item = view.findChild<QObject*>("secondView");
+//    con->secondView = item;
+
+
     con->setConnection();
 
     return app.exec();

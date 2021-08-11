@@ -11,9 +11,22 @@ import "./src"
 // secondView
 
 Item {
+    objectName: "secondView"
     property int mMaxWidth: 300
     property int mMaxHeight: 500
     property bool mIsForward: true
+
+    // 테스트용
+    function testf() {
+        console.log("test function")
+    }
+
+    signal sg_test();
+
+    // !!화면 전환 시가 아닌, 프로그램 시작 시 바로 적용되고 있음
+    Component.onCompleted: {
+        forward_side1.running = true
+    }
 
     Rectangle {
         id: photoBox
@@ -83,6 +96,8 @@ Item {
                     console.log("photoAni.qml one time btn click.")
                     console.log("photoAni.qml photoBox x y:", photoBox.x, photoBox.y)
                     photoBox.checkDirection(photoBox.x, photoBox.y)
+
+                    sg_test()
                 }
             }
 
@@ -105,7 +120,6 @@ Item {
     // forward
     NumberAnimation {
         id: forward_side1
-        running: true
         target: photoBox
         property: "x"
         to : mMaxWidth

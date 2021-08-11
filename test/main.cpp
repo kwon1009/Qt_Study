@@ -29,8 +29,15 @@ int main(int argc, char *argv[])
     rect->setProperty("color", "yellow");
 
     // 화면 연결
+//    QFile file("test.qml");
+//    if(!file.exists()) {
+//        qDebug() << "File not exist.";
+//    }
+//    QQmlComponent component(&engine, QUrl::fromLocalFile("test.qml"));
+//    QObject *object = component.create();
+
 //    QQuickView view;
-//    view.setSource(QUrl::fromLocalFile("test.qml"));
+//    view.setSource(QUrl::fromLocalFile("qrc:/test.qml"));
 //    view.show();
 //    QObject* object;
 //    object = view.rootObject();

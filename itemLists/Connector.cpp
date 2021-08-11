@@ -54,8 +54,12 @@ void Connector::setConnection() {
     QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
     QObject::connect(mMainView, SIGNAL(sg_stopTimer()), this, SLOT(slot_stopTimer()));
 
+    QObject::connect(secondView, SIGNAL(sg_test()), this, SLOT(slot_test()));
 }
 
+void Connector::slot_test() {
+    qDebug() << "secondView test";
+}
 
 // qml onCompleted
 int Connector::getItemListSize() { return mImages.size(); }

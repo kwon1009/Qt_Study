@@ -8,6 +8,8 @@
 #include "MyTimer.h"
 using namespace std;
 
+#include <QQuickView>
+
 struct ItemStruct {
     QString title;
     QString imagePath;
@@ -42,12 +44,14 @@ public:
     Q_INVOKABLE QString getPhotoTitle(int index);
     Q_INVOKABLE QString getPhotoPath(int index);
 
+    QObject* secondView;    //테스트용
 signals:
     void sg_checkTime();
 
 private slots:
     void slot_startTimer();
     void slot_stopTimer();
+    void slot_test();    //테스트용
 };
 
 
