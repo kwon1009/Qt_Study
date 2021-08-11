@@ -9,22 +9,8 @@ import "./src"
 import "."
 
 Window {
-    property int mPhotoSize: 0
-    property string mPhotoPath: ""  // photoAni.qml -> photoBox
-    property var mPhotoBox: 0
 
     Connector { id: connector }
-
-    // signal
-    signal sg_startTimer();
-    signal sg_stopTimer();
-
-    // slots
-    // 5초마다 해당 timer 호출, 방향 전환
-    function slot_timer() {
-        console.log("main.qml time out, reverse direction")
-        mPhotoBox.checkDirection(mPhotoBox.x, mPhotoBox.y)
-    }
 
     id: mainWindow
     width: 400

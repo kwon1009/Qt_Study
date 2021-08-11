@@ -72,22 +72,15 @@ void Connector::setItemLists()
 
 void Connector::setConnection() {
     // QObject::connect
-
     // timer
-    QObject::connect(mMainView, SIGNAL(sg_startTimer()), this, SLOT(slot_startTimer()));
-    QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
-    QObject::connect(mMainView, SIGNAL(sg_stopTimer()), this, SLOT(slot_stopTimer()));
+    QObject::connect(secondView, SIGNAL(sg_startTimer()), this, SLOT(slot_startTimer()));
+    QObject::connect(timer, SIGNAL(timeout()), secondView, SLOT(slot_timer()));
+    QObject::connect(secondView, SIGNAL(sg_stopTimer()), this, SLOT(slot_stopTimer()));
 
     // animation moving start
-    QObject::connect(firstView, SIGNAL(sg_startAni()), secondView, SLOT(slot_startAni()));
-
-    // test
-    QObject::connect(secondView, SIGNAL(sg_test()), this, SLOT(slot_test()));
+    QObject::connect(firstView, SIGNAL(sg_startAni(QVariant)), secondView, SLOT(slot_startAni(QVariant)));
 }
 
-void Connector::slot_test() {
-    qDebug() << "secondView test";
-}
 
 // qml onCompleted
 int Connector::getItemListSize() { return mImages.size(); }
@@ -100,6 +93,7 @@ void Connector::slot_startTimer() {
     timer->start(5000);
     qDebug() << "Connector: Start timer.";
 }
+
 void Connector::slot_stopTimer() {
     timer->stop();
 }

@@ -8,8 +8,10 @@ import "./src"
 
 Item {
     objectName: "firstView"
+    property int mPhotoSize: 0
+    property string test: "sg_slot test"
 
-    signal sg_startAni();
+    signal sg_startAni(var mPhotoPath);
 
     Component.onCompleted: {
         mPhotoSize = connector.getItemListSize();
@@ -84,11 +86,10 @@ Item {
                             anchors.fill: parent
                             hoverEnabled: true
                             onClicked: {
-                                mPhotoPath = photoPath;
                                 // 화면 전환
                                 firstView.visible = false
                                 secondView.visible = true
-                                sg_startAni();  // 애니메이션 시작
+                                sg_startAni(photoPath);  // 애니메이션 시작
                             }
                         }
                     }

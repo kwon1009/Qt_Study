@@ -16,10 +16,22 @@ Item {
     property int mMaxHeight: 500
     property int mSide: 1
 
+    // signals
+    // timer control
+    signal sg_startTimer();
+    signal sg_stopTimer();
+
     // slots
+    // 5초마다 해당 timer 호출, 방향 전환
+    function slot_timer() {
+        checkDirection()
+        console.log("main.qml time out, reverse direction")
+    }
+
     // start animation
-    function slot_startAni() {
+    function slot_startAni(photoPath) {
         // 설정 초기화 및 애니메이션 시작
+        photoBoxImg.source = photoPath
         mSide = 1
         photoBox.x = 0
         photoBox.y = 0
@@ -27,8 +39,7 @@ Item {
         console.log("photoAni.qml: start Animation")
     }
 
-    signal sg_test();
-
+    // functions
     function checkDirection() {
         switch(mSide) {
         case 1:
@@ -85,6 +96,7 @@ Item {
         }
     }
 
+    // moving photobox
     Rectangle {
         id: photoBox
         width: 100
@@ -94,9 +106,9 @@ Item {
         color: "black"
 
         Image {
+            id: photoBoxImg
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
-            source: mPhotoPath
         }
     }
 
@@ -128,13 +140,11 @@ Item {
                 id: oneTime;
                 text: "Reverse"
                 onClicked: {
-                    console.log("photoAni.qml timer stop")
                     sg_stopTimer()      // 타이머 종료
+                    console.log("photoAni.qml timer stop")
 
-                    console.log("photoAni.qml one time btn click.")
                     checkDirection()
-
-                    sg_test()
+                    console.log("photoAni.qml one time btn click.")
                 }
             }
 
@@ -145,7 +155,7 @@ Item {
                     console.log("photoAni.qml infinity btn click.")
                     console.log("photoAni.qml setting photoBox.")
                     mPhotoBox = photoBox
-                    photoBox.checkDirection() // 변경 먼저 수행
+                    checkDirection() // 변경 먼저 수행
                     sg_startTimer()     // 타이머 시작
                 }
             }

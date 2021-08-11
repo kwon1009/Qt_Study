@@ -56,7 +56,6 @@ signals:
 private slots:
     void slot_startTimer();
     void slot_stopTimer();
-    void slot_test();    //테스트용
 };
 
 
