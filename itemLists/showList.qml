@@ -9,7 +9,6 @@ import "./src"
 Item {
     objectName: "firstView"
     property int mPhotoSize: 0
-    property string test: "sg_slot test"
 
     signal sg_startAni(var mPhotoPath);
 
