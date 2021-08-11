@@ -17,16 +17,12 @@ Item {
     property bool mIsForward: true
 
     // 테스트용
-    function testf() {
-        console.log("test function")
+    function slot_startAni() {
+        console.log("photoAni.qml: start Animation")
+        forward_side1.running = true
     }
 
     signal sg_test();
-
-    // !!화면 전환 시가 아닌, 프로그램 시작 시 바로 적용되고 있음
-    Component.onCompleted: {
-        forward_side1.running = true
-    }
 
     Rectangle {
         id: photoBox
@@ -110,7 +106,6 @@ Item {
                     mPhotoBox = photoBox
                     photoBox.checkDirection(photoBox.x, photoBox.y) // 변경 먼저 수행
                     sg_startTimer()     // 타이머 시작
-
                 }
             }
         }

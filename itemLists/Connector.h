@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QQuickWindow>
 #include <QDir>
+#include <QQmlApplicationEngine>
 #include <iostream>
 #include "MyTimer.h"
 using namespace std;
@@ -19,13 +20,20 @@ class Connector : public QObject {
     Q_OBJECT
 
 private:
+    QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
+    QObject* firstView;     // showList.qml
+    QObject* secondView;    // photoAni.qml
+
     QTimer* timer;
     int time;
 
     QString mImageRoot = "../src/";  // 이미지 루트 폴더
     QVector<QString> mImages;       // 이미지 목록
     QVector<ItemStruct> mItemList;  // 아이템 목록
+
+    void setWindow();       // 화면 등록
+    void setConnection();   // signal&slot 등록
 
     void setImages();
     void setItemLists();
@@ -34,17 +42,14 @@ public:
     Connector();
     ~Connector();
 
-    // overriding
-    void setWindow(QQuickWindow* Widnow);
-
-    void setConnection();
+    // setting engine and windows connections
+    void setEngine(QQmlApplicationEngine* engine);
 
     // qml onCompleted
     Q_INVOKABLE int getItemListSize();
     Q_INVOKABLE QString getPhotoTitle(int index);
     Q_INVOKABLE QString getPhotoPath(int index);
 
-    QObject* secondView;    //테스트용
 signals:
     void sg_checkTime();
 

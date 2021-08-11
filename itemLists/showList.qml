@@ -9,6 +9,8 @@ import "./src"
 Item {
     objectName: "firstView"
 
+    signal sg_startAni();
+
     Component.onCompleted: {
         mPhotoSize = connector.getItemListSize();
         // !!한번에 모두 받아올 수 있는 방법 알아보기
@@ -86,6 +88,7 @@ Item {
                                 // 화면 전환
                                 firstView.visible = false
                                 secondView.visible = true
+                                sg_startAni();  // 애니메이션 시작
                             }
                         }
                     }

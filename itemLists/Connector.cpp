@@ -15,11 +15,34 @@ Connector::~Connector() {
 
 }
 
-
 // overriding
-void Connector::setWindow(QQuickWindow* Window)
+void Connector::setWindow()
 {
-    mMainView = Window;
+    // mainView
+    QObject *root = mEngine->rootObjects()[0];
+    mMainView = qobject_cast<QQuickWindow *>(root);
+
+    // firstView (ObjectName)
+    QObject *first = root->findChild<QObject*>("firstView");
+    if(!first) {
+        qDebug() << "Connector: firstView is not exist.";
+    } else {
+        firstView = first;
+    }
+
+    // secondView (ObjectName)
+    QObject *second = root->findChild<QObject*>("secondView");
+    if(!second) {
+        qDebug() << "Connector: SecondView is not exist.";
+    } else {
+        secondView = second;
+    }
+}
+
+void Connector::setEngine(QQmlApplicationEngine* engine) {
+    mEngine = engine;
+    setWindow();
+    setConnection();
 }
 
 // public functions
@@ -49,11 +72,16 @@ void Connector::setItemLists()
 
 void Connector::setConnection() {
     // QObject::connect
+
     // timer
     QObject::connect(mMainView, SIGNAL(sg_startTimer()), this, SLOT(slot_startTimer()));
     QObject::connect(timer, SIGNAL(timeout()), mMainView, SLOT(slot_timer()));
     QObject::connect(mMainView, SIGNAL(sg_stopTimer()), this, SLOT(slot_stopTimer()));
 
+    // animation moving start
+    QObject::connect(firstView, SIGNAL(sg_startAni()), secondView, SLOT(slot_startAni()));
+
+    // test
     QObject::connect(secondView, SIGNAL(sg_test()), this, SLOT(slot_test()));
 }
 
