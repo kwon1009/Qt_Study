@@ -11,18 +11,22 @@ class MainWindow : public QObject {
 
 public:
     MainWindow();
-//    ~MainWindow();
 
     void setWindow(QQuickWindow* Widnow);
+    void setConnection();
 
     Q_INVOKABLE QVariant getStr();
+    Q_INVOKABLE void on_pushButton_timer_clicked();
+    Q_INVOKABLE void on_pushButton_clicked();
+    Q_INVOKABLE void on_pushButton_thread_clicked();
 
-//private slots:
-//    void on_pushButton_clicked();
-//    void on_pushButton_timer_clicked();
-//    void on_timer_count();
-//    void on_pushButton_thread_clicked();
-//    void on_thread_finish(const int value);
+private slots:
+    void on_timer_count();
+    void on_thread_finish(const int value);
+    void show();
+
+signals:
+    void sg_setText();
 
 private:
     QVariant qstr;

@@ -13,6 +13,13 @@ Window {
 
     MainWindow { id: mainWindow }
 
+    // slots
+    function slot_setText() {
+        console.log("setText")//, mainWindow.getStr())
+//        countRecText.text = st
+    }
+
+
     Rectangle {
         id: countRec
         width: 500
@@ -26,7 +33,7 @@ Window {
             text: "count"
             onClicked: {
                 console.log("count btn click")
-                countRecText.text = mainWindow.getStr()
+                mainWindow.on_pushButton_clicked()
             }
         }
 
@@ -45,6 +52,7 @@ Window {
         text: "Timer Start"
         onClicked: {
             console.log("timer start btn click")
+            mainWindow.on_pushButton_timer_clicked()
         }
     }
 
@@ -55,6 +63,7 @@ Window {
         text: "Throw"
         onClicked: {
             console.log("throw btn click")
+            mainWindow.on_pushButton_thread_clicked()
         }
     }
 }

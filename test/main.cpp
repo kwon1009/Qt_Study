@@ -24,8 +24,10 @@ int main(int argc, char *argv[])
 
     // Connector setWindow
     QObject *root = engine.rootObjects()[0];            // qrc:/main.qml를 등록한 엔진의 object값을 가져옴
-    main->setWindow(qobject_cast<QQuickWindow *>(root)); // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
-//    con->setConnection();
+//    main->setWindow(qobject_cast<QQuickWindow *>(root)); // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
+//    main->setConnection();
+
+    QObject::connect(main, SIGNAL(sg_setText()), main, SLOT(show()));
 
     return app.exec();
 }
