@@ -8,6 +8,7 @@ CONFIG += c++11
 
 SOURCES += \
         Connector.cpp \
+        MyTimer.cpp \
         TimerThread.cpp \
         main.cpp
 
@@ -26,4 +27,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     Connector.h \
+    MyTimer.h \
     TimerThread.h

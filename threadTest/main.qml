@@ -14,9 +14,11 @@ Window {
     signal sg_clkStopBtn1();
 
     // slots
-    function slot_showTime(time) {
-        console.log("main.qml: time is", time)
-        showTime1Txt.text = time
+    property var time1: 0;
+    function slot_showTime() {
+        time1++
+        console.log("main.qml: time is", time1)
+        showTime1Txt.text = time1
     }
 
     ColumnLayout {

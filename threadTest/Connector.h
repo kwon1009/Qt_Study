@@ -6,6 +6,8 @@
 #include <QTimer>
 #include <QVariant>
 
+#include "MyTimer.h"
+
 #include "TimerThread.h"
 
 class Connector : public QObject {
@@ -13,6 +15,8 @@ class Connector : public QObject {
 
 private:
     QQuickWindow* mMainView;
+    MyTimer* timer1;
+
     TimerThread* timerThread;
     QTimer* timer;
     int time;
