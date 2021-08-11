@@ -6,16 +6,11 @@
 class MyThread : public QThread {
     Q_OBJECT
 public:
-    explicit MyThread(QObject *parent = 0);
+   MyThread();
+   ~MyThread() override;
 
-private:
-    // override
-    void run();
-
-signals:
-    void FinishCount(const int value);
-
-public slots:
+protected:
+   void run() override;
 };
 
 #endif // MYTHREAD_H

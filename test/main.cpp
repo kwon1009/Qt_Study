@@ -2,8 +2,10 @@
 #include <QQmlApplicationEngine>
 #include <QThread>
 #include <QDebug>
+#include <QTimer>
 
 #include "worker.h"
+#include "MyThread.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +25,7 @@ int main(int argc, char *argv[])
     engine.load(url);
 
     // thread 구현
+    // thread sample 1
     QThread thread;
 
     Worker *worker = new Worker;
@@ -38,6 +41,19 @@ int main(int argc, char *argv[])
     });
 
     emit worker->start("World");
+
+    // thread sample 2
+    MyThread *thread2 = new MyThread;
+    QObject::connect(thread2, &MyThread::finished, thread2, &QObject::deleteLater);
+
+    // 스레드 시작
+    thread2->start();
+
+    QTimer::singleShot(10, &app, [thread2](){
+
+        // 3초후에 스레드 중단을 요청.
+        thread2->requestInterruption();
+    });
 
     return app.exec();
 }
