@@ -14,15 +14,76 @@ Item {
     objectName: "secondView"
     property int mMaxWidth: 300
     property int mMaxHeight: 500
-    property bool mIsForward: true
+    property int mSide: 1
 
-    // 테스트용
+    // slots
+    // start animation
     function slot_startAni() {
-        console.log("photoAni.qml: start Animation")
+        // 설정 초기화 및 애니메이션 시작
+        mSide = 1
+        photoBox.x = 0
+        photoBox.y = 0
         forward_side1.running = true
+        console.log("photoAni.qml: start Animation")
     }
 
     signal sg_test();
+
+    function checkDirection() {
+        switch(mSide) {
+        case 1:
+            console.log("photoBox is side1")
+            forward_side1.running = !forward_side1.running
+            backward_side1.running = !backward_side1.running
+            break;
+
+        case 2:
+            console.log("photoBox is side 2")
+            forward_side2.running = !forward_side2.running
+            backward_side2.running = !backward_side2.running
+            break;
+
+        case 3:
+            console.log("photoBox is side3")
+            forward_side3.running = !forward_side3.running
+            backward_side3.running = !backward_side3.running
+            break;
+
+        case 4:
+            console.log("photoBox is side4")
+            forward_side4.running = !forward_side4.running
+            backward_side4.running = !backward_side4.running
+            break;
+        }
+    }
+
+    function stopAnimation() {
+        switch(mSide) {
+        case 1:
+            console.log("Stop photoBox is side1")
+            forward_side1.running = false
+            backward_side1.running = false
+            break;
+
+        case 2:
+            console.log("Stop photoBox is side 2")
+            forward_side2.running = false
+            backward_side2.running = false
+            break;
+
+        case 3:
+            console.log("Stop photoBox is side3")
+            forward_side3.running = false
+            backward_side3.running = false
+            break;
+
+        case 4:
+            console.log("Stop photoBox is side4")
+            forward_side4.running = false
+            backward_side4.running = false
+            break;
+        }
+    }
 
     Rectangle {
         id: photoBox
@@ -36,29 +97,6 @@ Item {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
             source: mPhotoPath
-        }
-
-        function checkDirection(x, y) {
-            if(y == 0 & x < mMaxWidth) {
-                console.log("Forward photoBox is side1")
-                forward_side1.running = !forward_side1.running
-                backward_side1.running = !backward_side1.running
-
-            } else if(x == mMaxWidth && y < mMaxHeight) {
-                console.log("Forward photoBox is side 2")
-                forward_side2.running = !forward_side2.running
-                backward_side2.running = !backward_side2.running
-
-            } else if(y == mMaxHeight && x < mMaxWidth) {
-                console.log("Forward photoBox is side3")
-                forward_side3.running = !forward_side3.running
-                backward_side3.running = !backward_side3.running
-
-            } else {
-                console.log("Forward photoBox is side4")
-                forward_side4.running = !forward_side4.running
-                backward_side4.running = !backward_side4.running
-            }
         }
     }
 
@@ -75,8 +113,12 @@ Item {
                 id: backBtn;
                 text: "Back"
                 onClicked: {
-                    // 타이머 종료 및 화면 전환
+                    // 타이머 종료
                     sg_stopTimer()
+                    // 현재 진행중인 이벤트 종료
+                    stopAnimation()
+
+                    // 화면 전환
                     firstView.visible = true
                     secondView.visible = false
                 }
@@ -90,8 +132,7 @@ Item {
                     sg_stopTimer()      // 타이머 종료
 
                     console.log("photoAni.qml one time btn click.")
-                    console.log("photoAni.qml photoBox x y:", photoBox.x, photoBox.y)
-                    photoBox.checkDirection(photoBox.x, photoBox.y)
+                    checkDirection()
 
                     sg_test()
                 }
@@ -104,7 +145,7 @@ Item {
                     console.log("photoAni.qml infinity btn click.")
                     console.log("photoAni.qml setting photoBox.")
                     mPhotoBox = photoBox
-                    photoBox.checkDirection(photoBox.x, photoBox.y) // 변경 먼저 수행
+                    photoBox.checkDirection() // 변경 먼저 수행
                     sg_startTimer()     // 타이머 시작
                 }
             }
@@ -122,6 +163,7 @@ Item {
         onFinished: {
             console.log("forward_side1 finish")
             forward_side2.running = true
+            mSide = 2
         }
     }
 
@@ -134,6 +176,7 @@ Item {
         onFinished: {
             console.log("forward_side2 finish")
             forward_side3.running = true
+            mSide = 3
         }
     }
 
@@ -146,6 +189,7 @@ Item {
         onFinished: {
             console.log("forward_side3 finish")
             forward_side4.running = true
+            mSide = 4
         }
     }
 
@@ -158,6 +202,7 @@ Item {
         onFinished: {
             console.log("forward_side4 finish")
             forward_side1.running = true
+            mSide = 1
         }
     }
 
@@ -171,6 +216,7 @@ Item {
         onFinished: {
             console.log("backward_side1 finish")
             backward_side4.running = true
+            mSide = 4
         }
     }
 
@@ -183,6 +229,7 @@ Item {
         onFinished: {
             console.log("backward_side2 finish")
             backward_side1.running = true
+            mSide = 1
         }
     }
 
@@ -195,6 +242,7 @@ Item {
         onFinished: {
             console.log("backward_side3 finish")
             backward_side2.running = true
+            mSide = 2
         }
     }
 
@@ -207,6 +255,7 @@ Item {
         onFinished: {
             console.log("backward_side4 finish")
             backward_side3.running = true
+            mSide = 3
         }
     }
 }
