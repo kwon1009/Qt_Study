@@ -1,7 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QThread>
+#include <QDebug>
 
-#include "MainWindow.h"
+#include "worker.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +12,6 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-
-    MainWindow* main = new MainWindow();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -22,12 +22,22 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    // Connector setWindow
-    QObject *root = engine.rootObjects()[0];            // qrc:/main.qml를 등록한 엔진의 object값을 가져옴
-//    main->setWindow(qobject_cast<QQuickWindow *>(root)); // qrc:/main.qml를 등록한 엔진의 object값을 window타입으로 변경해준다.
-//    main->setConnection();
+    // thread 구현
+    QThread thread;
 
-    QObject::connect(main, SIGNAL(sg_setText()), main, SLOT(show()));
+    Worker *worker = new Worker;
+    worker->moveToThread(&thread);
+    thread.start();
+
+    QObject::connect(worker, &Worker::start, worker, &Worker::doWork);
+    QObject::connect(&thread, &QThread::finished, worker, &QObject::deleteLater);
+
+    QObject::connect(worker, &Worker::resultReady, [&](const QString &result){
+        qDebug() << result;
+        thread.quit(); // 스레드중지
+    });
+
+    emit worker->start("World");
 
     return app.exec();
 }

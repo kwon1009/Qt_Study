@@ -3,15 +3,15 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 
-import MainWindow 1.0
-import "."
+//import MainWindow 1.0
+//import "."
 
 Window {
     width: 1000
     height: 400
     visible: true
 
-    MainWindow { id: mainWindow }
+//    MainWindow { id: mainWindow }
 
     // slots
     function slot_setText() {
@@ -33,7 +33,7 @@ Window {
             text: "count"
             onClicked: {
                 console.log("count btn click")
-                mainWindow.on_pushButton_clicked()
+//                mainWindow.on_pushButton_clicked()
             }
         }
 
@@ -52,7 +52,7 @@ Window {
         text: "Timer Start"
         onClicked: {
             console.log("timer start btn click")
-            mainWindow.on_pushButton_timer_clicked()
+//            mainWindow.on_pushButton_timer_clicked()
         }
     }
 
@@ -63,7 +63,7 @@ Window {
         text: "Throw"
         onClicked: {
             console.log("throw btn click")
-            mainWindow.on_pushButton_thread_clicked()
+//            mainWindow.on_pushButton_thread_clicked()
         }
     }
 }

@@ -10,7 +10,8 @@ SOURCES += \
         MainWindow.cpp \
         MyThread.cpp \
         MyThread.cpp \
-        main.cpp
+        main.cpp \
+        worker.cpp
 
 RESOURCES += qml.qrc
 
@@ -29,4 +30,5 @@ HEADERS += \
     MainWindow.h \
     MyThread.h \
     MyThread.h \
-    MyThread.h
+    MyThread.h \
+    worker.h
