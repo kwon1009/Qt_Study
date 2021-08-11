@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MyButton.qml</file>
         <file>src/HamZzi.jpg</file>
         <file>src/Happy dog.jpg</file>
         <file>src/Husky.jpg</file>
@@ -12,5 +11,6 @@
         <file>src/We are animals.jpg</file>
         <file>src/Weather is good.jpg</file>
         <file>src/What.jpg</file>
+        <file>MyButton.qml</file>
     </qresource>
 </RCC>
