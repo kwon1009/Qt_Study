@@ -17,11 +17,28 @@ Window {
     signal sg_clkStopBtn2();
 
     // slots
-    property var time1: 0;
+    property var time1: [0, 0]; // 분:초
     function slot_showTime1() {
-        time1++
+        time1[1]++
+        if(time1[1] == 60) {
+            time1[0]++
+            time1[1] = 0
+        }
+
         console.log("main.qml: time1 is", time1)
-        showTime1Txt.text = time1
+
+        var thisTime;
+        if(time1[0] < 10) {
+            thisTime = "0"
+        }
+        thisTime = thisTime + time1[0] + ":"
+
+        if(time1[1] < 10) {
+            thisTime += "0"
+        }
+        thisTime += time1[1]
+
+        showTime1Txt.text = thisTime
     }
 
     property var time2: 0;
@@ -64,7 +81,7 @@ Window {
                 text: "Start 1"
                 onClicked: {
                     console.log("main.qml: startBtn1 clicked.")
-                    showTime1Txt.text = 0
+                    showTime1Txt.text = "00:00"
                     sg_clkStartBtn1()
                 }
             }
@@ -93,7 +110,7 @@ Window {
                     console.log("main.qml: resetBtn1 clicked.")
                     sg_clkStopBtn1()    // 타이머 종료
                     showTime1Txt.text = ""  // 텍스트 초기화
-                    time1 = 0
+                    time1 = [0, 0]
                 }
             }
         }
