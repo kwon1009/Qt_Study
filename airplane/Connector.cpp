@@ -34,7 +34,7 @@ void Connector::setObjects()
     if(!airplaneView) {
         qDebug() << "Connector: qml obj airplaneView is not exist.";
     } else {
-        mAirplaneView = airplaneView;
+        mAirplane->setAirplaneView(airplaneView);
     }
 }
 
@@ -44,12 +44,10 @@ void Connector::setConnection()
     connect(mStartView, SIGNAL(sg_startBtnClick()), mMainView, SLOT(slot_changeView()));
     connect(mMainView, SIGNAL(sg_startTimer()), timer, SLOT(slot_start()));
 
-    // airplaneView
+    // airplane
     connect(timer, SIGNAL(timeout()), mAirplane, SLOT(slot_move()));
-    connect(mAirplane, SIGNAL(sg_setXY(QVariant, QVariant)), mAirplaneView, SLOT(slot_setXY(QVariant, QVariant)));
     connect(mMainView, SIGNAL(sg_pressSpace()), mAirplane, SLOT(slot_jump()));
     connect(mAirplane, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
-
 }
 
 

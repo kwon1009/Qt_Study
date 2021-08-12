@@ -6,6 +6,16 @@ Airplane::Airplane() {
 
 }
 
+void Airplane::setAirplaneView(QObject* airplaneView) {
+    mAirplaneView = airplaneView;
+    setConnection();
+}
+
+void Airplane::setConnection() {
+    connect(this, SIGNAL(sg_setXY(QVariant, QVariant)), mAirplaneView, SLOT(slot_setXY(QVariant, QVariant)));
+
+}
+
 void Airplane::checkXY() {
     if(mX >= mFinish) {
         qDebug() << "Airplane: Finish";

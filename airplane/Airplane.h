@@ -7,6 +7,9 @@
 class Airplane : public QObject {
     Q_OBJECT
 
+    QObject* mAirplaneView;
+    void setConnection();
+
     int mFinish = 640;
     int mFailBottom = 480;
     int mFailTop = 0;
@@ -17,6 +20,8 @@ class Airplane : public QObject {
 
 public:
     Airplane();
+
+    void setAirplaneView(QObject* airplaneView);
 
 signals:
     void sg_setXY(QVariant x, QVariant y);

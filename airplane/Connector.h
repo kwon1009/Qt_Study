@@ -15,7 +15,7 @@ private:
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
     QObject* mStartView;
-    QObject* mAirplaneView;
+//    QObject* mAirplaneView;
 
     MyTimer* timer;
     Airplane* mAirplane;
