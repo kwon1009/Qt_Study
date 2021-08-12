@@ -47,8 +47,9 @@ void Connector::setConnection()
     // airplaneView
     connect(timer, SIGNAL(timeout()), mAirplane, SLOT(slot_move()));
     connect(mAirplane, SIGNAL(sg_setXY(QVariant, QVariant)), mAirplaneView, SLOT(slot_setXY(QVariant, QVariant)));
-    connect(mAirplane, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
     connect(mMainView, SIGNAL(sg_pressSpace()), mAirplane, SLOT(slot_jump()));
+    connect(mAirplane, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
+
 }
 
 

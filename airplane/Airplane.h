@@ -13,6 +13,8 @@ class Airplane : public QObject {
     double mX = 0;
     double mY = 0;
 
+    void checkXY();
+
 public:
     Airplane();
 

@@ -7,13 +7,15 @@ Item {
 
     //slots
     function slot_setXY(x, y) {
-        console.log("setXY", x, y)
+        airplane.x = x
+        airplane.y = y
     }
 
     Rectangle {
         id: airplane
         width: 50
         height: 50
-        color: "yellow"
+        radius: 25
+        color: "Violet"
     }
 }
