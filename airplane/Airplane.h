@@ -7,10 +7,8 @@
 class Airplane : public QObject {
     Q_OBJECT
 
-    QObject* mAirplaneView;
     QObject* mAirplane;
     void setObjects();
-    void setObjects(int num);
     void setConnection();
 
     int mFinish = 640;
@@ -22,8 +20,7 @@ class Airplane : public QObject {
     void checkXY();
 
 public:
-    Airplane(QObject* airplaneView);
-    Airplane(QObject* airplaneView, int number);
+    Airplane(QObject* airplane);
 
 signals:
     void sg_setXY(QVariant x, QVariant y);
@@ -32,7 +29,6 @@ signals:
 public slots:
     void slot_move();
     void slot_jump();
-    void test();
 };
 
 #endif // AIRPLANE_H

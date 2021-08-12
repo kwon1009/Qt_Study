@@ -9,18 +9,34 @@ Item {
     signal sg_pressSpace();
     signal sg_pressEnter();
 
-    // slots
-    function slot_setXY(x, y) {
-        airplane.x = x
-        airplane.y = y
-    }
 
     Rectangle {
-        id: airplane
+        id: airplane1
         objectName: "airplane"
         width: 50
         height: 50
         radius: 25
+
+        // slots
+        function slot_setXY(x, y) {
+            airplane1.x = x
+            airplane1.y = y
+        }
+    }
+
+    Rectangle {
+        id: airplane2
+        objectName: "airplane2"
+        width: 50
+        height: 50
+        radius: 25
+        color: "darkblue"
+
+        // slots
+        function slot_setXY(x, y) {
+            airplane2.x = x
+            airplane2.y = y
+        }
     }
 
     Keys.onPressed: {
