@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item {
     // signals
+    signal sg_start();
     signal sg_finish();
 
     //slots
@@ -24,6 +25,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 console.log("MyAirplane.qml: airplane click")
+                sg_start();
             }
         }
     }

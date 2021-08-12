@@ -11,6 +11,7 @@ public:
     MyTimer();
 
 public slots:
+    void slot_start();
     void slot_finish();
 };
 

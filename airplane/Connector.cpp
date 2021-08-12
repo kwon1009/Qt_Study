@@ -32,6 +32,7 @@ void Connector::setWindow()
 void Connector::setConnection()
 {
     // timer
+    connect(mAirplane1, SIGNAL(sg_start()), timer, SLOT(slot_start()));
     connect(timer, SIGNAL(timeout()), mAirplane1, SLOT(slot_move()));
     connect(mAirplane1, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
 }
