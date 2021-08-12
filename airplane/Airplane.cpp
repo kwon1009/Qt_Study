@@ -2,13 +2,39 @@
 
 #include <QDebug>
 
-Airplane::Airplane() {
-
+Airplane::Airplane(QObject* airplaneView) {
+    mAirplaneView = airplaneView;
+    setObjects();
+    setConnection();
 }
 
-void Airplane::setAirplaneView(QObject* airplaneView) {
+Airplane::Airplane(QObject* airplaneView, int num) {
     mAirplaneView = airplaneView;
+    setObjects(num);
     setConnection();
+}
+
+void Airplane::setObjects() {
+    QObject* airplane = mAirplaneView->findChild<QObject*>("airplane");
+    if(!airplane) {
+        qDebug() << "Airplane: airplane obj is not exist";
+    } else {
+        mAirplane = airplane;
+
+        mAirplane->setProperty("color", "Violet");
+    }
+}
+
+void Airplane::setObjects(int num) {
+    QString objName = QString("airplane%1").arg(num);
+    QObject* airplane = mAirplaneView->findChild<QObject*>(objName);
+    if(!airplane) {
+        qDebug() << "Airplane: airplane obj is not exist";
+    } else {
+        mAirplane = airplane;
+
+        mAirplane->setProperty("color", "Violet");
+    }
 }
 
 void Airplane::setConnection() {

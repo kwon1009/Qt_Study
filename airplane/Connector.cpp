@@ -4,7 +4,6 @@ Connector::Connector()
 {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     timer = new MyTimer();
-    mAirplane = new Airplane();
 }
 
 Connector::~Connector() {}
@@ -34,7 +33,7 @@ void Connector::setObjects()
     if(!airplaneView) {
         qDebug() << "Connector: qml obj airplaneView is not exist.";
     } else {
-        mAirplane->setAirplaneView(airplaneView);
+        mAirplane = new Airplane(airplaneView);
     }
 }
 
@@ -42,7 +41,7 @@ void Connector::setConnection()
 {
     // startView
     connect(mStartView, SIGNAL(sg_startBtnClick()), mMainView, SLOT(slot_changeView()));
-    connect(mMainView, SIGNAL(sg_startTimer()), timer, SLOT(slot_start()));
+    connect(mStartView, SIGNAL(sg_startBtnClick()), timer, SLOT(slot_start()));
 
     // airplane
     connect(timer, SIGNAL(timeout()), mAirplane, SLOT(slot_move()));

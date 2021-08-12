@@ -8,9 +8,6 @@ Window {
     visible: true
     title: qsTr("Airplane")
 
-    // signals
-    signal sg_startTimer();
-
     // slots
     function slot_changeView() {
         console.log("change View")
@@ -18,14 +15,13 @@ Window {
         // !!현재 startView.startBtn에서만 발생되고 있음
         startView.visible = false
         airplanView.visible = true
-        airplanView.focus = true
-        sg_startTimer();
     }
 
     Loader {
         id: startView
         source: "startView.qml"
         anchors.fill: parent
+        focus: false
     }
 
     Loader {
@@ -33,5 +29,6 @@ Window {
         source: "airplaneView.qml"
         anchors.fill: parent
         visible: false
+        focus: true
     }
 }

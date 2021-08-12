@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
 Item {
-    id: airplaneView
     objectName: "airplaneView"
     anchors.fill: parent
     focus: true
@@ -18,10 +17,10 @@ Item {
 
     Rectangle {
         id: airplane
+        objectName: "airplane"
         width: 50
         height: 50
         radius: 25
-        color: "Violet"
     }
 
     Keys.onPressed: {
@@ -30,9 +29,9 @@ Item {
             sg_pressSpace();
         }
 
-        if(event.key == Qt.Key_Enter) {
-            console.log("airplaneView.qml: key Enter press");
-            sg_pressEnter();
-        }
+//        if(event.key == Qt.Key_Enter) {
+//            console.log("airplaneView.qml: key Enter press");
+//            sg_pressEnter();
+//        }
     }
 }
