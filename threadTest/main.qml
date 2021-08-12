@@ -12,40 +12,19 @@ Window {
     // signals
     signal sg_clkStartBtn1();
     signal sg_clkStopBtn1();
+    signal sg_clkResetBtn1();
 
     signal sg_clkStartBtn2();
     signal sg_clkStopBtn2();
+    signal sg_clkResetBtn2();
 
     // slots
-    property var time1: [0, 0]; // 분:초
-    function slot_showTime1() {
-        time1[1]++
-        if(time1[1] == 60) {
-            time1[0]++
-            time1[1] = 0
-        }
-
-        console.log("main.qml: time1 is", time1)
-
-        var thisTime;
-        if(time1[0] < 10) {
-            thisTime = "0"
-        }
-        thisTime = thisTime + time1[0] + ":"
-
-        if(time1[1] < 10) {
-            thisTime += "0"
-        }
-        thisTime += time1[1]
-
+    function slot_thisTime1(thisTime) {
         showTime1Txt.text = thisTime
     }
 
-    property var time2: 0;
-    function slot_showTime2() {
-        time2++
-        console.log("main.qml: time2 is", time2)
-        showTime2Txt.text = time2
+    function slot_thisTime2(thisTime) {
+        showTime2Txt.text = thisTime
     }
 
     ColumnLayout {
@@ -81,7 +60,6 @@ Window {
                 text: "Start 1"
                 onClicked: {
                     console.log("main.qml: startBtn1 clicked.")
-                    showTime1Txt.text = "00:00"
                     sg_clkStartBtn1()
                 }
             }
@@ -108,9 +86,7 @@ Window {
                 text: "Reset 1"
                 onClicked: {
                     console.log("main.qml: resetBtn1 clicked.")
-                    sg_clkStopBtn1()    // 타이머 종료
-                    showTime1Txt.text = ""  // 텍스트 초기화
-                    time1 = [0, 0]
+                    sg_clkResetBtn1()
                 }
             }
         }
@@ -156,7 +132,6 @@ Window {
                 text: "Stop 2"
                 onClicked: {
                     console.log("main.qml: stopBtn2 clicked.")
-                    showTime2Txt.text = 0
                     sg_clkStopBtn2()
                 }
             }
@@ -170,9 +145,7 @@ Window {
                 text: "Reset 1"
                 onClicked: {
                     console.log("main.qml: resetBtn1 clicked.")
-                    sg_clkStopBtn2()    // 타이머 종료
-                    showTime2Txt.text = ""  // 텍스트 초기화
-                    time2 = 0
+                    sg_clkResetBtn2()
                 }
             }
         }

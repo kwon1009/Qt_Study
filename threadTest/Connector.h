@@ -24,13 +24,6 @@ public:
 
     void setWindow(QQuickWindow* Widnow);
     void setConnection();
-
-public slots:
-    void slot_startTimer1();
-    void slot_stopTimer1();
-
-    void slot_startTimer2();
-    void slot_stopTimer2();
 };
 
 #endif // CONNECTOR_H
