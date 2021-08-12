@@ -46,5 +46,5 @@ void MyTimer::slot_resetTimer() {
     mMin = 0;
     mSec = 0;
 
-    emit sg_thisTime(QVariant(""));
+    emit sg_thisTime(QVariant("--:--"));
 }

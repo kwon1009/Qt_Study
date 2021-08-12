@@ -24,9 +24,7 @@ int main(int argc, char *argv[])
     engine.load(url);
 
     // Connector setWindow
-    QObject *root = engine.rootObjects()[0];
-    con->setWindow(qobject_cast<QQuickWindow *>(root));
-    con->setConnection();
+    con->setEngine(&engine);
 
     return app.exec();
 }

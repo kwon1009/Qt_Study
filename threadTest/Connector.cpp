@@ -9,28 +9,54 @@ Connector::Connector()
 
 Connector::~Connector() {}
 
-void Connector::setWindow(QQuickWindow* Window)
+void Connector::setEngine(QQmlApplicationEngine* engine) {
+    mEngine = engine;
+    setWindow();
+    setConnection();
+}
+
+void Connector::setWindow()
 {
-    mMainView = Window;
+    // mainView
+    QObject *root = mEngine->rootObjects()[0];
+    mMainView = qobject_cast<QQuickWindow *>(root);
+
+    // qmlTimer1
+    QObject *t1 = root->findChild<QObject*>("timer1");
+    if(!t1) {
+        qDebug() << "Connector: qml timer1 is not exist.";
+    } else {
+        qmlTimer1 = t1;
+        qDebug() << "Connector: qmlTimer1 saved.";
+    }
+
+    // qmlTimer2
+    QObject *t2 = root->findChild<QObject*>("timer2");
+    if(!t2) {
+        qDebug() << "Connector: qml timer2 is not exist.";
+    } else {
+        qmlTimer2 = t2;
+        qDebug() << "Connector: qmlTimer2 saved.";
+    }
 }
 
 void Connector::setConnection()
 {
     // timer1
-    connect(mMainView, SIGNAL(sg_clkStartBtn1()), timer1, SLOT(slot_startTimer()));
+    connect(qmlTimer1, SIGNAL(sg_clkStartBtn()), timer1, SLOT(slot_startTimer()));
     connect(timer1, SIGNAL(timeout()), timer1, SLOT(slot_setTime()));
-    connect(timer1, SIGNAL(sg_thisTime(QVariant)), mMainView, SLOT(slot_thisTime1(QVariant)));
+    connect(timer1, SIGNAL(sg_thisTime(QVariant)), qmlTimer1, SLOT(slot_thisTime(QVariant)));
 
-    connect(mMainView, SIGNAL(sg_clkStopBtn1()), timer1, SLOT(stop()));
-    connect(mMainView, SIGNAL(sg_clkResetBtn1()), timer1, SLOT(slot_resetTimer()));
+    connect(qmlTimer1, SIGNAL(sg_clkStopBtn()), timer1, SLOT(stop()));
+    connect(qmlTimer1, SIGNAL(sg_clkResetBtn()), timer1, SLOT(slot_resetTimer()));
 
     // timer2
-    connect(mMainView, SIGNAL(sg_clkStartBtn2()), timer2, SLOT(slot_startTimer()));
+    connect(qmlTimer2, SIGNAL(sg_clkStartBtn()), timer2, SLOT(slot_startTimer()));
     connect(timer2, SIGNAL(timeout()), timer2, SLOT(slot_setTime()));
-    connect(timer2, SIGNAL(sg_thisTime(QVariant)), mMainView, SLOT(slot_thisTime2(QVariant)));
+    connect(timer2, SIGNAL(sg_thisTime(QVariant)), qmlTimer2, SLOT(slot_thisTime(QVariant)));
 
-    connect(mMainView, SIGNAL(sg_clkStopBtn2()), timer2, SLOT(stop()));
-    connect(mMainView, SIGNAL(sg_clkResetBtn2()), timer2, SLOT(slot_resetTimer()));
+    connect(qmlTimer2, SIGNAL(sg_clkStopBtn()), timer2, SLOT(stop()));
+    connect(qmlTimer2, SIGNAL(sg_clkResetBtn()), timer2, SLOT(slot_resetTimer()));
 }
 
 

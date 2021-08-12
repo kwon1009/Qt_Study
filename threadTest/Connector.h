@@ -5,6 +5,7 @@
 #include <QQuickWindow>
 #include <QTimer>
 #include <QVariant>
+#include <QQmlApplicationEngine>
 
 #include "MyTimer.h"
 
@@ -14,16 +15,22 @@ class Connector : public QObject {
     Q_OBJECT
 
 private:
+    QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
     MyTimer* timer1;
     MyTimer* timer2;
+    QObject* qmlTimer1;
+    QObject* qmlTimer2;
+
+    void setWindow();
+    void setConnection();
 
 public:
     Connector();
     ~Connector();
 
-    void setWindow(QQuickWindow* Widnow);
-    void setConnection();
+    // setting engine and windows connections
+    void setEngine(QQmlApplicationEngine* engine);
 };
 
 #endif // CONNECTOR_H
