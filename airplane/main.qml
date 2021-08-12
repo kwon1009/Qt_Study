@@ -8,17 +8,10 @@ Window {
     visible: true
     title: qsTr("Airplane")
 
-    Item {
-        id: airplaneView
+    Loader {
+        objectName: "airplaneView"
+        source: "airplaneView.qml"
         anchors.fill: parent
-        focus: true
-
-        MyAirplane { objectName: "airplane1" }
-
-        Keys.onPressed: {
-            if(event.key == Qt.Key_Space) {
-                console.log("MyAirplane.qml: key Space press");
-            }
-        }
+        visible: true
     }
 }

@@ -13,11 +13,12 @@ class Connector : public QObject {
 private:
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
+    QObject* mAirplaneView;
     QObject* mAirplane1;
 
     MyTimer* timer;
 
-    void setWindow();
+    void setObjects();
     void setConnection();
 
 public:

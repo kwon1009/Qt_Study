@@ -10,20 +10,28 @@ Connector::~Connector() {}
 
 void Connector::setEngine(QQmlApplicationEngine* engine) {
     mEngine = engine;
-    setWindow();
+    setObjects();
     setConnection();
 }
 
-void Connector::setWindow()
+void Connector::setObjects()
 {
     // mainView
     QObject *root = mEngine->rootObjects()[0];
     mMainView = qobject_cast<QQuickWindow *>(root);
 
+    // airplaneView
+    QObject *airplaneView = root->findChild<QObject*>("airplaneView");
+    if(!airplaneView) {
+        qDebug() << "Connector: qml obj airplaneView is not exist.";
+    } else {
+        mAirplaneView = airplaneView;
+    }
+
     // airplane1
     QObject* airplane1 = root->findChild<QObject*>("airplane1");
     if(!airplane1) {
-        qDebug() << "Connector: obj airplane1 is not exist.";
+        qDebug() << "Connector: qml obj airplane1 is not exist.";
     } else {
         mAirplane1 = airplane1;
     }
