@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.3
 // MyTimerBox.qml
 
 Item {
+    anchors.fill: parent
+
     // signals
     signal sg_clkStartBtn();
     signal sg_clkStopBtn();
@@ -15,10 +17,10 @@ Item {
         showTimeTxt.text = thisTime
     }
 
-    // display1
+    // display
     Rectangle {
         id: showTime
-        width: 180
+        width: parent.width
         height: 40
         border.color: "gray"
         border.width: 1
@@ -29,6 +31,7 @@ Item {
         }
     }
 
+    // buttons
     Button {
         id: startBtn
         anchors.top: showTime.bottom

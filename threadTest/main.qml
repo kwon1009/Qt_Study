@@ -16,18 +16,20 @@ Window {
 
         // timer1
         Rectangle {
-            id: chk1
+            Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
-            Layout.preferredWidth: 100
+            Layout.preferredWidth: 300
+            Layout.margins: 10
 
             MyTimerBox { objectName: "timer1" }
         }
 
         // timer2
         Rectangle {
-            id: chk2
+            Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
-            Layout.preferredWidth: 100
+            Layout.preferredWidth: 300
+            Layout.margins: 10
 
             MyTimerBox { objectName: "timer2" }
         }
