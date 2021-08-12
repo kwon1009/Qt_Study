@@ -16,10 +16,7 @@ class Connector : public QObject {
 private:
     QQuickWindow* mMainView;
     MyTimer* timer1;
-
-    TimerThread* timerThread;
-    QTimer* timer;
-    int time;
+    MyTimer* timer2;
 
 public:
     Connector();
@@ -28,14 +25,12 @@ public:
     void setWindow(QQuickWindow* Widnow);
     void setConnection();
 
-signals:
-    void sg_tictok(QVariant time);
-
 public slots:
-    void slot_startTimer();
-    void slot_stopTimer();
-    void tictok();
+    void slot_startTimer1();
+    void slot_stopTimer1();
 
+    void slot_startTimer2();
+    void slot_stopTimer2();
 };
 
 #endif // CONNECTOR_H

@@ -4,9 +4,7 @@ Connector::Connector()
 {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     timer1 = new MyTimer();
-
-    timer = new QTimer(this);
-    timerThread = new TimerThread();
+    timer2 = new MyTimer();
 }
 
 Connector::~Connector() {}
@@ -18,24 +16,30 @@ void Connector::setWindow(QQuickWindow* Window)
 
 void Connector::setConnection()
 {
-    connect(mMainView, SIGNAL(sg_clkStartBtn1()), this, SLOT(slot_startTimer()));
-    connect(timer1, SIGNAL(timeout()), mMainView, SLOT(slot_showTime()));
-//    connect(timer, SIGNAL(timeout()), timerThread, SLOT(start()));
-//    connect(timerThread, SIGNAL(sg_tictok(QVariant)), mMainView, SLOT(slot_showTime(QVariant)));
-//    connect(mMainView, SIGNAL(sg_clkStopBtn1()), this, SLOT(slot_stopTimer()));
+    // timer1
+    connect(mMainView, SIGNAL(sg_clkStartBtn1()), this, SLOT(slot_startTimer1()));
+    connect(timer1, SIGNAL(timeout()), mMainView, SLOT(slot_showTime1()));
+    connect(mMainView, SIGNAL(sg_clkStopBtn1()), this, SLOT(slot_stopTimer1()));
+
+    // timer2
+    connect(mMainView, SIGNAL(sg_clkStartBtn2()), this, SLOT(slot_startTimer2()));
+    connect(timer2, SIGNAL(timeout()), mMainView, SLOT(slot_showTime2()));
+    connect(mMainView, SIGNAL(sg_clkStopBtn2()), this, SLOT(slot_stopTimer2()));
 }
 
-void Connector::slot_startTimer() {
+void Connector::slot_startTimer1() {
     timer1->start(1000);
 }
 
-void Connector::slot_stopTimer() {
-    timer->stop();
+void Connector::slot_stopTimer1() {
+    timer1->stop();
 }
 
-void Connector::tictok()
-{
-    time++;
-//    emit sg_tictok(QVariant(time));
-    qDebug() << "time:" << time;
+void Connector::slot_startTimer2() {
+    timer2->start(1000);
 }
+
+void Connector::slot_stopTimer2() {
+    timer2->stop();
+}
+

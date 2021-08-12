@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Connector_t {
-    QByteArrayData data[7];
-    char stringdata0[64];
+    QByteArrayData data[6];
+    char stringdata0[77];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,16 +32,15 @@ struct qt_meta_stringdata_Connector_t {
 static const qt_meta_stringdata_Connector_t qt_meta_stringdata_Connector = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "Connector"
-QT_MOC_LITERAL(1, 10, 9), // "sg_tictok"
-QT_MOC_LITERAL(2, 20, 0), // ""
-QT_MOC_LITERAL(3, 21, 4), // "time"
-QT_MOC_LITERAL(4, 26, 15), // "slot_startTimer"
-QT_MOC_LITERAL(5, 42, 14), // "slot_stopTimer"
-QT_MOC_LITERAL(6, 57, 6) // "tictok"
+QT_MOC_LITERAL(1, 10, 16), // "slot_startTimer1"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 15), // "slot_stopTimer1"
+QT_MOC_LITERAL(4, 44, 16), // "slot_startTimer2"
+QT_MOC_LITERAL(5, 61, 15) // "slot_stopTimer2"
 
     },
-    "Connector\0sg_tictok\0\0time\0slot_startTimer\0"
-    "slot_stopTimer\0tictok"
+    "Connector\0slot_startTimer1\0\0slot_stopTimer1\0"
+    "slot_startTimer2\0slot_stopTimer2"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,20 +55,16 @@ static const uint qt_meta_data_Connector[] = {
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
-
- // signals: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x06 /* Public */,
+       0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   37,    2, 0x0a /* Public */,
-       5,    0,   38,    2, 0x0a /* Public */,
-       6,    0,   39,    2, 0x0a /* Public */,
-
- // signals: parameters
-    QMetaType::Void, QMetaType::QVariant,    3,
+       1,    0,   34,    2, 0x0a /* Public */,
+       3,    0,   35,    2, 0x0a /* Public */,
+       4,    0,   36,    2, 0x0a /* Public */,
+       5,    0,   37,    2, 0x0a /* Public */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -83,22 +78,14 @@ void Connector::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<Connector *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sg_tictok((*reinterpret_cast< QVariant(*)>(_a[1]))); break;
-        case 1: _t->slot_startTimer(); break;
-        case 2: _t->slot_stopTimer(); break;
-        case 3: _t->tictok(); break;
+        case 0: _t->slot_startTimer1(); break;
+        case 1: _t->slot_stopTimer1(); break;
+        case 2: _t->slot_startTimer2(); break;
+        case 3: _t->slot_stopTimer2(); break;
         default: ;
         }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (Connector::*)(QVariant );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Connector::sg_tictok)) {
-                *result = 0;
-                return;
-            }
-        }
     }
+    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject Connector::staticMetaObject = { {
@@ -139,13 +126,6 @@ int Connector::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 4;
     }
     return _id;
-}
-
-// SIGNAL 0
-void Connector::sg_tictok(QVariant _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
