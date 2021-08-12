@@ -33,6 +33,7 @@ void Connector::setConnection()
 {
     // timer
     connect(timer, SIGNAL(timeout()), mAirplane1, SLOT(slot_move()));
+    connect(mAirplane1, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
 }
 
 

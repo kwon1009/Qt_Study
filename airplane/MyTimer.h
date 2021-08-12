@@ -9,6 +9,9 @@ class MyTimer : public QTimer
 
 public:
     MyTimer();
+
+public slots:
+    void slot_finish();
 };
 
 #endif // MYTIMER_H
