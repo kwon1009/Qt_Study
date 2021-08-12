@@ -50,6 +50,11 @@ void Connector::setConnection()
     connect(qmlTimer1, SIGNAL(sg_clkStopBtn()), timer1, SLOT(stop()));
     connect(qmlTimer1, SIGNAL(sg_clkResetBtn()), timer1, SLOT(slot_resetTimer()));
 
+    connect(qmlTimer1, SIGNAL(sg_clkSaveBtn()), timer1, SLOT(slot_saveTime()));
+    connect(timer1, SIGNAL(sg_showSaveTime(QVariant)), qmlTimer1, SLOT(slot_showSaveTime(QVariant)));
+
+    connect(qmlTimer1, SIGNAL(sg_clkDelBtn()), timer1, SLOT(slot_deleteTime()));
+
     // timer2
     connect(qmlTimer2, SIGNAL(sg_clkStartBtn()), timer2, SLOT(slot_startTimer()));
     connect(timer2, SIGNAL(timeout()), timer2, SLOT(slot_setTime()));
@@ -57,6 +62,11 @@ void Connector::setConnection()
 
     connect(qmlTimer2, SIGNAL(sg_clkStopBtn()), timer2, SLOT(stop()));
     connect(qmlTimer2, SIGNAL(sg_clkResetBtn()), timer2, SLOT(slot_resetTimer()));
+
+    connect(qmlTimer2, SIGNAL(sg_clkSaveBtn()), timer2, SLOT(slot_saveTime()));
+    connect(timer2, SIGNAL(sg_showSaveTime(QVariant)), qmlTimer2, SLOT(slot_showSaveTime(QVariant)));
+
+    connect(qmlTimer2, SIGNAL(sg_clkDelBtn()), timer2, SLOT(slot_deleteTime()));
 }
 
 
