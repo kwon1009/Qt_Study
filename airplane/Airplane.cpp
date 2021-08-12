@@ -13,7 +13,12 @@ void Airplane::setAirplaneView(QObject* airplaneView) {
 
 void Airplane::setConnection() {
     connect(this, SIGNAL(sg_setXY(QVariant, QVariant)), mAirplaneView, SLOT(slot_setXY(QVariant, QVariant)));
+    connect(mAirplaneView, SIGNAL(sg_pressEnter()), this, SLOT(test()));
+    connect(mAirplaneView, SIGNAL(sg_pressSpace()), this, SLOT(slot_jump()));
+}
 
+void Airplane::test() {
+    qDebug() << "test";
 }
 
 void Airplane::checkXY() {

@@ -30,6 +30,7 @@ signals:
 public slots:
     void slot_move();
     void slot_jump();
+    void test();
 };
 
 #endif // AIRPLANE_H

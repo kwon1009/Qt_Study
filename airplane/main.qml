@@ -9,7 +9,6 @@ Window {
     title: qsTr("Airplane")
 
     // signals
-    signal sg_pressSpace();
     signal sg_startTimer();
 
     // slots
@@ -34,13 +33,5 @@ Window {
         source: "airplaneView.qml"
         anchors.fill: parent
         visible: false
-
-        focus: false
-        Keys.onPressed: {
-            if(event.key == Qt.Key_Space) {
-                console.log("airplaneView.qml: key Space press");
-                sg_pressSpace();
-            }
-        }
     }
 }
