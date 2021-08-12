@@ -20,6 +20,14 @@ void Connector::setObjects()
     QObject *root = mEngine->rootObjects()[0];
     mMainView = qobject_cast<QQuickWindow *>(root);
 
+    // startView
+    QObject *startView = root->findChild<QObject*>("startView");
+    if(!startView) {
+        qDebug() << "Connector: qml obj startView is not exist.";
+    } else {
+        mStartView = startView;
+    }
+
     // airplaneView
     QObject *airplaneView = root->findChild<QObject*>("airplaneView");
     if(!airplaneView) {
@@ -39,10 +47,16 @@ void Connector::setObjects()
 
 void Connector::setConnection()
 {
+    // startView
+    connect(mStartView, SIGNAL(sg_startBtnClick()), mStartView, SLOT(sg_changeView()));
+    connect(mStartView, SIGNAL(sg_start()), timer, SLOT(slot_start()));
+
     // timer
-    connect(mAirplane1, SIGNAL(sg_start()), timer, SLOT(slot_start()));
     connect(timer, SIGNAL(timeout()), mAirplane1, SLOT(slot_move()));
     connect(mAirplane1, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
+
+    // airplaneView
+    connect(mAirplaneView, SIGNAL(sg_pressSpace()), mAirplane1, SLOT(slot_pressSpace()));
 }
 
 

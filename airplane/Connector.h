@@ -13,6 +13,7 @@ class Connector : public QObject {
 private:
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
+    QObject* mStartView;
     QObject* mAirplaneView;
     QObject* mAirplane1;
 

@@ -1,18 +1,22 @@
 import QtQuick 2.0
 
+
 Item {
     // signals
-    signal sg_start();
     signal sg_finish();
 
     //slots
     function slot_move() {
         airplane.x += 0.5
-        airplane.y += 0.2
+        airplane.y += 0.8
         if(airplane.x >= parent.width || airplane.y >= parent.height) {
             console.log("finish")
             sg_finish();
         }
+    }
+
+    function slot_pressSpace() {
+        airplane.y -= 30
     }
 
     Rectangle {

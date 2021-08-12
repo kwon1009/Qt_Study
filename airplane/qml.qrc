@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MyAirplane.qml</file>
         <file>airplaneView.qml</file>
+        <file>startView.qml</file>
     </qresource>
 </RCC>
