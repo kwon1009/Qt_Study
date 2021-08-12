@@ -4,6 +4,7 @@ Connector::Connector()
 {
     qmlRegisterType<Connector>("Connector", 1, 0, "Connector");
     timer = new MyTimer();
+    mAirplane = new Airplane();
 }
 
 Connector::~Connector() {}
@@ -35,28 +36,19 @@ void Connector::setObjects()
     } else {
         mAirplaneView = airplaneView;
     }
-
-    // airplane1
-    QObject* airplane1 = root->findChild<QObject*>("airplane1");
-    if(!airplane1) {
-        qDebug() << "Connector: qml obj airplane1 is not exist.";
-    } else {
-        mAirplane1 = airplane1;
-    }
 }
 
 void Connector::setConnection()
 {
     // startView
-    connect(mStartView, SIGNAL(sg_startBtnClick()), mStartView, SLOT(sg_changeView()));
-    connect(mStartView, SIGNAL(sg_start()), timer, SLOT(slot_start()));
-
-    // timer
-    connect(timer, SIGNAL(timeout()), mAirplane1, SLOT(slot_move()));
-    connect(mAirplane1, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
+    connect(mStartView, SIGNAL(sg_startBtnClick()), mMainView, SLOT(slot_changeView()));
+    connect(mMainView, SIGNAL(sg_startTimer()), timer, SLOT(slot_start()));
 
     // airplaneView
-    connect(mAirplaneView, SIGNAL(sg_pressSpace()), mAirplane1, SLOT(slot_pressSpace()));
+    connect(timer, SIGNAL(timeout()), mAirplane, SLOT(slot_move()));
+    connect(mAirplane, SIGNAL(sg_setXY(QVariant, QVariant)), mAirplaneView, SLOT(slot_setXY(QVariant, QVariant)));
+    connect(mAirplane, SIGNAL(sg_finish()), timer, SLOT(slot_finish()));
+    connect(mMainView, SIGNAL(sg_pressSpace()), mAirplane, SLOT(slot_jump()));
 }
 
 

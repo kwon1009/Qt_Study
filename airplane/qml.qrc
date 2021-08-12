@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MyAirplane.qml</file>
         <file>airplaneView.qml</file>
         <file>startView.qml</file>
+        <file>MyAirplane.qml</file>
     </qresource>
 </RCC>

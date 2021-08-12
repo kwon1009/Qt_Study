@@ -6,6 +6,7 @@
 #include <QQmlApplicationEngine>
 
 #include "MyTimer.h"
+#include "Airplane.h"
 
 class Connector : public QObject {
     Q_OBJECT
@@ -15,9 +16,9 @@ private:
     QQuickWindow* mMainView;
     QObject* mStartView;
     QObject* mAirplaneView;
-    QObject* mAirplane1;
 
     MyTimer* timer;
+    Airplane* mAirplane;
 
     void setObjects();
     void setConnection();

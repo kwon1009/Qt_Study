@@ -1,8 +1,12 @@
 import QtQuick 2.0
 
 Item {
+    objectName: "startView"
     property var btnColor: "Khaki"
     property var btnHoverColor: "Coral"
+
+    // signals
+    signal sg_startBtnClick();
 
     anchors.fill: parent
 
