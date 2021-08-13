@@ -323,6 +323,13 @@ debug\moc_Connector.cpp: ..\threadTest\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmllist.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmetaobject.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmldebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
+		..\threadTest\TimerThread.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QThread \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qthread.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.12.4\msvc2017_64\bin\moc.exe
 	C:\Qt\5.12.4\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/ypd00/Desktop/kwonhs/01_Lists/build-threadTest-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.4/msvc2017_64/mkspecs/win32-msvc -IC:/Users/ypd00/Desktop/kwonhs/01_Lists/threadTest -IC:/Qt/5.12.4/msvc2017_64/include -IC:/Qt/5.12.4/msvc2017_64/include/QtQuick -IC:/Qt/5.12.4/msvc2017_64/include/QtGui -IC:/Qt/5.12.4/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.4/msvc2017_64/include/QtQml -IC:/Qt/5.12.4/msvc2017_64/include/QtNetwork -IC:/Qt/5.12.4/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\threadTest\Connector.h -o debug\moc_Connector.cpp
@@ -380,9 +387,21 @@ debug\moc_TimerThread.cpp: ..\threadTest\TimerThread.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qobject_impl.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QThread \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qthread.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qvariant.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmap.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qhash.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtextstream.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qiodevice.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qlocale.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qshareddata.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qvector.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qpoint.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qset.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.12.4\msvc2017_64\bin\moc.exe
 	C:\Qt\5.12.4\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/ypd00/Desktop/kwonhs/01_Lists/build-threadTest-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.4/msvc2017_64/mkspecs/win32-msvc -IC:/Users/ypd00/Desktop/kwonhs/01_Lists/threadTest -IC:/Qt/5.12.4/msvc2017_64/include -IC:/Qt/5.12.4/msvc2017_64/include/QtQuick -IC:/Qt/5.12.4/msvc2017_64/include/QtGui -IC:/Qt/5.12.4/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.4/msvc2017_64/include/QtQml -IC:/Qt/5.12.4/msvc2017_64/include/QtNetwork -IC:/Qt/5.12.4/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\threadTest\TimerThread.h -o debug\moc_TimerThread.cpp
@@ -538,7 +557,14 @@ debug\Connector.obj: ..\threadTest\Connector.cpp ..\threadTest\Connector.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmlpropertyvaluesource.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmllist.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qmetaobject.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmldebug.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtQml\qqmldebug.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
+		..\threadTest\TimerThread.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QThread \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qthread.h
 
 debug\TimerThread.obj: ..\threadTest\TimerThread.cpp C:\Qt\5.12.4\msvc2017_64\include\QtCore\QDebug \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qdebug.h \
@@ -608,9 +634,7 @@ debug\TimerThread.obj: ..\threadTest\TimerThread.cpp C:\Qt\5.12.4\msvc2017_64\in
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QObject \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QThread \
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qthread.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
-		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant
 
 debug\main.obj: ..\threadTest\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QGuiApplication \
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qguiapplication.h \
@@ -758,7 +782,14 @@ debug\main.obj: ..\threadTest\main.cpp C:\Qt\5.12.4\msvc2017_64\include\QtGui\QG
 		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qfiledevice.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qvector2d.h \
 		C:\Qt\5.12.4\msvc2017_64\include\QtGui\qtouchdevice.h \
-		..\threadTest\Connector.h
+		..\threadTest\Connector.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QTimer \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qtimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QVariant \
+		..\threadTest\TimerThread.h \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\QThread \
+		C:\Qt\5.12.4\msvc2017_64\include\QtCore\qthread.h
 
 debug\qrc_qml.obj: debug\qrc_qml.cpp 
 
