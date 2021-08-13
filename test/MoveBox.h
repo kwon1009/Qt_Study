@@ -9,6 +9,7 @@ class MoveBox : public QThread {
     Q_OBJECT
 
     QObject* mRecRace;
+    QString mName;
     void setConnection();
 
     int mFinish = 900;
@@ -18,7 +19,7 @@ class MoveBox : public QThread {
     void checkXY();
 
 public:
-   MoveBox(QObject *recRace);
+   MoveBox(QObject *recRace, QString name);
    ~MoveBox() override;
 
 protected:
@@ -26,10 +27,10 @@ protected:
 
 signals:
     void sg_setXY(QVariant x, QVariant y);
-    void sg_finish();
+    void sg_finish(QString name);
 
 public slots:
-    void slot_stop();
+    void slot_stop(QString name);
 };
 
 #endif // MOVEBOX_H

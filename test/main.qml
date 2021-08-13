@@ -8,65 +8,40 @@ Window {
     height: 400
     visible: true
 
-    Rectangle {
-        id: rec1Race
-        objectName: "rec1Race"
-        width: parent.width
-        height: 200
-        border.color: "gray"
-        border.width: 1
-
-        Rectangle {
-            id: rec1
-            height: 100
-            width: 100
-            x: 0
-            y: 50
-            color: "Violet"
-            radius: 50
-        }
-
-        // slots
-        function slot_setXY(x, y) {
-            rec1.x = x
-            rec1.y = y
-        }
-    }
-
-    Rectangle {
-        id: rec2Race
-        objectName: "rec2Race"
-        anchors.top: rec1Race.bottom
-        width: parent.width
-        height: 200
-        border.color: "gray"
-        border.width: 1
-
-        Rectangle {
-            id: rec2
-            height: 100
-            width: 100
-            x: 0
-            y: 50
-            color: "darkblue"
-            radius: 50
-        }
-
-        // slots
-        function slot_setXY(x, y) {
-            rec2.x = x
-            rec2.y = y
-        }
-    }
+    property var mWinner: ""
+    property var mBoxNum: 2
 
     // signals
     signal sg_start();
 
+    // slots
+    function slot_winner(names) {
+        console.log(names);
+        mWinner = names[0];
+        finishTxt.text = "Finish.\nThe winner is " + mWinner
+        finish.visible = true
+    }
+
+    MyButton {
+        id: rec1Race
+        objectName: "rec1Race"
+        mRecColor: "Violet"
+        mName: "A"
+    }
+
+    MyButton {
+        id: rec2Race
+        objectName: "rec2Race"
+        mRecColor: "darkblue"
+        anchors.top: rec1Race.bottom
+        mName: "B"
+    }
+
+    // startBtn
     Item {
         objectName: "startBtn"
         anchors.fill: parent
         visible: true
-
 
         Button {
             anchors.centerIn: parent
@@ -82,6 +57,24 @@ Window {
                 parent.visible = false
                 sg_start()
             }
+        }
+    }
+
+    // finish
+    Item {
+        id: finish
+        objectName: "finish"
+        anchors.fill: parent
+        visible: false
+
+        Text {
+            id: finishTxt
+            anchors.centerIn: parent
+            text: ""
+            color: "Blue"
+            font.bold: true
+            font.pixelSize: 20
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 }

@@ -6,7 +6,6 @@
 #include <QQmlApplicationEngine>
 
 #include "MoveBox.h"
-//#include "MyTimer.h"
 
 class Connector : public QObject {
     Q_OBJECT
@@ -17,7 +16,9 @@ private:
 
     MoveBox* mMoveBox1;
     MoveBox* mMoveBox2;
-//    MyTimer* timer;
+
+    QStringList mBoxRank;
+    int mBoxNum = 2;
 
     void setObjects();
     void setConnection();
@@ -28,6 +29,12 @@ public:
 
     // setting engine and windows connections
     void setEngine(QQmlApplicationEngine* engine);
+
+signals:
+    void sg_winner(QVariant names);
+
+public slots:
+    void slot_finish(QString name);
 };
 
 #endif // CONNECTOR_H
