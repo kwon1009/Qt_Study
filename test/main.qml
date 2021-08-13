@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+import Connector 1.0
 
 Window {
     width: 1000
@@ -10,6 +11,8 @@ Window {
 
     property var mWinner: ""
     property var mBoxNum: 5
+
+    Connector { id: connector }
 
     // signals
     signal sg_start();

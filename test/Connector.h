@@ -2,10 +2,14 @@
 #define CONNECTOR_H
 
 #include <QObject>
+#include <QVector>
 #include <QQuickWindow>
 #include <QQmlApplicationEngine>
 
 #include "MoveBox.h"
+
+const QStringList recRaces = {"rec1Race", "rec2Race", "rec3Race", "rec4Race", "rec5Race"};
+const QStringList racNames = {"A", "B", "C", "D", "E"};
 
 class Connector : public QObject {
     Q_OBJECT
@@ -14,12 +18,7 @@ private:
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
 
-    MoveBox* mMoveBox1;
-    MoveBox* mMoveBox2;
-    MoveBox* mMoveBox3;
-    MoveBox* mMoveBox4;
-    MoveBox* mMoveBox5;
-
+    QVector<MoveBox*> mMoveBoxs;
     QStringList mBoxRank;
     int mBoxNum = 5;
 
