@@ -5,6 +5,13 @@
 #include <QVariant>
 #include <QRandomGenerator>
 
+struct BoxStruct {
+    QString name;
+    double mX = 0;
+    double mY = 15;
+    QString color;
+};
+
 class MoveBox : public QThread {
     Q_OBJECT
 

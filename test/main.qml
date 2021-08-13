@@ -11,6 +11,9 @@ Window {
 
     property var mWinner: ""
     property var mBoxNum: 5
+    property var mObjNames:[]
+    property var mColors: []
+    property var mNames: []
 
     Connector { id: connector }
 
@@ -29,43 +32,49 @@ Window {
         finish.visible = true
     }
 
+    Component.onCompleted: {
+        mObjNames = connector.getObjNames()
+        mNames = connector.getNames()
+        mColors = connector.getColors()
+    }
+
     MyButton {
         id: rec1Race
-        objectName: "rec1Race"
-        mRecColor: "#FF8A65"
-        mName: "A"
+        objectName: mObjNames[0]
+        mRecColor: mColors[0]
+        mName: mNames[0]
     }
 
     MyButton {
         id: rec2Race
-        objectName: "rec2Race"
-        mRecColor: "#64B5F6"
+        objectName: mObjNames[1]
+        mRecColor: mColors[1]
         anchors.top: rec1Race.bottom
-        mName: "B"
+        mName: mNames[1]
     }
 
     MyButton {
         id: rec3Race
-        objectName: "rec3Race"
-        mRecColor: "#FFF59D"
+        objectName: mObjNames[2]
+        mRecColor: mColors[2]
         anchors.top: rec2Race.bottom
-        mName: "C"
+        mName: mNames[2]
     }
 
     MyButton {
         id: rec4Race
-        objectName: "rec4Race"
-        mRecColor: "#B2FF59"
+        objectName: mObjNames[3]
+        mRecColor: mColors[3]
         anchors.top: rec3Race.bottom
-        mName: "D"
+        mName: mNames[3]
     }
 
     MyButton {
         id: rec5Race
-        objectName: "rec5Race"
-        mRecColor: "#B388FF"
+        objectName: mObjNames[4]
+        mRecColor: mColors[4]
         anchors.top: rec4Race.bottom
-        mName: "E"
+        mName: mNames[4]
     }
 
     // startBtn

@@ -8,8 +8,10 @@
 
 #include "MoveBox.h"
 
-const QStringList recRaces = {"rec1Race", "rec2Race", "rec3Race", "rec4Race", "rec5Race"};
-const QStringList racNames = {"A", "B", "C", "D", "E"};
+const int BOX_NUMBER = 5;
+const QStringList OBJECT_NAMES = {"rec1Race", "rec2Race", "rec3Race", "rec4Race", "rec5Race"};
+const QStringList REC_NAMES = {"A", "B", "C", "D", "E"};
+const QStringList REC_COLORS = {"#FF8A65", "#64B5F6", "#FFF59D", "#B2FF59", "#B388FF"};
 
 class Connector : public QObject {
     Q_OBJECT
@@ -20,7 +22,6 @@ private:
 
     QVector<MoveBox*> mMoveBoxs;
     QStringList mBoxRank;
-    int mBoxNum = 5;
 
     void setObjects();
     void setConnection();
@@ -31,6 +32,11 @@ public:
 
     // setting engine and windows connections
     void setEngine(QQmlApplicationEngine* engine);
+
+    // qml onCompleted
+    Q_INVOKABLE QVariant getObjNames();
+    Q_INVOKABLE QVariant getNames();
+    Q_INVOKABLE QVariant getColors();
 
 signals:
     void sg_winner(QVariant names);
