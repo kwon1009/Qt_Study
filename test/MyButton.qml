@@ -5,7 +5,7 @@ Rectangle {
     property var mName: ""
 
     width: parent.width
-    height: 100
+    height: parent.height //100
 
     Rectangle {
         height: parent.height

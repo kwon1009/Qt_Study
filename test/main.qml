@@ -9,6 +9,8 @@ Window {
     height: 500
     visible: true
 
+    property var mBoxs: []
+
     property var mWinner: ""
     property var mBoxNum: 5
     property var mObjNames:[]
@@ -38,44 +40,57 @@ Window {
         mColors = connector.getColors()
     }
 
-    MyButton {
-        id: rec1Race
-        objectName: mObjNames[0]
-        mRecColor: mColors[0]
-        mName: mNames[0]
+    ColumnLayout {
+        id: raceView
+        anchors.fill: parent
+        spacing: 5
+
+        MyButton {
+            id: rec1Race
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height/mBoxNum
+            objectName: mObjNames[0]
+            mRecColor: mColors[0]
+            mName: mNames[0]
+        }
+
+        MyButton {
+            id: rec2Race
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height/mBoxNum
+            objectName: mObjNames[1]
+            mRecColor: mColors[1]
+            mName: mNames[1]
+        }
+
+        MyButton {
+            id: rec3Race
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height/mBoxNum
+            objectName: mObjNames[2]
+            mRecColor: mColors[2]
+            mName: mNames[2]
+        }
+
+        MyButton {
+            id: rec4Race
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height/mBoxNum
+            objectName: mObjNames[3]
+            mRecColor: mColors[3]
+            mName: mNames[3]
+        }
+
+        MyButton {
+            id: rec5Race
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height/mBoxNum
+            objectName: mObjNames[4]
+            mRecColor: mColors[4]
+            mName: mNames[4]
+        }
     }
 
-    MyButton {
-        id: rec2Race
-        objectName: mObjNames[1]
-        mRecColor: mColors[1]
-        anchors.top: rec1Race.bottom
-        mName: mNames[1]
-    }
-
-    MyButton {
-        id: rec3Race
-        objectName: mObjNames[2]
-        mRecColor: mColors[2]
-        anchors.top: rec2Race.bottom
-        mName: mNames[2]
-    }
-
-    MyButton {
-        id: rec4Race
-        objectName: mObjNames[3]
-        mRecColor: mColors[3]
-        anchors.top: rec3Race.bottom
-        mName: mNames[3]
-    }
-
-    MyButton {
-        id: rec5Race
-        objectName: mObjNames[4]
-        mRecColor: mColors[4]
-        anchors.top: rec4Race.bottom
-        mName: mNames[4]
-    }
 
     // startBtn
     Item {
