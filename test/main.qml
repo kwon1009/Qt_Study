@@ -21,6 +21,7 @@ Window {
 
     // signals
     signal sg_start();
+    signal sg_pressSpace();
 
     // slots
     function slot_winner(names) {
@@ -44,6 +45,26 @@ Window {
         id: raceView
         anchors.fill: parent
         spacing: 5
+        focus: true
+
+        Keys.onPressed: {
+            if(event.key == Qt.Key_Space) {
+                console.log("main.qml: key Space press");
+//                sg_pressSpace();
+            }
+
+            if(event.key == Qt.Key_L) {
+                console.log("main.qml: key L press");
+            }
+
+            if(event.key == Qt.Key_Enter) {
+                console.log("main.qml: key Enter press");
+            }
+
+            if(event.key == Qt.Key_Left) {
+                console.log("main.qml: key Left press");
+            }
+        }
 
         MyButton {
             id: rec1Race
@@ -94,22 +115,19 @@ Window {
 
     // startBtn
     Item {
+        id: startBtn
         objectName: "startBtn"
-        anchors.fill: parent
+        anchors.centerIn: parent
         visible: true
+        focus: false
 
         Button {
-            anchors.centerIn: parent
             width: 60
             height: 30
             text: "Start"
-        }
-
-        MouseArea {
-            anchors.fill: parent
             onClicked: {
                 console.log("main.qml: startBtn click.")
-                parent.visible = false
+                startBtn.visible = false
                 sg_start()
             }
         }

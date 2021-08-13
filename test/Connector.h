@@ -43,6 +43,7 @@ signals:
 
 public slots:
     void slot_finish(QString name);
+    void testSpace();
 };
 
 #endif // CONNECTOR_H

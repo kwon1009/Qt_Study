@@ -26,7 +26,7 @@ void MoveBox::run()
         mX += rand;
         checkXY();
         msleep(100);
-        qDebug() << "MoveBox: x plus" << rand;
+//        qDebug() << "MoveBox: x plus" << rand;
     }
 }
 

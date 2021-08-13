@@ -35,6 +35,7 @@ void Connector::setConnection()
         connect(mMoveBoxs[i], SIGNAL(sg_finish(QString)), this, SLOT(slot_finish(QString)));
     }
 
+    connect(mMainView, SIGNAL(sg_pressSpace()), this, SLOT(testSpace()));
     connect(this, SIGNAL(sg_winner(QVariant)), mMainView, SLOT(slot_winner(QVariant)));
 }
 
@@ -48,6 +49,10 @@ void Connector::slot_finish(QString name) {
         while(mBoxRank.size() > 0)
             mBoxRank.pop_front();
     }
+}
+
+void Connector::testSpace() {
+    qDebug() << "test space press";
 }
 
 QVariant Connector::getObjNames() { return QVariant(OBJECT_NAMES); }
