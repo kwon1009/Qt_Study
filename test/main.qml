@@ -59,13 +59,14 @@ Window {
         }
     }
 
+    // signals
+    signal sg_start();
+
     Item {
         objectName: "startBtn"
         anchors.fill: parent
         visible: true
 
-        // signals
-        signal sg_start();
 
         Button {
             anchors.centerIn: parent

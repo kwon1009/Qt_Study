@@ -8,6 +8,7 @@ CONFIG += c++11
 
 SOURCES += \
         Connector.cpp \
+        MoveBox.cpp \
         MyThread.cpp \
         MyThread.cpp \
         main.cpp \
@@ -29,6 +30,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     CheckTimer.h \
     Connector.h \
+    MoveBox.h \
     MyThread.h \
     MyThread.h \
     MyThread.h \

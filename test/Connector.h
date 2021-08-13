@@ -5,6 +5,7 @@
 #include <QQuickWindow>
 #include <QQmlApplicationEngine>
 
+#include "MoveBox.h"
 //#include "MyTimer.h"
 
 class Connector : public QObject {
@@ -13,10 +14,9 @@ class Connector : public QObject {
 private:
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainView;
-    QObject* mStartBtn;
-    QObject* mRec1Race;
-    QObject* mRec2Race;
 
+    MoveBox* mMoveBox1;
+    MoveBox* mMoveBox2;
 //    MyTimer* timer;
 
     void setObjects();
