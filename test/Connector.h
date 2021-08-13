@@ -16,9 +16,12 @@ private:
 
     MoveBox* mMoveBox1;
     MoveBox* mMoveBox2;
+    MoveBox* mMoveBox3;
+    MoveBox* mMoveBox4;
+    MoveBox* mMoveBox5;
 
     QStringList mBoxRank;
-    int mBoxNum = 2;
+    int mBoxNum = 5;
 
     void setObjects();
     void setConnection();

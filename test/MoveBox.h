@@ -12,9 +12,9 @@ class MoveBox : public QThread {
     QString mName;
     void setConnection();
 
-    int mFinish = 900;
+    int mFinish = 950;
     double mX = 0;
-    double mY = 50;
+    double mY = 15;
 
     void checkXY();
 

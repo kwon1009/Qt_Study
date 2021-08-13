@@ -15,6 +15,7 @@ MoveBox::~MoveBox()
 
 void MoveBox::run()
 {
+    mX = 0;
     while(isRunning()) {
         if ( QThread::currentThread()->isInterruptionRequested() ) {
             qDebug() << Q_FUNC_INFO << " terminated";
