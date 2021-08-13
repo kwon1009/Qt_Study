@@ -4,8 +4,9 @@
 #include <QDebug>
 #include <QTimer>
 
-#include "worker.h"
-#include "MyThread.h"
+#include "Connector.h"
+//#include "worker.h"
+//#include "MyThread.h"
 
 // thread sample 3
 void f(){
@@ -36,6 +37,8 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    Connector* con = new Connector();
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -45,42 +48,45 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    // Connector setWindow
+    con->setEngine(&engine);
+
     // thread 구현
     // thread sample 1
-    QThread thread;
+//    QThread thread;
 
-    Worker *worker = new Worker;
-    worker->moveToThread(&thread);
-    thread.start();
+//    Worker *worker = new Worker;
+//    worker->moveToThread(&thread);
+//    thread.start();
 
-    QObject::connect(worker, &Worker::start, worker, &Worker::doWork);
-    QObject::connect(&thread, &QThread::finished, worker, &QObject::deleteLater);
+//    QObject::connect(worker, &Worker::start, worker, &Worker::doWork);
+//    QObject::connect(&thread, &QThread::finished, worker, &QObject::deleteLater);
 
-    QObject::connect(worker, &Worker::resultReady, [&](const QString &result){
-        qDebug() << result;
-        thread.quit(); // 스레드중지
-    });
+//    QObject::connect(worker, &Worker::resultReady, [&](const QString &result){
+//        qDebug() << result;
+//        thread.quit(); // 스레드중지
+//    });
 
-    emit worker->start("World");
-
-
-    // thread sample 2
-    MyThread *thread2 = new MyThread;
-    QObject::connect(thread2, &MyThread::finished, thread2, &QObject::deleteLater);
-
-    // 스레드 시작
-    thread2->start();
-
-    QTimer::singleShot(10, &app, [thread2](){
-
-        // 3초후에 스레드 중단을 요청.
-        thread2->requestInterruption();
-    });
+//    emit worker->start("World");
 
 
-    // thread sample 3
-    auto thread3 = QThread::create(f); // 함수 f를 실행할 새로운 QThread 객체를 만든다.
-    thread3->start(); // 스레드 시작
+//    // thread sample 2
+//    MyThread *thread2 = new MyThread;
+//    QObject::connect(thread2, &MyThread::finished, thread2, &QObject::deleteLater);
+
+//    // 스레드 시작
+//    thread2->start();
+
+//    QTimer::singleShot(10, &app, [thread2](){
+
+//        // 3초후에 스레드 중단을 요청.
+//        thread2->requestInterruption();
+//    });
+
+
+//    // thread sample 3
+//    auto thread3 = QThread::create(f); // 함수 f를 실행할 새로운 QThread 객체를 만든다.
+//    thread3->start(); // 스레드 시작
 
     return app.exec();
 }

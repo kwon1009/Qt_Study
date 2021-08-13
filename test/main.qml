@@ -3,67 +3,84 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 
-//import MainWindow 1.0
-//import "."
-
 Window {
     width: 1000
     height: 400
     visible: true
 
-//    MainWindow { id: mainWindow }
-
-    // slots
-    function slot_setText() {
-        console.log("setText")//, mainWindow.getStr())
-//        countRecText.text = st
-    }
-
-
     Rectangle {
-        id: countRec
-        width: 500
-        height: 50
-        anchors.left: parent.left
+        id: rec1Race
+        objectName: "rec1Race"
+        width: parent.width
+        height: 200
         border.color: "gray"
         border.width: 1
 
+        Rectangle {
+            id: rec1
+            height: 100
+            width: 100
+            x: 0
+            y: 50
+            color: "Violet"
+            radius: 50
+        }
+
+        // slots
+        function slot_setXY(x, y) {
+            rec1.x = x
+            rec1.y = y
+        }
+    }
+
+    Rectangle {
+        id: rec2Race
+        objectName: "rec2Race"
+        anchors.top: rec1Race.bottom
+        width: parent.width
+        height: 200
+        border.color: "gray"
+        border.width: 1
+
+        Rectangle {
+            id: rec2
+            height: 100
+            width: 100
+            x: 0
+            y: 50
+            color: "darkblue"
+            radius: 50
+        }
+
+        // slots
+        function slot_setXY(x, y) {
+            rec2.x = x
+            rec2.y = y
+        }
+    }
+
+    Item {
+        objectName: "startBtn"
+        anchors.fill: parent
+        visible: true
+
+        // signals
+        signal sg_start();
+
         Button {
-            id: countRecBtn
-            text: "count"
+            anchors.centerIn: parent
+            width: 60
+            height: 30
+            text: "Start"
+        }
+
+        MouseArea {
+            anchors.fill: parent
             onClicked: {
-                console.log("count btn click")
-//                mainWindow.on_pushButton_clicked()
+                console.log("main.qml: startBtn click.")
+                parent.visible = false
+                sg_start()
             }
-        }
-
-        Text {
-            anchors.left: countRecBtn.right
-            anchors.leftMargin: 15
-            id: countRecText
-            text: ""
-        }
-    }
-
-    Button {
-        id: timerStBtn
-        anchors.top: countRec.bottom
-        anchors.topMargin: 10
-        text: "Timer Start"
-        onClicked: {
-            console.log("timer start btn click")
-//            mainWindow.on_pushButton_timer_clicked()
-        }
-    }
-
-    Button {
-        id: throwBtn
-        anchors.top: timerStBtn.bottom
-        anchors.topMargin: 10
-        text: "Throw"
-        onClicked: {
-            console.log("throw btn click")
-//            mainWindow.on_pushButton_thread_clicked()
         }
     }
 }
