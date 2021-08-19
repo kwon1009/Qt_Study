@@ -1,9 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.2
+import ChatList 1.0
 import "."
 
 Item {
     objectName: "chatListView"
+
+    ChatList { id: classChatList }  // 새로 만들어지는 class. 해당 페이지에 직접 속하게 된다.
+    // !!데이터 전달에 대해 확인 필요
+    // !!현재 페이지와 ChatView와 연동여부 확인 필요
+    // !!설정과 같은 전반적인 데이터 연동 구조 확인 필요
 
     property int titleBarHeight: 50
 
@@ -20,8 +26,12 @@ Item {
 
     // signals
     signal getNextView(var nextView);
-    signal getChatList();
+    signal sg_getChatList();
 
+    // slots
+    function slot_test() {
+        console.log("test")
+    }
 
     // title bar
     TitleBar {
@@ -40,7 +50,7 @@ Item {
 
         Component.onCompleted: {
             // setting chat list
-            getChatList();
+            classChatList.getChatList()
             console.log("chatListView.qml: setting chat list")
 
             // setting chat list component

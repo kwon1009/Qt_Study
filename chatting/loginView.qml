@@ -32,6 +32,7 @@ Item {
 
             onClicked: {
                 console.log("loginView.qml: click loginBtn. nextView is", nextView)
+                console.log("loginView.qml: login이 성공하였습니다.")
                 sg_setChatList();
                 getNextView(nextView);
             }

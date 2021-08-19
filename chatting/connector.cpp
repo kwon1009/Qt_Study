@@ -6,6 +6,7 @@ void printObjectIsNotFound(QString objName) {
 
 Connector::Connector(QQmlApplicationEngine* engine) {
     mEngine = engine;
+    mChatList = new ChatList();
 
     // mainView
     QObject *root = mEngine->rootObjects()[0];
@@ -13,13 +14,12 @@ Connector::Connector(QQmlApplicationEngine* engine) {
 
     // first view : login view
     QObject* thisView = mMainWindow->findChild<QObject*>("loginView");
-    if(!thisView) printObjectIsNotFound("loginView");
-    else    mThisView = thisView;
-
-    mChatList = new ChatList();
-    connect(mThisView, SIGNAL(sg_setChatList()), mChatList, SLOT(slot_setChatList()));
-
-    setConnections();
+    if(!thisView)
+        printObjectIsNotFound("loginView");
+    else {
+        mThisView = thisView;
+        setConnections();
+    }
 }
 
 void Connector::setViews(QVariant viewName) {
@@ -44,11 +44,11 @@ void Connector::setNextView(QVariant nextView) {
     // create class
     if(nextView == "loginView.qml") {
         // new login and loading chatting list
-        delete mChatList;
-        mChatList = new ChatList();
-        connect(mThisView, SIGNAL(sg_setChatList()), mChatList, SLOT(slot_setChatList()));
+        qDebug() << "Connector: nextView loginView.qml is completed.";
+
     } else if(nextView == "chatListView.qml") {
         mChatList->setConnections(mThisView);
+        qDebug() << "Connector: nextView chatListView.qml is completed.";
     }
 }
 
