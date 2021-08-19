@@ -13,14 +13,14 @@ class Connector : public QObject {
     QQuickWindow* mMainWindow;
     QObject* mThisView;
 
-    void setViews();
+    void setViews(QVariant viewName);
     void setConnections();
 
 public:
     Connector(QQmlApplicationEngine* engine);
 
 private slots:
-    void setNextView(QVariant testStr);
+    void setNextView(QVariant nextView);
     void test();    // test code
 };
 

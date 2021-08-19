@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Connector_t {
     QByteArrayData data[5];
-    char stringdata0[36];
+    char stringdata0[37];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,11 @@ static const qt_meta_stringdata_Connector_t qt_meta_stringdata_Connector = {
 QT_MOC_LITERAL(0, 0, 9), // "Connector"
 QT_MOC_LITERAL(1, 10, 11), // "setNextView"
 QT_MOC_LITERAL(2, 22, 0), // ""
-QT_MOC_LITERAL(3, 23, 7), // "testStr"
-QT_MOC_LITERAL(4, 31, 4) // "test"
+QT_MOC_LITERAL(3, 23, 8), // "nextView"
+QT_MOC_LITERAL(4, 32, 4) // "test"
 
     },
-    "Connector\0setNextView\0\0testStr\0test"
+    "Connector\0setNextView\0\0nextView\0test"
 };
 #undef QT_MOC_LITERAL
 
