@@ -14,5 +14,6 @@
         <file>src/Weather is good.jpg</file>
         <file>src/What.jpg</file>
         <file>chatView.qml</file>
+        <file>TitleBar.qml</file>
     </qresource>
 </RCC>

@@ -4,8 +4,8 @@ import "."
 
 Item {
     objectName: "chatListView"
+
     property int titleBarHeight: 50
-    property string titleName: "Chatting List"
 
     property var mChatList: [
         ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
@@ -22,92 +22,11 @@ Item {
     signal getNextView(var nextView);
 
     // title bar
-    Rectangle {
-        id: titleBar
-
-        width: parent.width
-        height: titleBarHeight
-        color: "#FFF9C4"
-
-
-        RowLayout {
-            spacing: 3
-            anchors.fill: parent
-
-            Rectangle {
-                Layout.preferredWidth: parent.width/4
-                Layout.fillHeight: true
-                color: "transparent"
-
-                Rectangle {
-                    id: prevBtn
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 40; height: 40
-                    color: prevBtnArea.containsMouse? "#FFFDE7" : "white"
-                    radius: 20
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "<<"
-                    }
-
-                    MouseArea {
-                        id: prevBtnArea
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: {
-                            console.log("chatListView.qml: click prevBtn. nextView is loginView.qml")
-                            getNextView("loginView.qml");
-                        }
-                    }
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: parent.width/2
-                Layout.fillHeight: true
-                color: "transparent"
-                Text {
-                    anchors.centerIn: parent
-                    text: titleName
-                    font.bold: true
-                }
-            }
-
-            Rectangle {
-                property var nextView: "loginView.qml"
-                Layout.preferredWidth: parent.width/4
-                Layout.fillHeight: true
-                color: "transparent"
-
-                Rectangle {
-                    id: settingBtn
-                    anchors.right: parent.right
-                    anchors.rightMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 40; height: 40
-                    color: settingBtnArea.containsMouse? "#FFFDE7" : "white"
-                    radius: 20
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "Set"
-                    }
-
-                    MouseArea {
-                        id: settingBtnArea
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: {
-                            console.log("LoginView.qml: click settingBtn. nextView is", nextView)
-                            getNextView(nextView);
-                        }
-                    }
-                }
-            }
-        }
+    TitleBar {
+        property string titleName: "Chatting List"
+        property string prevView: "loginView.qml"
+        property string rightBtnTxt: "Set"
+        property string rightBtnView: ""
     }
 
     // contents
