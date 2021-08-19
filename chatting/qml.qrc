@@ -13,5 +13,6 @@
         <file>src/We are animals.jpg</file>
         <file>src/Weather is good.jpg</file>
         <file>src/What.jpg</file>
+        <file>chatView.qml</file>
     </qresource>
 </RCC>

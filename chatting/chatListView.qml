@@ -35,7 +35,6 @@ Item {
             anchors.fill: parent
 
             Rectangle {
-                property var nextView: "loginView.qml"
                 Layout.preferredWidth: parent.width/4
                 Layout.fillHeight: true
                 color: "transparent"
@@ -59,8 +58,8 @@ Item {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
-                            console.log("chatListView.qml: click prevBtn. nextView is", nextView)
-                            getNextView(nextView);
+                            console.log("chatListView.qml: click prevBtn. nextView is loginView.qml")
+                            getNextView("loginView.qml");
                         }
                     }
                 }
@@ -141,6 +140,15 @@ Item {
                 border.width: 1
                 border.color: "gray"
                 color: "transparent"
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("chatListView.qml: click list", mChatList[1])
+                        console.log("chatListView.qml: click list. nextView is chatView.qml")
+                        getNextView("chatView.qml")
+                    }
+                }
 
                 RowLayout {
                     anchors.fill: parent
