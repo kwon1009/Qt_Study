@@ -6,12 +6,16 @@
 #include <QQuickWindow>
 #include <QVariant>
 
+#include "chatList.h"
+
 class Connector : public QObject {
     Q_OBJECT
 
     QQmlApplicationEngine* mEngine;
     QQuickWindow* mMainWindow;
     QObject* mThisView;
+
+    ChatList* mChatList;
 
     void setViews(QVariant viewName);
     void setConnections();

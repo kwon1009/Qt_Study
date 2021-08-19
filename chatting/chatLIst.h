@@ -9,7 +9,7 @@ class ChatList : public QObject {
     QObject* mChatListView;
 
 public:
-    ChatList();
+    ChatList(QObject* view);
 };
 
 #endif // CHATLIST_H

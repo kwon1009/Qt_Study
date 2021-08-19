@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    connector.cpp
+    connector.cpp \
+    chatlist.cpp
 
 RESOURCES += qml.qrc
 

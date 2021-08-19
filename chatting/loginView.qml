@@ -30,7 +30,7 @@ Item {
             hoverEnabled: true
 
             onClicked: {
-                console.log("LoginView.qml: click loginBtn. nextView is", nextView)
+                console.log("loginView.qml: click loginBtn. nextView is", nextView)
                 getNextView(nextView);
             }
         }

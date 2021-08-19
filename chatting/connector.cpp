@@ -38,8 +38,9 @@ void Connector::setNextView(QVariant nextView) {
     setConnections();
     qDebug() << "Connector: change view ->" << nextView.toString();
 
+    // create class
     if(nextView == "chatListView") {
-        // set chat list view
+        mChatList = new ChatList(mThisView);
     }
 }
 
