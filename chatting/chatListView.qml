@@ -1,19 +1,24 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.2
+import "."
 
 Item {
     objectName: "chatListView"
     property int titleBarHeight: 50
+    property string titleName: "Chatting List"
+    property var chatProfilePath: "./src/Happy dog.jpg"    // photoPath setting
 
     // signals
     signal getNextView(var nextView);
 
     // title bar
     Rectangle {
-        id: title
+        id: titleBar
+
         width: parent.width
         height: titleBarHeight
         color: "#FFF9C4"
+
 
         RowLayout {
             spacing: 3
@@ -57,7 +62,8 @@ Item {
                 color: "transparent"
                 Text {
                     anchors.centerIn: parent
-                    text: "Chatting List"
+                    text: titleName
+                    font.bold: true
                 }
             }
 
@@ -98,13 +104,12 @@ Item {
     // contents
     Rectangle {
         id: chatList
-        anchors.top: title.bottom
+        y: titleBarHeight
         width: parent.width
         height: parent.height - titleBarHeight
 
         // component
         Rectangle {
-            property var chatProfilePath: ""    // photoPath setting
 
             width: parent.width
             height: 80
@@ -130,8 +135,8 @@ Item {
                         color: "green"
 
                         Image {
-                            fillMode: Image.PreserveAspectCrop
                             anchors.fill: parent
+                            fillMode: Image.PreserveAspectCrop
                             source: chatProfilePath
                         }
                     }
