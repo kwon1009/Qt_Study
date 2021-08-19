@@ -20,6 +20,8 @@ Item {
 
     // signals
     signal getNextView(var nextView);
+    signal getChatList();
+
 
     // title bar
     TitleBar {
@@ -37,6 +39,11 @@ Item {
         height: parent.height - titleBarHeight
 
         Component.onCompleted: {
+            // setting chat list
+            getChatList();
+            console.log("chatListView.qml: setting chat list")
+
+            // setting chat list component
             console.log("chatListView.qml: mChatList size is", mChatList.length)
             for(var i=0; i<mChatList.length; i++) {
                 chatListView.model.append({

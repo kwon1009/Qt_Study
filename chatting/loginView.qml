@@ -7,6 +7,7 @@ Item {
 
     // signals
     signal getNextView(var nextView);
+    signal sg_setChatList();
 
     Rectangle {
         property var btnColor: "#90CAF9"
@@ -31,6 +32,7 @@ Item {
 
             onClicked: {
                 console.log("loginView.qml: click loginBtn. nextView is", nextView)
+                sg_setChatList();
                 getNextView(nextView);
             }
         }

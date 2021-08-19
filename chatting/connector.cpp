@@ -16,6 +16,9 @@ Connector::Connector(QQmlApplicationEngine* engine) {
     if(!thisView) printObjectIsNotFound("loginView");
     else    mThisView = thisView;
 
+    mChatList = new ChatList();
+    connect(mThisView, SIGNAL(sg_setChatList()), mChatList, SLOT(slot_setChatList()));
+
     setConnections();
 }
 
@@ -39,8 +42,13 @@ void Connector::setNextView(QVariant nextView) {
     qDebug() << "Connector: change view ->" << nextView.toString();
 
     // create class
-    if(nextView == "chatListView") {
-        mChatList = new ChatList(mThisView);
+    if(nextView == "loginView.qml") {
+        // new login and loading chatting list
+        delete mChatList;
+        mChatList = new ChatList();
+        connect(mThisView, SIGNAL(sg_setChatList()), mChatList, SLOT(slot_setChatList()));
+    } else if(nextView == "chatListView.qml") {
+        mChatList->setConnections(mThisView);
     }
 }
 
