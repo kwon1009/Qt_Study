@@ -6,4 +6,16 @@ Window {
     width: 400
     height: 600
     title: qsTr("Chatting")
+
+    // slots
+    function changeView(viewName) {
+        mainView.source = viewName;
+        console.log("main.qml: change view ->", viewName)
+    }
+
+    Loader {
+        id: mainView;
+        anchors.fill: parent
+        source: "loginView.qml"
+    }
 }
