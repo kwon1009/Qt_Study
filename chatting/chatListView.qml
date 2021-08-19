@@ -6,7 +6,17 @@ Item {
     objectName: "chatListView"
     property int titleBarHeight: 50
     property string titleName: "Chatting List"
-    property var chatProfilePath: "./src/Happy dog.jpg"    // photoPath setting
+
+    property var mChatList: [
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
+        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"]
+    ]
 
     // signals
     signal getNextView(var nextView);
@@ -108,89 +118,112 @@ Item {
         width: parent.width
         height: parent.height - titleBarHeight
 
+        Component.onCompleted: {
+            console.log("chatListView.qml: mChatList size is", mChatList.length)
+            for(var i=0; i<mChatList.length; i++) {
+                chatListView.model.append({
+                                             "chatProfileImg": mChatList[i][0],
+                                             "chatProfileName": mChatList[i][1],
+                                             "chatLastContents": mChatList[i][2],
+                                             "chatLastTime": mChatList[i][3]
+                                         })
+            }
+            console.log("chatListview.qml: load chat list completed.")
+        }
+
         // component
-        Rectangle {
+        Component {
+            id:chatComponent
 
-            width: parent.width
-            height: 80
-            border.width: 1
-            border.color: "gray"
-            color: "transparent"
+            Rectangle {
+                width: parent.width
+                height: 80
+                border.width: 1
+                border.color: "gray"
+                color: "transparent"
 
-            RowLayout {
-                anchors.fill: parent
-                spacing: 3
+                RowLayout {
+                    anchors.fill: parent
+                    spacing: 3
 
-                // profile image
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 80
-                    color: "transparent"
-
+                    // profile image
                     Rectangle {
-                        width: 60
-                        height: 60
-                        radius: 10
-                        anchors.centerIn: parent
-                        color: "green"
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: 80
+                        color: "transparent"
 
-                        Image {
+                        Rectangle {
+                            width: 60
+                            height: 60
+                            radius: 10
+                            anchors.centerIn: parent
+                            color: "green"
+
+                            Image {
+                                anchors.fill: parent
+                                fillMode: Image.PreserveAspectCrop
+                                source: chatProfileImg
+                            }
+                        }
+                    }
+
+                    // chat data
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width - 180
+                        color: "transparent"
+
+                        ColumnLayout {
                             anchors.fill: parent
-                            fillMode: Image.PreserveAspectCrop
-                            source: chatProfilePath
-                        }
-                    }
-                }
+                            spacing: 2
 
-                // chat data
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: parent.width - 150
-                    color: "transparent"
+                            Rectangle {
+                                id: chatId
+                                Layout.fillWidth: parent.width
+                                Layout.preferredHeight: 20
+                                color: "transparent"
 
-                    ColumnLayout {
-                        anchors.fill: parent
-                        spacing: 2
-
-                        Rectangle {
-                            id: chatId
-                            Layout.fillWidth: parent.width
-                            Layout.preferredHeight: 20
-                            color: "transparent"
-
-                            Text {
-                                y: 10
-                                text: "어니부기"
-                                font.bold: true
+                                Text {
+                                    y: 10
+                                    text: chatProfileName
+                                    font.bold: true
+                                }
                             }
-                        }
 
-                        Rectangle {
-                            Layout.fillWidth: parent.width
-                            Layout.preferredHeight: 40
-                            color: "transparent"
+                            Rectangle {
+                                Layout.fillWidth: parent.width
+                                Layout.preferredHeight: 40
+                                color: "transparent"
 
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "Hello. Qt coding."
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: chatLastContents
+                                }
                             }
                         }
                     }
-                }
 
-                // chat time
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 70
-                    color: "transparent"
+                    // chat time
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: 100
+                        color: "transparent"
 
-                    Text {
-                        anchors.centerIn: parent
-                        text: "2021.08.19"
-                        color: "gray"
+                        Text {
+                            anchors.centerIn: parent
+                            color: "gray"
+                            text: chatLastTime
+                        }
                     }
                 }
             }
+        }
+
+        ListView {
+            id: chatListView
+            anchors.fill: parent
+            delegate: chatComponent
+            model: ListModel{}
         }
     }
 }
