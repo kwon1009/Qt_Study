@@ -5,6 +5,7 @@
 #include <QIODevice>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 
 const QString mJsonFileRoot = "./";
 const QStringList cnstTitles = { "chatlist" };
@@ -27,6 +28,7 @@ public:
 
     // 원하는 설정 정보 관리
     QJsonObject getJsonObj(QString title);
+    QJsonArray getJsonArray(QString title);
     void setJsonObj(QString title, QJsonObject contents);
 };
 

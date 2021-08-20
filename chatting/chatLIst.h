@@ -6,11 +6,25 @@
 #include <QVector>
 #include <QVariant>
 
+#include <QJsonObject>
+#include <QJsonArray>
+#include "jsoncontroller.h"
+
+struct ChatListStruct {
+    int id;
+    QString profileImg;
+    QString profileName;
+    QString lastContent;
+    QString lastTime;
+};
+
 class ChatList : public QObject {
     Q_OBJECT
 
+    JSONController* mJSONController;
+
     QObject* mChatListView;
-    QVector<QStringList> mChatList;
+    QVector<ChatListStruct> mChatList;
     QString str1;       // test code
 
 public:

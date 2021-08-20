@@ -44,13 +44,12 @@ Item {
         height: parent.height - titleBarHeight
 
         Component.onCompleted: {
-
             // setting chat list
             var chats = classChatList.getChatList()
             for(var i=0; i<chats.length; i++) {
                 mChatList[i] = chats[i]
-                console.log(mChatList[i], chats[i])
             }
+            console.log("chatListView.qml: setting chat list complete.")
 
             // setting chat list component
             console.log("chatListView.qml: mChatList size is", mChatList.length)
@@ -58,7 +57,7 @@ Item {
                 chatListView.model.append({
                                              "chatProfileImg": mChatList[i][0],
                                              "chatProfileName": mChatList[i][1],
-                                             "chatLastContents": mChatList[i][2],
+                                             "chatLastContent": mChatList[i][2],
                                              "chatLastTime": mChatList[i][3]
                                          })
             }
@@ -140,7 +139,7 @@ Item {
 
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: chatLastContents
+                                    text: chatLastContent
                                 }
                             }
                         }

@@ -3,6 +3,9 @@
 
 ChatList::ChatList() {
     qDebug() << "ChatList: ChatList class setting completed.";
+    mJSONController = new JSONController("chatlist.json");
+
+    setChatList();
 }
 
 ChatList::~ChatList() {
@@ -16,24 +19,34 @@ void ChatList::setConnections(QObject* view) {
 
 void ChatList::setChatList() {
     // setting chattinglist
-    for(int i=0; i<10; i++) {
-        mChatList.append({"./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"});
+    ChatListStruct sChatList;
+    QJsonArray jsonChatList = mJSONController->getJsonArray("chatlist");
+    for(int i=0; i<jsonChatList.size(); i++) {
+        QJsonObject chatObj = jsonChatList[i].toObject();
+        sChatList.id = chatObj["id"].toInt();
+        sChatList.profileImg = chatObj["profileImg"].toString();
+        sChatList.profileName = chatObj["profileName"].toString();
+        sChatList.lastContent = chatObj["lastContent"].toString();
+        sChatList.lastTime = chatObj["lastTime"].toString();
+        mChatList.append(sChatList);
     }
-    qDebug() << mChatList;
     qDebug() << "ChatList: chatting list loading completed.";
 }
 
 // qml onCompleted
 QVariant ChatList::getChatList() {
-    setChatList();
-
-    qDebug() << "ChatList: get chatting list";
-
     QVariantList chatList;
     for(int i=0; i<mChatList.size(); i++) {
-        chatList.push_back(mChatList[i]);
+        // string 형식으로 변경
+        QStringList chatListString;
+        chatListString.append(mChatList[i].profileImg);
+        chatListString.append(mChatList[i].profileName);
+        chatListString.append(mChatList[i].lastContent);
+        chatListString.append(mChatList[i].lastTime);
+        chatList.append(chatListString);
     }
 
+    qDebug() << "ChatList: get chatting list";
     return QVariant(chatList);
 }
 
