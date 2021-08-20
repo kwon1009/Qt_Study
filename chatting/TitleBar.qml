@@ -29,7 +29,7 @@ Rectangle {
 
                 Text {
                     anchors.centerIn: parent
-                    text: "<<"
+                    text: prevBtnTxt
                 }
 
                 MouseArea {

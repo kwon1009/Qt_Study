@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     connector.cpp \
-    chatlist.cpp
+    chatlist.cpp \
+    jsoncontroller.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,4 +33,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     connector.h \
-    chatLIst.h
+    chatLIst.h \
+    jsoncontroller.h

@@ -15,7 +15,7 @@ class Connector : public QObject {
     QQuickWindow* mMainWindow;
     QObject* mThisView;
 
-    ChatList* mChatList;
+//    ChatList* mChatList;
 
     void setViews(QVariant viewName);
     void setConnections();

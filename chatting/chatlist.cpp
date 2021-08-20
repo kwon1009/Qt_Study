@@ -2,7 +2,6 @@
 #include <QDebug>
 
 ChatList::ChatList() {
-    qmlRegisterType<ChatList>("ChatList", 1, 0, "ChatList");
     qDebug() << "ChatList: ChatList class setting completed.";
 }
 
@@ -20,6 +19,7 @@ void ChatList::setChatList() {
     for(int i=0; i<10; i++) {
         mChatList.append({"./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"});
     }
+    qDebug() << mChatList;
     qDebug() << "ChatList: chatting list loading completed.";
 }
 
@@ -28,10 +28,13 @@ QVariant ChatList::getChatList() {
     setChatList();
 
     qDebug() << "ChatList: get chatting list";
-    qDebug() << mChatList;
 
-    QString str = "test";
-    return QVariant(str);
+    QVariantList chatList;
+    for(int i=0; i<mChatList.size(); i++) {
+        chatList.push_back(mChatList[i]);
+    }
+
+    return QVariant(chatList);
 }
 
 void ChatList::slot_test() {

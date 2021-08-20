@@ -6,23 +6,17 @@ import "."
 Item {
     objectName: "chatListView"
 
-    ChatList { id: classChatList }  // 새로 만들어지는 class. 해당 페이지에 직접 속하게 된다.
+    property int titleBarHeight: 50
+
+    property var mChatList: []
+
+    ChatList {
+        id: classChatList
+    }  // 새로 만들어지는 class. 해당 페이지에 직접 속하게 된다.
     // !!데이터 전달에 대해 확인 필요
     // !!현재 페이지와 ChatView와 연동여부 확인 필요
     // !!설정과 같은 전반적인 데이터 연동 구조 확인 필요
 
-    property int titleBarHeight: 50
-
-    property var mChatList: [
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"],
-        ["./src/Happy dog.jpg", "어니부기", "Hello. Qt Coading.", "2021.08.19"]
-    ]
 
     // signals
     signal getNextView(var nextView);
@@ -36,6 +30,7 @@ Item {
     // title bar
     TitleBar {
         property string titleName: "Chatting List"
+        property string prevBtnTxt: "Lout"
         property string prevView: "loginView.qml"
         property string rightBtnTxt: "Set"
         property string rightBtnView: ""
@@ -49,9 +44,13 @@ Item {
         height: parent.height - titleBarHeight
 
         Component.onCompleted: {
+
             // setting chat list
-            classChatList.getChatList()
-            console.log("chatListView.qml: setting chat list")
+            var chats = classChatList.getChatList()
+            for(var i=0; i<chats.length; i++) {
+                mChatList[i] = chats[i]
+                console.log(mChatList[i], chats[i])
+            }
 
             // setting chat list component
             console.log("chatListView.qml: mChatList size is", mChatList.length)

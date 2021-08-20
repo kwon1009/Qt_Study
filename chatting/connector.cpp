@@ -6,7 +6,8 @@ void printObjectIsNotFound(QString objName) {
 
 Connector::Connector(QQmlApplicationEngine* engine) {
     mEngine = engine;
-    mChatList = new ChatList();
+//    mChatList = new ChatList();
+    qmlRegisterType<ChatList>("ChatList", 1, 0, "ChatList");
 
     // mainView
     QObject *root = mEngine->rootObjects()[0];
@@ -47,7 +48,7 @@ void Connector::setNextView(QVariant nextView) {
         qDebug() << "Connector: nextView loginView.qml is completed.";
 
     } else if(nextView == "chatListView.qml") {
-        mChatList->setConnections(mThisView);
+//        mChatList->setConnections(mThisView);
         qDebug() << "Connector: nextView chatListView.qml is completed.";
     }
 }
