@@ -6,8 +6,8 @@ void printObjectIsNotFound(QString objName) {
 
 Connector::Connector(QQmlApplicationEngine* engine) {
     mEngine = engine;
-//    mChatList = new ChatList();
     qmlRegisterType<ChatList>("ChatList", 1, 0, "ChatList");
+    qmlRegisterType<Chat>("Chat", 1, 0, "Chat");
 
     // mainView
     QObject *root = mEngine->rootObjects()[0];

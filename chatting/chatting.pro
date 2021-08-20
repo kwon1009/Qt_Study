@@ -16,7 +16,8 @@ SOURCES += \
         main.cpp \
     connector.cpp \
     chatlist.cpp \
-    jsoncontroller.cpp
+    jsoncontroller.cpp \
+    chat.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,4 +35,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     connector.h \
     chatLIst.h \
-    jsoncontroller.h
+    jsoncontroller.h \
+    chat.h

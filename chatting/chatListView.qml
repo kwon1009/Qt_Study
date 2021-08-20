@@ -5,18 +5,11 @@ import "."
 
 Item {
     objectName: "chatListView"
-
     property int titleBarHeight: 50
 
     property var mChatList: []
 
-    ChatList {
-        id: classChatList
-    }  // 새로 만들어지는 class. 해당 페이지에 직접 속하게 된다.
-    // !!데이터 전달에 대해 확인 필요
-    // !!현재 페이지와 ChatView와 연동여부 확인 필요
-    // !!설정과 같은 전반적인 데이터 연동 구조 확인 필요
-
+    ChatList { id: classChatList }
 
     // signals
     signal getNextView(var nextView);

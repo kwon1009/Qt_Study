@@ -7,6 +7,7 @@
 #include <QVariant>
 
 #include "chatList.h"
+#include "chat.h"
 
 class Connector : public QObject {
     Q_OBJECT
